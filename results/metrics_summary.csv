@@ -1,0 +1,8 @@
+model,accuracy,macro_f1,roc_auc
+Naive Bayes,0.79,0.77,0.907
+Logistic Regression,0.92,0.92,0.945
+K-Nearest Neighbors,0.89,0.89,0.937
+Support Vector Machine,0.92,0.92,0.958
+Decision Tree,0.93,0.93,0.962
+Random Forest,0.94,0.94,0.981
+XGBoost,0.96,0.96,0.965
