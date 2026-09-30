@@ -116,10 +116,10 @@ Then open `model_evaluation/Model_evaluation.ipynb`. The `FEATURES_FILE` line in
 
 | Component | License |
 |---|---|
-| Code (scripts and notebooks) | [MIT](LICENSE) |
-| Dataset | Not covered by the MIT license and not yet cleared for redistribution |
+| Code (scripts, notebooks) | [MIT](LICENSE) |
+| Dataset | Not covered by the MIT license; not yet cleared for redistribution |
 
-The payloads come from 11 public repositories: seven under MIT, two under Apache-2.0, one under LGPL-3.0 (Sidekiq), and one (HackTricks) with custom terms that require attribution and ask for permission before commercial use. The licenses of the web pages behind the 47 test positives have not been checked. Read the licensing section of [`Dataset/train/SOURCES.md`](Dataset/train/SOURCES.md) before sharing or reusing any data file.
+> **Note on the data.** Payloads come from 11 public repositories: seven MIT, two Apache-2.0, one LGPL-3.0 (Sidekiq), and one (HackTricks) with custom terms that ask for attribution and permission for commercial use. The 47 test positives come from published web pages whose licenses have not been checked. Before sharing or reusing any data file, read the licensing section of [`Dataset/train/SOURCES.md`](Dataset/train/SOURCES.md).
 
 ## Contact
 
