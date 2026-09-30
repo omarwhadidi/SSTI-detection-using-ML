@@ -88,11 +88,14 @@ python feature_audit.py                    # reproduces the feature analysis
 
 Then open `model_evaluation/Model_evaluation.ipynb`. Cell 4 has a `FEATURES_FILE` line that switches between v1 and v2 features. The notebooks read local copies of the feature CSVs in `model_evaluation/` and check that they match the files in `Dataset/`; the deep-learning notebook is `model_evaluation/deep_learning/dl_models.ipynb`.
 
-## Licence
+## License
 
-Code: MIT, see [LICENSE](LICENSE).
+| Component | License |
+|---|---|
+| Code (scripts, notebooks) | [MIT](LICENSE) |
+| Dataset | Not covered by the MIT license; not yet cleared for redistribution |
 
-**Data is not covered by that licence and has not been cleared for redistribution.** Payloads come from repositories with different licences (MIT, Apache-2.0, LGPL-3.0, and one wiki whose licence is unverified). See the Licensing section of [`Dataset/train/SOURCES.md`](Dataset/train/SOURCES.md) before sharing or reusing any data file.
+> **Note on the data.** Payloads come from public repositories with different licenses: MIT, Apache-2.0, LGPL-3.0, and one wiki whose license is unverified. Before sharing or reusing any data file, read the licensing section of [`Dataset/train/SOURCES.md`](Dataset/train/SOURCES.md).
 
 ## Contact
 
