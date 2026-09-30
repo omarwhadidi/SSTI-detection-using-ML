@@ -1,121 +1,141 @@
 # SSTI-ML-Detect
 
-**Machine learning-based detection of Server-Side Template Injection (SSTI) payloads using interpretable lexical, structural, and semantic features.**
+**Machine learning detection of Server-Side Template Injection (SSTI) payloads, evaluated with group-aware splits, hard negatives, and an independent external test set.**
 
 ![Python](https://img.shields.io/badge/Python-3.10%2B-blue?logo=python&logoColor=white)
-![scikit-learn](https://img.shields.io/badge/scikit--learn-1.3-F7931E?logo=scikit-learn&logoColor=white)
-![XGBoost](https://img.shields.io/badge/XGBoost-2.0-006ACC)
-![License](https://img.shields.io/badge/license-MIT-green)
+![License](https://img.shields.io/badge/code%20license-MIT-green)
 ![Status](https://img.shields.io/badge/status-research%2Feducational-yellow)
 
 ---
 
 ## Overview
 
-Server-Side Template Injection (SSTI) lets an attacker inject template syntax into a web application that the server's template engine then evaluates, often escalating to remote code execution. Signature and regex-based detectors are precise against known payloads but degrade quickly against obfuscation and unseen delimiter variants.
+Server-Side Template Injection lets an attacker inject template syntax that the server's template engine then evaluates, often escalating to remote code execution. This project asks whether a classifier trained on interpretable features of a payload string can separate SSTI payloads from benign input, including benign template code that looks like an attack.
 
-This project asks a different question: **can a classifier trained on interpretable features of a payload string generalize better than a fixed signature list?** It builds a full pipeline — feature engineering, model training/tuning, and evaluation — for classifying SSTI attack payloads against benign input, engine-agnostically (Jinja2/Twig/Handlebars, Freemarker/Thymeleaf/Mako, Velocity, OGNL/Struts).
+This is the second version of the project. The first version used 977 hand-assembled payloads and a single random split, which let variants of the same payload land on both sides of the split. It is preserved in [`legacy_977_row_version/`](legacy_977_row_version/) for history and **its results should not be cited**. This version replaces it.
 
-## Key Results
+## Data
 
-Seven classifiers were tuned (RandomizedSearchCV, stratified CV) and evaluated on a held-out test split (196 payloads):
+| | rows | notes |
+|---|---:|---|
+| Training positives | 1,905 | collected from public payload lists and pinned to a source commit; 1,283 distinct structural skeletons (`base_id`) |
+| Training benign | 2,001 | 787 hard negatives (real template fragments from 4 open-source projects) and 1,214 normal web parameters |
+| External test positives | 47 | documented cases (CVE, bug bounty reports, scanner material, write-ups) |
+| External test benign | 500 | 357 normal parameters, 143 template fragments |
 
-| Model | Accuracy | Macro F1 | ROC-AUC |
-|---|---|---|---|
-| Naive Bayes | 0.79 | 0.77 | 0.907 |
-| Logistic Regression | 0.92 | 0.92 | 0.945 |
-| K-Nearest Neighbors | 0.89 | 0.89 | 0.937 |
-| Support Vector Machine | 0.92 | 0.92 | 0.958 |
-| Decision Tree | 0.93 | 0.93 | 0.962 |
-| Random Forest | 0.94 | 0.94 | **0.981** |
-| **XGBoost** | **0.96** | **0.96** | 0.965 |
+Every positive carries a `source_url` pointing at a public file at a pinned commit. `base_id` is a payload's structural skeleton (digits and quoted strings masked, whitespace stripped); all splits are grouped on it so variants of one payload never sit on both sides.
 
-XGBoost wins on accuracy/F1; Random Forest produces the best-calibrated ranking (highest ROC-AUC). See [`results/`](results/) for confusion matrices and the full metrics table.
+Full documentation: [`Dataset/DATASHEET.md`](Dataset/DATASHEET.md) (what each file and column means, known problems) and [`Dataset/train/SOURCES.md`](Dataset/train/SOURCES.md) (provenance and licences).
 
-<p align="center">
-  <img src="results/figures/cm_xgboost.png" width="380" alt="XGBoost confusion matrix">
-  <img src="results/figures/cm_random_forest.png" width="380" alt="Random Forest confusion matrix">
-</p>
+## Features
 
-## Feature Set
+Version 1 has 17 features (lexical, structural, semantic); version 2 has 18. Files ending `_v2.csv` use version 2. Columns starting with `v2_` are new or redefined; all other columns are computed exactly as in version 1.
 
-977 labeled payloads (477 SSTI, 500 benign) are vectorized into **17 features** across three interpretable groups, so classification performance can be attributed to genuine signal rather than a single dominant feature:
+| Change in v2 | Why |
+|---|---|
+| removed `count_percent_brace` | fired on 2 of 3,906 rows |
+| `count_erb` → `v2_count_erb_open` | version 1 counted opening and closing tags, so ERB scored double |
+| `has_arithmetic_operation` → `v2_has_arithmetic_probe` | version 1 missed probes with a quoted operand |
+| added `v2_call_inside_delim`, `v2_max_attr_chain_len` | behaviour features that still separate attacks from hard negatives |
 
-| Group | What it captures | Examples |
-|---|---|---|
-| **Lexical** | Statistical shape of the string | `payload_length`, `special_char_ratio` |
-| **Structural** | Delimiter surface across engines | `count_double_brace`, `delimiter_family_count`, `max_bracket_depth` |
-| **Semantic** | Attacker intent + evasion | `has_dunder_chain`, `has_exec_tokens`, `has_java_reflection`, `has_string_operation` |
+Definitions and rationale: [`Dataset/scripts/ssti_feature_extraction.py`](Dataset/scripts/ssti_feature_extraction.py) and [`..._v2.py`](Dataset/scripts/ssti_feature_extraction_v2.py). Evidence for each change: [`Dataset/scripts/feature_audit.py`](Dataset/scripts/feature_audit.py).
 
-Full feature definitions and regex rationale: [`src/feature_extraction.py`](src/feature_extraction.py).
+## Results
 
-## Project Structure
+**These numbers are provisional.** They come from repeated runs of the code in this repository on one machine, several with only 5 random splits, and the external set has just 47 positives. Re-run the notebooks before quoting anything.
+
+**1. More positives have stopped helping.** XGBoost on the 17 features, grouped subsamples of the training data:
+
+| training rows | holdout AUC | external AUC |
+|---:|---:|---:|
+| 677 | 0.9438 | 0.9474 |
+| 3,191 | 0.9661 | 0.9895 |
+
+Going from 90% to 100% of the data moved holdout AUC by +0.0011 and external AUC by +0.0000.
+
+**2. At threshold 0.5, precision on the external set is poor.** Choosing the threshold from training data only (5-fold grouped out-of-fold scores, targeting a 5% false-alarm rate on benign rows) and applying it once to the external set:
+
+| model | cutoff | precision | recall | F1 | false alarms | missed attacks |
+|---|---:|---:|---:|---:|---:|---:|
+| XGBoost | 0.50 | 0.662 | 0.957 | 0.783 | 23 | 2 |
+| XGBoost | 0.811 | 0.837 | 0.872 | 0.854 | 8 | 6 |
+| Random Forest | 0.50 | 0.629 | 0.936 | 0.752 | 26 | 3 |
+| Random Forest | 0.793 | 0.776 | 0.809 | 0.792 | 11 | 9 |
+
+The cost of the higher threshold is more missed attacks. One run each, v2 features. See the last cells of [`model_evaluation/Model_evaluation.ipynb`](model_evaluation/Model_evaluation.ipynb).
+
+**3. Version 2 features help a little.** Mean over 5 grouped splits, threshold 0.5, external set:
+
+| model | features | F1 | precision | recall |
+|---|---|---:|---:|---:|
+| XGBoost | v1 | 0.726 | 0.579 | 0.979 |
+| XGBoost | v2 | 0.734 | 0.593 | 0.975 |
+| Random Forest | v1 | 0.706 | 0.563 | 0.953 |
+| Random Forest | v2 | 0.721 | 0.583 | 0.953 |
+
+The gains are 1 to 2 points while split-to-split spread is 3 to 8 points, so this is a small consistent improvement, not a demonstrated one. Random Forest's external PR-AUC fell by 0.017.
+
+**4. The errors are all on hard negatives.** At threshold 0.5 (XGBoost, v1 features) all 23 external false positives were template fragments (Sidekiq 15, Microblog 4, PetClinic 3, Symfony 1); none of the 357 normal parameters were flagged. Attacks versus hard negatives only, grouped, 5 splits: AUC 0.926 ± 0.009.
+
+**5. A plain character n-gram baseline is strong in-distribution.** One grouped split:
+
+| model | holdout AUC | external AUC | external PR-AUC |
+|---|---:|---:|---:|
+| 17 engineered features + XGBoost | 0.966 | 0.990 | 0.903 |
+| character 2-4-gram TF-IDF + logistic regression | 0.997 | 0.983 | 0.874 |
+
+Character-level neural models (RNN, LSTM, CNN-LSTM in [`model_evaluation/deep_learning/dl_models.ipynb`](model_evaluation/deep_learning/dl_models.ipynb), 5 splits) follow the same pattern: holdout AUC 0.960 to 0.981, external AUC 0.949 to 0.981, with standard deviations of 0.005 to 0.049 that are as large as the gaps between the three architectures.
+
+## Limitations
+
+- **The external test set is not fully independent.** Its benign rows come partly from the same four open-source projects as the training hard negatives. Payload-level overlaps are documented in the datasheet.
+- **Only 47 external positives.** A recall near 0.95 has a 95% interval of about ±6 points, so differences smaller than that cannot be resolved.
+- **Hard negatives come from four projects**, one per template engine, which is the most likely reason for the remaining false alarms.
+- **Labels and annotations are automatic.** `engine`, `language` and `mechanism` are not human-reviewed; nothing was executed to confirm a payload works.
+- **Two feature columns are shape proxies.** `payload_length` and `special_char_ratio` alone reach external AUC 0.953; they separate template-shaped strings from plain parameters more than attacks from hard negatives.
+- **The first cells of `Model_evaluation.ipynb` use a random, ungrouped split** (kept as the original baseline). The grouped readings are in the cells after it and in the last two sections.
+- No adversarial evaluation against an attacker who knows the features.
+
+## Layout
 
 ```
-ssti-ml-detection/
-├── data/
-│   ├── raw/                  # ssti_payloads.txt, benign_payloads.txt (one payload per line)
-│   └── processed/            # ssti_features_all.csv (977 x 17 feature matrix + label)
-├── src/
-│   ├── feature_extraction.py       # 17-feature extractor (the core contribution)
-│   ├── extract_to_csv.py           # CLI: payloads.txt -> features.csv
-│   └── cross_validation_analysis.py  # 5-fold CV + feature-importance-by-group analysis
-├── notebooks/
-│   └── model_training_and_evaluation.ipynb   # training, tuning, single-split evaluation
-├── results/
-│   ├── figures/               # confusion matrices for all 7 models
-│   └── metrics_summary.csv    # single-split performance table
-└── requirements.txt
+Dataset/
+  DATASHEET.md, README.md      dataset documentation
+  train/                       positives/, benign/, combined/ (incl. *_features.csv), SOURCES.md
+  test_set/                    external test data, features/, sources.md
+  scripts/                     feature extractors (v1, v2), feature_audit.py, older utilities
+model_evaluation/
+  Model_evaluation.ipynb       7 classical models, grouped evaluation, threshold selection
+  deep_learning/dl_models.ipynb  RNN / LSTM / CNN-LSTM, 5-split rerun
+  *.csv                        local copies the notebooks read (byte-identical to Dataset/)
+legacy_977_row_version/        first version, superseded
 ```
 
-## Installation
-
-```bash
-git clone https://github.com/omarwhadidi/SSTI-detection-using-ML.git
-cd SSTI-detection-using-ML
-pip install -r requirements.txt
-```
+The notebooks find `Dataset/` by walking up from their own folder, and compare their local CSV copies with the originals, which is why the copies are kept.
 
 ## Usage
 
-**Extract features from a new payload list:**
 ```bash
-cd src
-python extract_to_csv.py ../data/raw/ssti_payloads.txt --label 1 -o ssti_feats.csv
-python extract_to_csv.py ../data/raw/benign_payloads.txt --label 0 -o benign_feats.csv
+pip install -r requirements.txt
+cd Dataset/scripts
+python ssti_feature_extraction_v2.py      # rebuilds train_features_v2.csv and test_features_v2.csv
+python feature_audit.py                    # reproduces the feature analysis
 ```
 
-**Reproduce model training and single-split evaluation:**
-```bash
-jupyter notebook notebooks/model_training_and_evaluation.ipynb
-```
+Then open `model_evaluation/Model_evaluation.ipynb`. Cell 4 has a `FEATURES_FILE` line that switches between v1 and v2 features.
 
-**Run 5-fold cross-validation + feature-importance-by-group analysis:**
-```bash
-cd src
-python cross_validation_analysis.py
-```
+## Not in this repository
 
-## Methodology
+The `_archive/` folders, `FILE_MANIFEST.json` (out of date) and the zipped collection history are not published. Links to them in the dataset documents point to files that are not here.
 
-1. **Dataset** — 977 payloads spanning multiple template-engine delimiter families (SSTI) and representative benign strings, including template-like text that superficially resembles SSTI syntax without being an attack.
-2. **Feature engineering** — every payload is mapped to a fixed 17-dimensional vector; only `payload_length` is standardized (fit on train, applied to test).
-3. **Models** — Naive Bayes, Logistic Regression, Decision Tree, KNN, SVM (RBF), Random Forest, XGBoost — all tuned via `RandomizedSearchCV` optimizing macro-F1 under 3-fold stratified CV.
-4. **Evaluation** — accuracy, macro-F1, and ROC-AUC on an 80/20 held-out split, cross-checked with 5-fold stratified CV and feature-importance analysis aggregated by semantic group.
+## Licence
 
-## Limitations & Future Work
+Code: MIT, see [LICENSE](LICENSE).
 
-- Dataset size is modest (977 payloads) and benign examples were authored, not sampled from production traffic.
-- Hyperparameters were reused across CV folds rather than nested-CV tuned — an optimistic-bias risk to address before any operational claim.
-- No adversarial evaluation yet against an attacker with knowledge of the feature set.
-- Planned: obfuscated/evasive payload augmentation, nested CV with confidence intervals, adversarial robustness testing.
-
-## License
-
-MIT — see [LICENSE](LICENSE).
+**Data is not covered by that licence and has not been cleared for redistribution.** Payloads come from repositories with different licences (MIT, Apache-2.0, LGPL-3.0, and one wiki whose licence is unverified). See the Licensing section of [`Dataset/train/SOURCES.md`](Dataset/train/SOURCES.md) before sharing or reusing any data file.
 
 ## Contact
 
-Omar Walid Elhadidi — [omarwhadidi9@gmail.com](mailto:omarwhadidi9@gmail.com)
+Omar Walid Elhadidi, [omarwhadidi9@gmail.com](mailto:omarwhadidi9@gmail.com)
 
 Built as part of a Master of Science in Cyber Security creative component, Iowa State University.

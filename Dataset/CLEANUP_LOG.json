@@ -1,0 +1,505 @@
+{
+  "date": "2026-09-18",
+  "status": "organized_and_verified",
+  "scope": "Dataset folder organization; no active payload/label/feature changes and no evaluation algorithm changes.",
+  "moves": [
+    {
+      "from": "Dataset/_archive/expanded_old/ssti.txt",
+      "to": "Dataset/sources/legacy/ssti_seed.txt",
+      "before_sha256": "3f8df511dd8cfd368ff510faacd5a7bbfd1507bc6abd253e9b9fa51f796f8dd6"
+    },
+    {
+      "from": "Dataset/_archive/expanded_old/benign.txt",
+      "to": "Dataset/sources/legacy/benign_seed.txt",
+      "before_sha256": "309426d9f2645a68c3ef928be9eb16df8e25882542d4effd8dcbadc7054fd4e4"
+    },
+    {
+      "from": "Dataset/_archive/expanded_old/train_positives_merged.csv",
+      "to": "Dataset/sources/legacy/training_snapshot.csv",
+      "before_sha256": "60ca0e64ab28dfa8e0b0a73d6f245b98246c3b40b4ccc46a869a6712045b98d7"
+    },
+    {
+      "from": "Dataset/_archive/expanded_old/train_positives_merged.tsv",
+      "to": "Dataset/sources/legacy/training_snapshot.tsv",
+      "before_sha256": "4708980ceac140d5cd2d1181153a69058e8f5308c2ade37812fd433ec9ebb78d"
+    },
+    {
+      "from": "Dataset/dataset_audit_2026-09-17/audit_dataset.py",
+      "to": "Dataset/review/audit_2026-09-17/audit_dataset.py",
+      "before_sha256": "7b9dd396a1a928ef3f738942b13837983b25d3466dece2c17acc1806126fbcd1"
+    },
+    {
+      "from": "Dataset/dataset_audit_2026-09-17/audit_results.json",
+      "to": "Dataset/review/audit_2026-09-17/audit_results.json",
+      "before_sha256": "f6ea14dd7f075f46f8d489f57af0d1043034d1dc35256fc8ef6d3e558a82b4fc"
+    },
+    {
+      "from": "Dataset/dataset_audit_2026-09-17/combined_positives_missing_from_source.csv",
+      "to": "Dataset/review/audit_2026-09-17/combined_positives_missing_from_source.csv",
+      "before_sha256": "f0710a2555e60e2f1d1788f562a0d24eac300bf77ee8b8b3c93bfa6722cff508"
+    },
+    {
+      "from": "Dataset/dataset_audit_2026-09-17/DATASET_REVIEW.md",
+      "to": "Dataset/review/audit_2026-09-17/DATASET_REVIEW.md",
+      "before_sha256": "f94b183950f3641a3ec13c769285f44d4724fb34b6b7590fe452bb2e49c76486"
+    },
+    {
+      "from": "Dataset/dataset_audit_2026-09-17/repair_training_exports.py",
+      "to": "Dataset/review/audit_2026-09-17/repair_training_exports.py",
+      "before_sha256": "72d204c4440c9468745e9c6d11e889d457d9db67353e9adc7f916667b9f43097"
+    },
+    {
+      "from": "Dataset/dataset_audit_2026-09-17/test_positive_nearest_training.csv",
+      "to": "Dataset/review/audit_2026-09-17/test_positive_nearest_training.csv",
+      "before_sha256": "59d5a14725658c89af0a2a7a1171b7c87903b6b5bafa083182fd559d4d710179"
+    },
+    {
+      "from": "Dataset/dataset_audit_2026-09-17/training_repair_manifest_2026-09-17.json",
+      "to": "Dataset/review/audit_2026-09-17/training_repair_manifest_2026-09-17.json",
+      "before_sha256": "1c7f949ed230ceb76b2dfe297814adcd273fd689e366c8c21f45695aba3d864f"
+    },
+    {
+      "from": "Dataset/dataset_audit_2026-09-17/train_features_feature_mismatch.csv",
+      "to": "Dataset/review/audit_2026-09-17/train_features_feature_mismatch.csv",
+      "before_sha256": "8df4e03e5f64272f7d1acec82a0190608177875e269cdb8b0ad3f3e448f80053"
+    },
+    {
+      "from": "Dataset/dataset_audit_2026-09-17/train_test_overlap.csv",
+      "to": "Dataset/review/audit_2026-09-17/train_test_overlap.csv",
+      "before_sha256": "21e4af040f05e4a1c1f33426d505b0febe4b59f607a3db33110b317911962e6c"
+    },
+    {
+      "from": "Dataset/train/positives/REVIEW_positives_to_check.csv",
+      "to": "Dataset/review/REVIEW_positives_to_check.csv",
+      "before_sha256": "9c619514211fcb81f82c2b1f6e1aca03e6c9df9b5dab5179f66f038f5a51f843"
+    },
+    {
+      "from": "Dataset/train/positives/benign_removal_candidates.csv",
+      "to": "Dataset/review/benign_removal_candidates.csv",
+      "before_sha256": "6926a71d6d05e1afcb6934c3966c7511b5ee60ba5f8112e2187c174bb4935610"
+    },
+    {
+      "from": "Dataset/MANIFEST_and_CORRECTIONS.md",
+      "to": "Dataset/review/history/MANIFEST_and_CORRECTIONS.md",
+      "before_sha256": "999c69a44e93768e840ba1e40f25a2031af4559c74a4eae4fd49766482e009a2"
+    },
+    {
+      "from": "Dataset/release_manifest_2026-09-18.json",
+      "to": "Dataset/review/history/release_manifest_2026-09-18.json",
+      "before_sha256": "c99396f8a9b92f996f9420439e9bc0668a176bad9f241e1e0e4ea16fde9823fe"
+    },
+    {
+      "from": "Dataset/scripts/build_benign.py",
+      "to": "Dataset/scripts/legacy/build_benign.py",
+      "before_sha256": "747f0f807d0b05af349afb66db1e23f601a24b6c5b04e1989aef400f4b453319"
+    },
+    {
+      "from": "Dataset/scripts/extract_payloads.py",
+      "to": "Dataset/scripts/legacy/extract_payloads.py",
+      "before_sha256": "1698f3a37588cdb9c98aa92ff9cfd5847b7ce84ac5ddc514e2a7fb6255c98a5f"
+    },
+    {
+      "from": "Dataset/scripts/ssti_features.py",
+      "to": "Dataset/scripts/legacy/ssti_features.py",
+      "before_sha256": "046d0f3673e7b47997eea7bddf720a6607c56b1fc39ff1abe304abf83aff1f14"
+    },
+    {
+      "from": "Dataset/test_set/build_test_set.py",
+      "to": "Dataset/scripts/legacy/build_test_set.py",
+      "before_sha256": "68f03df0fd5af47ae942189eab33b889d43b17755da9aa1f558d9ab95875ffe2"
+    }
+  ],
+  "removed_files": [
+    {
+      "path": "Dataset/_archive/claude_outputs_dupes/positives.csv",
+      "reason": "Superseded draft, duplicate export, empty file, or outdated note; unique seed/snapshot/exception records retained under sources/legacy.",
+      "bytes": 286206,
+      "sha256": "802e7f32cc0bdf971200ab2b4fc52b29d7a5e1f9dc0d0cc942418e59ed1cf804"
+    },
+    {
+      "path": "Dataset/_archive/claude_outputs_dupes/train_combined-1.csv",
+      "reason": "Superseded draft, duplicate export, empty file, or outdated note; unique seed/snapshot/exception records retained under sources/legacy.",
+      "bytes": 450016,
+      "sha256": "a36a9f5c7985dfd9596859a65c893b9f13385adadbbbef356e8d15057129f122"
+    },
+    {
+      "path": "Dataset/_archive/claude_outputs_dupes/train_combined.csv",
+      "reason": "Superseded draft, duplicate export, empty file, or outdated note; unique seed/snapshot/exception records retained under sources/legacy.",
+      "bytes": 329505,
+      "sha256": "fe62f4a19a9332e8fb4c038f20633c539123b2b1ebb8e28466a3ae9fc423c079"
+    },
+    {
+      "path": "Dataset/_archive/expanded_old/augmented.txt",
+      "reason": "Superseded draft, duplicate export, empty file, or outdated note; unique seed/snapshot/exception records retained under sources/legacy.",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "Dataset/_archive/expanded_old/new_training_positives.csv",
+      "reason": "Superseded draft, duplicate export, empty file, or outdated note; unique seed/snapshot/exception records retained under sources/legacy.",
+      "bytes": 241322,
+      "sha256": "e99102bf219d2c53abd8463da189308c90c1d957e5df433f92843b81a6f4e9f7"
+    },
+    {
+      "path": "Dataset/_archive/expanded_old/new_training_positives.tsv",
+      "reason": "Superseded draft, duplicate export, empty file, or outdated note; unique seed/snapshot/exception records retained under sources/legacy.",
+      "bytes": 240660,
+      "sha256": "538b4ab25e7da9ce4ad2a7ad643bef630bf34284323d251feb3d6c22e1f8abda"
+    },
+    {
+      "path": "Dataset/_archive/expanded_old/README_expansion.md",
+      "reason": "Superseded draft, duplicate export, empty file, or outdated note; unique seed/snapshot/exception records retained under sources/legacy.",
+      "bytes": 2034,
+      "sha256": "5b4d75d36dc7052cb38aecc14c95837a65551f482057eb9632d4a6b3a082f890"
+    },
+    {
+      "path": "Dataset/_archive/expanded_old/train_positives_all.csv",
+      "reason": "Superseded draft, duplicate export, empty file, or outdated note; unique seed/snapshot/exception records retained under sources/legacy.",
+      "bytes": 297440,
+      "sha256": "60ca0e64ab28dfa8e0b0a73d6f245b98246c3b40b4ccc46a869a6712045b98d7"
+    },
+    {
+      "path": "Dataset/test_set/_archive/build_dataset.py",
+      "reason": "Early test drafts consolidated losslessly by parsed row in sources/legacy/early_test_collections.jsonl; scratch scripts and obsolete claims retired.",
+      "bytes": 9569,
+      "sha256": "3afc96bb54de45218abdea3c6ec8544cc815557ee7e712391b21372c846a3b65"
+    },
+    {
+      "path": "Dataset/test_set/_archive/external_payloads.csv",
+      "reason": "Early test drafts consolidated losslessly by parsed row in sources/legacy/early_test_collections.jsonl; scratch scripts and obsolete claims retired.",
+      "bytes": 4454,
+      "sha256": "6f3b4dab0398baec0207467ce0ef01d7b67e5c4c74a0f79455f3a438c70f39dc"
+    },
+    {
+      "path": "Dataset/test_set/_archive/external_payloads.tsv",
+      "reason": "Early test drafts consolidated losslessly by parsed row in sources/legacy/early_test_collections.jsonl; scratch scripts and obsolete claims retired.",
+      "bytes": 4316,
+      "sha256": "036fe5f86a90338c309b5a85f458ab9210fd9b1024207b038ed40631f4a522d1"
+    },
+    {
+      "path": "Dataset/test_set/_archive/FINDINGS.md",
+      "reason": "Early test drafts consolidated losslessly by parsed row in sources/legacy/early_test_collections.jsonl; scratch scripts and obsolete claims retired.",
+      "bytes": 1970,
+      "sha256": "650979336e2119214981695038174237168a3e47b062f67893f9945d89de61fa"
+    },
+    {
+      "path": "Dataset/test_set/_archive/overlap_analysis.py",
+      "reason": "Early test drafts consolidated losslessly by parsed row in sources/legacy/early_test_collections.jsonl; scratch scripts and obsolete claims retired.",
+      "bytes": 3024,
+      "sha256": "a9f12e6b2fae417ec9cb5a8c63eeb6deab8f074569247af9bbcf7ea6e50ce2a4"
+    },
+    {
+      "path": "Dataset/test_set/_archive/real_world_payloads.csv",
+      "reason": "Early test drafts consolidated losslessly by parsed row in sources/legacy/early_test_collections.jsonl; scratch scripts and obsolete claims retired.",
+      "bytes": 7063,
+      "sha256": "304ed807b31f43c035ae992029f203ac30664e6967649296b13d68fb0a126740"
+    },
+    {
+      "path": "Dataset/test_set/_archive/real_world_payloads.tsv",
+      "reason": "Early test drafts consolidated losslessly by parsed row in sources/legacy/early_test_collections.jsonl; scratch scripts and obsolete claims retired.",
+      "bytes": 7051,
+      "sha256": "57fcf48d349b9a3006b93aba8bc9ed7a46dc3f1a3fdfbe74e3264fc51e70973f"
+    },
+    {
+      "path": "Dataset/dataset_cleanup_2026-09-18/before.json",
+      "reason": "Superseded repair-session backup; completed repair report and hashes retained in review/history.",
+      "bytes": 4202,
+      "sha256": "a3ea1bebdbf0a0c8e0f0b750cbb68da034662f1f0522799faf5756b107430eb1"
+    },
+    {
+      "path": "Dataset/dataset_cleanup_2026-09-18/backups/Dataset/DATASHEET.md",
+      "reason": "Superseded repair-session backup; completed repair report and hashes retained in review/history.",
+      "bytes": 5581,
+      "sha256": "02922a83093dc08292ed432c2c97eb634c9b2fdc8c8c178367ee5c421bbd4f35"
+    },
+    {
+      "path": "Dataset/dataset_cleanup_2026-09-18/backups/Dataset/MANIFEST_and_CORRECTIONS.md",
+      "reason": "Superseded repair-session backup; completed repair report and hashes retained in review/history.",
+      "bytes": 2388,
+      "sha256": "a13950fc21b03027d2915700dbb1f791dd45ea12cd38f4efcb09c1b48e8eb025"
+    },
+    {
+      "path": "Dataset/dataset_cleanup_2026-09-18/backups/model Evaluation/RESULTS_SUMMARY.md",
+      "reason": "Superseded repair-session backup; completed repair report and hashes retained in review/history.",
+      "bytes": 2812,
+      "sha256": "12b4e34af77a28d3de0d730e9fc581134f90ff7430d70f9d7ad30d1ef9976b64"
+    },
+    {
+      "path": "Dataset/dataset_cleanup_2026-09-18/backups/Dataset/test_set/sources.md",
+      "reason": "Superseded repair-session backup; completed repair report and hashes retained in review/history.",
+      "bytes": 5687,
+      "sha256": "62a269b1dab6c83ea5108bebf55d7237356cf684bd5962ebf6b5ccc7f3440b03"
+    },
+    {
+      "path": "Dataset/dataset_cleanup_2026-09-18/backups/Dataset/test_set/ssti_test_positives.csv",
+      "reason": "Superseded repair-session backup; completed repair report and hashes retained in review/history.",
+      "bytes": 9354,
+      "sha256": "64168233bf98443f530943ea0aae707b136c9c0487c588bc0872ba0aacfd1b10"
+    },
+    {
+      "path": "Dataset/dataset_cleanup_2026-09-18/backups/Dataset/test_set/ssti_test_positives.tsv",
+      "reason": "Superseded repair-session backup; completed repair report and hashes retained in review/history.",
+      "bytes": 9338,
+      "sha256": "29e14a096cbd6063aa3d5180b11d6c05ec757a93f69093396af2afa4921fa5d7"
+    },
+    {
+      "path": "Dataset/dataset_cleanup_2026-09-18/backups/Dataset/train/README.md",
+      "reason": "Superseded repair-session backup; completed repair report and hashes retained in review/history.",
+      "bytes": 1956,
+      "sha256": "51db77eaed2099050b8ed1400737917ef35f18c0013c397aa56eea3c1ae167e3"
+    },
+    {
+      "path": "Dataset/dataset_cleanup_2026-09-18/backups/Dataset/train/benign/BENIGN_SOURCES.md",
+      "reason": "Superseded repair-session backup; completed repair report and hashes retained in review/history.",
+      "bytes": 2446,
+      "sha256": "c38e1fd13d88653d3b5a52142b1439d684003065f2595e909389399ac523476b"
+    },
+    {
+      "path": "Dataset/dataset_audit_2026-09-17/audit_console.txt",
+      "reason": "Superseded corrupted export backup or console duplicate of retained structured audit evidence.",
+      "bytes": 13058,
+      "sha256": "6ad6c6846d318bd93f57a0235cc5e4c63126d065bb984699440ba5e777783d61"
+    },
+    {
+      "path": "Dataset/dataset_audit_2026-09-17/evaluation_train_feature_mismatch.csv",
+      "reason": "Byte-identical to retained train_features_feature_mismatch.csv.",
+      "bytes": 9654,
+      "sha256": "8df4e03e5f64272f7d1acec82a0190608177875e269cdb8b0ad3f3e448f80053"
+    },
+    {
+      "path": "Dataset/dataset_audit_2026-09-17/training_export_backups_2026-09-17/positives.csv",
+      "reason": "Superseded corrupted export backup or console duplicate of retained structured audit evidence.",
+      "bytes": 286206,
+      "sha256": "501f491bfda5b6786e51a483e9861b06377d8c3636b5670aef9c9dada7ddc8f9"
+    },
+    {
+      "path": "Dataset/dataset_audit_2026-09-17/training_export_backups_2026-09-17/train_features.csv",
+      "reason": "Superseded corrupted export backup or console duplicate of retained structured audit evidence.",
+      "bytes": 437805,
+      "sha256": "3e6b741184b7ae0a2882f0e0f54d5777974ecb5a7fefd2c33ab2bf7839de011f"
+    },
+    {
+      "path": "Dataset/train/positives/positives_enriched_DRAFT.csv",
+      "reason": "Obsolete automatic annotation draft; current enriched records and pending manual-review lists retained.",
+      "bytes": 373628,
+      "sha256": "711f2bd99d9d24f8e4c63ca4bc77bf6ffe11cdf4b484912d61b44df0389fa826"
+    },
+    {
+      "path": "Dataset/train/combined/train_combined_features_old.csv",
+      "reason": "Explicitly deprecated feature export; current canonical feature export retained.",
+      "bytes": 80715,
+      "sha256": "9e1b56275ec69fecd9adb7b36ac5f3be27ee3f9c5e50316d41ed8afbc806864f"
+    },
+    {
+      "path": "Dataset/train/combined/DEPRECATED.md",
+      "reason": "Notice for the removed deprecated feature file; cleanup recorded in README and CLEANUP_LOG.json.",
+      "bytes": 443,
+      "sha256": "aee2c57fd60dba03ac69092f3567fda0c4d05d68031ab3a9db73e7556ae08c14"
+    },
+    {
+      "path": "model Evaluation/dataset_guide_review_2026-09-18/HOW_TO_BUILD_A_DATASET.before.md",
+      "reason": "Superseded guide rewrite backup; current guide kept in Dataset.",
+      "bytes": 7684,
+      "sha256": "07b92812a5f6dd2c195d719b3c07c7748dc90378c48cf8e20a7c65919d95cad3"
+    },
+    {
+      "path": "model Evaluation/dataset_guide_review_2026-09-18/HOW_TO_BUILD_A_DATASET.before_chronological_rewrite.md",
+      "reason": "Superseded guide rewrite backup; current guide kept in Dataset.",
+      "bytes": 36368,
+      "sha256": "a605e11521a69bc850dd03624de940c9230f5d95bc795280a25203d27be03c8a"
+    },
+    {
+      "path": "model Evaluation/dataset_guide_review_2026-09-18/HOW_TO_BUILD_A_DATASET.before_general_rewrite.md",
+      "reason": "Superseded guide rewrite backup; current guide kept in Dataset.",
+      "bytes": 28297,
+      "sha256": "cf0b4f7a42b0892c150eab751905d236697678a7509768c0fc0b81c3d85165e0"
+    },
+    {
+      "path": "Claude outputs/train_features.csv",
+      "reason": "Byte-identical redundant copy of canonical training features; notebook-required evaluation copy retained.",
+      "bytes": 436204,
+      "sha256": "139228085ab972640e07fff056dbbb9227e42e070d41c938307f7ea002c38bd5"
+    },
+    {
+      "path": "Dataset/research/ssti_test_expansion_2026-09-18/HOW_TO_BUILD_A_DATASET.before.md",
+      "reason": "Superseded guide backup; current guide retained.",
+      "bytes": 39969,
+      "sha256": "7b47fb86ba6b21b54c423f9824f1f6e8ccc8f2777cbacca01dcb5f98e7f74100"
+    },
+    {
+      "path": "Dataset/research/ssti_test_expansion_2026-09-18/research_manifest.json",
+      "reason": "Obsolete file-location inventory superseded by Dataset/FILE_MANIFEST.json; research evidence/checks retained.",
+      "bytes": 1388,
+      "sha256": "d6b48da2c4d140bb52694467f0495a65c68a0708e0953db3537a10ee087803f8"
+    },
+    {
+      "path": "Dataset/scripts/__pycache__/ssti_feature_extraction.cpython-313.pyc",
+      "reason": "Regenerable Python bytecode cache.",
+      "bytes": 9807,
+      "sha256": "58c1e30db5f89c740f326c63835cdf6fd78cb8881b0d5a7506c8ed48ab8556e1"
+    }
+  ],
+  "protected_files": {
+    "Dataset/train/benign/benign.csv": "ac8b83c030eee304037cd4b342fd1eb02d095e610707ef086988821aa98d48f5",
+    "Dataset/train/benign/benign.txt": "ac12295d037af0c02f4ef2fc658d8ae62744792e40c8d9456bb17140b7dd5d1c",
+    "Dataset/train/combined/train_combined_nofeatures.csv": "a36a9f5c7985dfd9596859a65c893b9f13385adadbbbef356e8d15057129f122",
+    "Dataset/train/combined/train_features.csv": "139228085ab972640e07fff056dbbb9227e42e070d41c938307f7ea002c38bd5",
+    "Dataset/review/benign_removal_candidates.csv": "6926a71d6d05e1afcb6934c3966c7511b5ee60ba5f8112e2187c174bb4935610",
+    "Dataset/train/positives/positives.csv": "2915dce257fc71ba8aa0eee3f1157fb3ea9266a9532bd35c80f8e198965e1227",
+    "Dataset/train/positives/positives.txt": "e063eefabc3c390523c0c8785bd9ce9d9ff16d7bc6c4f5be31ae654267284bd6",
+    "Dataset/train/positives/positives_enriched.csv": "d4cac55060b6dc1b6b08d9cac1e25ead1393eafcf6320277f740e0c15baa177b",
+    "Dataset/review/REVIEW_positives_to_check.csv": "9c619514211fcb81f82c2b1f6e1aca03e6c9df9b5dab5179f66f038f5a51f843",
+    "Dataset/test_set/ssti_test_combined.csv": "1c064d1451bde368581936bd1918626b355c334307d2e3a763a43edebe63512e",
+    "Dataset/test_set/ssti_test_positives.csv": "4598313fccf3d7b8013d1c372081eac426fbf4a818118b1071f2e514c4a359a2",
+    "Dataset/test_set/ssti_test_positives.jsonl": "e24ac68347fcdcba897808bcf6c065b01b8eada3e2106c4aa303381a84d2f797",
+    "Dataset/test_set/ssti_test_positives.tsv": "590a65e0236feec28854a350528bc5694c3fe66afa7db113b2a68e5e770aa012",
+    "Dataset/test_set/ssti_test_positives_enriched.csv": "95ab859eb8dacec6986b0622f28836c8e47e87537dc72a349496a18930eb844e",
+    "Dataset/test_set/ssti_test_positives_enriched.jsonl": "89069344fa7e902c27f3f9ae9f1cc67599fef7e25fd5c2d3d3a676ae95b16342",
+    "Dataset/test_set/test_benign.csv": "10e095b65aefb5511bef6ba47e436d4b1274a420c3ac3bd671675a855c563290",
+    "Dataset/test_set/test_benign.txt": "0dbe2d9dc7393c4d5edfdac38c402e81a30a502073944b63cc1005546855699e",
+    "Dataset/test_set/features/test_features.csv": "5e1ff33d81dbd6557b4f8a9b0fe156dbb4648e1469fdcd645fe5683bf75fa4d7",
+    "model Evaluation/Model_evaluation.ipynb": "23f21060415fc81cdffdc648de001241c78a9155bb988ad90c1288fbaa7bf0f0",
+    "model Evaluation/Model_evaluation.backup.ipynb": "09770cb27fe70d7ce09b362247f1e7f85921094f5e78829fff520e73950f4d14",
+    "model Evaluation/Model_evaluation.py": "6f3bf498a3eb59561c28908788c29b21579c4d3238154ab9ef9af46cfe0ea7b5",
+    "model Evaluation/train_features.csv": "139228085ab972640e07fff056dbbb9227e42e070d41c938307f7ea002c38bd5",
+    "model Evaluation/test_features.csv": "5e1ff33d81dbd6557b4f8a9b0fe156dbb4648e1469fdcd645fe5683bf75fa4d7",
+    "Dataset/research/ssti_test_expansion_2026-09-18/candidate_cases.jsonl": "14907e3b73fe2d73be687f8734b941a8e85d35bedce21e3aa26852cccb7943bf",
+    "Dataset/research/ssti_test_expansion_2026-09-18/candidate_payloads.jsonl": "b39c82c4b3c0ce505fc57f448564edae2a648a749f11e82c3a8d50b21c276c20"
+  },
+  "legacy_test_records_preserved": 85,
+  "legacy_training_exception_records_preserved": 1,
+  "documentation_and_utility_paths_updated": [
+    "Dataset/train/README.md",
+    "Dataset/DATASHEET.md",
+    "Dataset/test_set/sources.md",
+    "Dataset/review/history/MANIFEST_and_CORRECTIONS.md",
+    "Dataset/review/audit_2026-09-17/DATASET_REVIEW.md",
+    "Dataset/review/audit_2026-09-17/audit_dataset.py",
+    "Dataset/review/audit_2026-09-17/repair_training_exports.py",
+    "Dataset/scripts/reconcile_dataset_exports.py",
+    "Dataset/research/ssti_test_expansion_2026-09-18/SSTI_TEST_EXPANSION_RESEARCH.md",
+    "Dataset/research/ssti_test_expansion_2026-09-18/build_research_records.py",
+    "Dataset/README.md",
+    "Dataset/review/README.md",
+    "Dataset/sources/legacy/README.md",
+    "Dataset/scripts/README.md"
+  ],
+  "verification": {
+    "protected_files_unchanged": 25,
+    "active_data_rows_changed": 0,
+    "research_candidate_records_changed": 0,
+    "evaluation_algorithm_files_changed": 0,
+    "export_reconciliation": "passed",
+    "feature_recomputation_all_four_exports": "passed",
+    "training_rows": 4002,
+    "test_rows": 544,
+    "multiline_test_positive_rows": 5,
+    "legacy_test_rows_preserved": 85,
+    "python_syntax": "passed"
+  },
+  "temporary_cleanup_helpers_removed": true,
+  "subsequent_cleanups": [
+    {
+      "timestamp_utc": "2026-09-19T04:14:12.741010+00:00",
+      "scope": "Test folder redundant-export cleanup only; no data values changed.",
+      "removed_files": [
+        {
+          "path": "Dataset/test_set/ssti_test_positives.csv",
+          "sha256": "12e6897270ea1ee8dc49fe76801061f71325af3811702afb66157be2005f9c62",
+          "preserved_in": "Dataset/test_set/ssti_test_positives.jsonl",
+          "verification": "All payloads and metadata fields equal after parsing; benign TXT lines equal CSV payloads."
+        },
+        {
+          "path": "Dataset/test_set/ssti_test_positives.tsv",
+          "sha256": "7261448342263c15fe1baee488fe3cfb37f6e6d8c413359042134a5f030cee62",
+          "preserved_in": "Dataset/test_set/ssti_test_positives.jsonl",
+          "verification": "All payloads and metadata fields equal after parsing; benign TXT lines equal CSV payloads."
+        },
+        {
+          "path": "Dataset/test_set/ssti_test_positives_enriched.jsonl",
+          "sha256": "e962ae26ed171ed80a8db3b22a27b387bfccd2ee9bdcaebe45a1627c5d5edc64",
+          "preserved_in": "Dataset/test_set/ssti_test_positives_enriched.csv",
+          "verification": "All payloads and metadata fields equal after parsing; benign TXT lines equal CSV payloads."
+        },
+        {
+          "path": "Dataset/test_set/test_benign.txt",
+          "sha256": "0dbe2d9dc7393c4d5edfdac38c402e81a30a502073944b63cc1005546855699e",
+          "preserved_in": "Dataset/test_set/test_benign.csv",
+          "verification": "All payloads and metadata fields equal after parsing; benign TXT lines equal CSV payloads."
+        }
+      ],
+      "retained_test_files": 6,
+      "protected_sha256": {
+        "Dataset/test_set/ssti_test_combined.csv": "1bc386f1898afe72235b3c5a945ec56663531d0eca7d363375cac51e635ceec0",
+        "Dataset/test_set/ssti_test_positives.jsonl": "535c82f40fcdb33b5ddc73a2c0e1f52515c3098bc699734df7f0815cacb74867",
+        "Dataset/test_set/ssti_test_positives_enriched.csv": "bef5e0c4d3b0fe0247b824fa7f655a5b12e17a5cb1664fefe43aa44659c12c92",
+        "Dataset/test_set/test_benign.csv": "10e095b65aefb5511bef6ba47e436d4b1274a420c3ac3bd671675a855c563290",
+        "Dataset/test_set/features/test_features.csv": "cf00bb3d7da61d5e18c9d04106649131b3f032efd54bb20612c255e8d1dc66b3",
+        "Dataset/train/README.md": "7e22dcd6ab7eb9c7a070b72f3b089c4d1b449b36f4fdcbd10aa9bdf2b7684519",
+        "Dataset/train/SOURCES.md": "65eae174900f677cafe33ebb49a53eba3f6c09f8066d68a1d6ad2c9792a61960",
+        "Dataset/train/benign/benign.csv": "ac8b83c030eee304037cd4b342fd1eb02d095e610707ef086988821aa98d48f5",
+        "Dataset/train/benign/benign.txt": "ac12295d037af0c02f4ef2fc658d8ae62744792e40c8d9456bb17140b7dd5d1c",
+        "Dataset/train/combined/train_combined.csv": "c77d6e548b934f0a2a5ec31a48950ab3e69f496cd137c807cdc71971e487e4d9",
+        "Dataset/train/combined/train_features.csv": "94b74354829829fc35d903b16e18531dd44d9fee222c9cf13ce52d9fb3dd3008",
+        "Dataset/train/positives/positives.csv": "2712795e214e839da818249cce99c33dd7ea64f7c853c884deddee468c941acb",
+        "Dataset/train/positives/positives.txt": "91aa45bf2c8ec97abd5156836cf6d59c62d603b9c64c37547486010f45237f15",
+        "Dataset/train/positives/positives_added_from_seclists.csv": "306b500f5e87973414e55de9539d21c5ab8ada71b007208383cbb2e9cec050e2",
+        "Dataset/train/_archive/positives_1635_pre_seclists.csv": "2aa8fbb07b8ae6d0a19040417fa366ff077818e4289587497067761e401fd74b",
+        "Dataset/train/_archive/positives_1635_pre_seclists.txt": "6890743ec84aba6be711bbbbc9e5bfb2deeb9d665e420d8c83647aded8d7abec",
+        "Dataset/train/_archive/positives_1664_pre_reviewnotes.csv": "fa4afe86f45c1ef1a35ec149c299b2abad425bff2458c555143c6d192a1d6d7d",
+        "Dataset/train/_archive/positives_enriched_2001.csv": "d4cac55060b6dc1b6b08d9cac1e25ead1393eafcf6320277f740e0c15baa177b",
+        "Dataset/train/_archive/positives_full_2001.csv": "2915dce257fc71ba8aa0eee3f1157fb3ea9266a9532bd35c80f8e198965e1227",
+        "Dataset/train/_archive/positives_full_2001.txt": "e063eefabc3c390523c0c8785bd9ce9d9ff16d7bc6c4f5be31ae654267284bd6",
+        "Dataset/train/_archive/positives_removed_localseed.csv": "c96b90d15587be19ad6fb37c30303e9c90c0de40b92614cce62668ca0a827a0d",
+        "Dataset/train/_archive/train_combined_2001_nofeatures.csv": "a36a9f5c7985dfd9596859a65c893b9f13385adadbbbef356e8d15057129f122",
+        "Dataset/train/_archive/train_combined_3636_pre_seclists.csv": "beddf187b0410f46a6c0ff96801c18705c3639c892fc98b3d63d021e30a0a1f3",
+        "Dataset/train/_archive/train_features_2001.csv": "139228085ab972640e07fff056dbbb9227e42e070d41c938307f7ea002c38bd5",
+        "Dataset/train/_archive/train_features_3636_pre_seclists.csv": "2388c6233e945f2d3039b5c47802f57c1479a17e97fb1953c7486db726e6f99b",
+        "model Evaluation/Model_evaluation.backup.ipynb": "09770cb27fe70d7ce09b362247f1e7f85921094f5e78829fff520e73950f4d14",
+        "model Evaluation/Model_evaluation.ipynb": "23f21060415fc81cdffdc648de001241c78a9155bb988ad90c1288fbaa7bf0f0",
+        "model Evaluation/Model_evaluation.py": "6f3bf498a3eb59561c28908788c29b21579c4d3238154ab9ef9af46cfe0ea7b5",
+        "model Evaluation/RESULTS_SUMMARY.md": "363b2a449518dddc4df11802a8e04071da70506d79a6b1dc513cdd16a782aa99",
+        "model Evaluation/test_features.csv": "cf00bb3d7da61d5e18c9d04106649131b3f032efd54bb20612c255e8d1dc66b3",
+        "model Evaluation/train_features.csv": "139228085ab972640e07fff056dbbb9227e42e070d41c938307f7ea002c38bd5",
+        "model Evaluation/test/additional_analysis.py": "963a09d0b3bca58332590c4871cc57e5a9d3cf7a9334ff484c1341a9d23d9df5",
+        "model Evaluation/test/ml_pipeline.py": "d09e564dfb83b26364be0e9d317f6b1fbc438ac409e0b5d1fd17aab79c32142a",
+        "model Evaluation/test/test.ipynb": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "protected_files_unchanged": true,
+      "validation": {
+        "test_release_checks": "passed",
+        "test_positives": 47,
+        "test_benign": 500,
+        "test_combined": 547,
+        "multiline_positive_records": 8,
+        "test_exact_and_normalized_duplicates": 0,
+        "duplicates_against_both_training_versions": 0,
+        "test_feature_copies": "byte-identical; 17 features recomputed and checked",
+        "source_capture_alignment": "passed against original research records",
+        "payloads_executed": false,
+        "active_training_rows": 3665,
+        "evaluation_training_rows": 4002,
+        "training_rows_with_missing_trailing_metadata_fields": 2001,
+        "training_status": "WARNING: evaluation training copy is stale; not modified",
+        "semantic_limitations": "Source/scope review only; legacy runtime validity and human review remain pending"
+      },
+      "updated_references": [
+        "Dataset/test_set/sources.md",
+        "Dataset/HOW_TO_BUILD_A_DATASET.md",
+        "Dataset/scripts/README.md",
+        "Dataset/scripts/reconcile_dataset_exports.py"
+      ]
+    }
+  ],
+  "subsequent_restorations": [
+    {
+      "timestamp_utc": "2026-09-19T05:03:17.457398+00:00",
+      "path": "Dataset/test_set/ssti_test_positives.csv",
+      "reason": "User requested restoration of basic positive CSV previously removed as redundant by Codex.",
+      "restored_from": "Dataset/test_set/ssti_test_positives.jsonl",
+      "records": 47,
+      "sha256": "12e6897270ea1ee8dc49fe76801061f71325af3811702afb66157be2005f9c62",
+      "verification": "All six fields equal canonical JSONL; embedded newlines preserved. No training or existing test values changed."
+    }
+  ]
+}

