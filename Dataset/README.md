@@ -33,7 +33,7 @@ and [train/SOURCES.md](train/SOURCES.md).
 | `test_set/ssti_test_positives.jsonl`, `test_set/ssti_test_combined.csv` | 47 / 547 | external test positives, and positives plus benign |
 | `test_set/features/test_features.csv`, `test_features_v2.csv` | 547 | test rows plus features |
 
-Feature files are generated from the combined files with `scripts/ssti_feature_extraction.py` (v1) or `scripts/ssti_feature_extraction_v2.py` (v2). Regenerate them after any payload, label or grouping change; metadata-only edits (review flags, annotations) do not require it. Read multiline CSV records with a proper CSV reader, not by splitting on newlines.
+Feature definitions are in [DATASHEET.md](DATASHEET.md) section 7. Feature files are generated from the combined files with `scripts/ssti_feature_extraction.py` (v1) or `scripts/ssti_feature_extraction_v2.py` (v2). Regenerate them after any payload, label or grouping change; metadata-only edits (review flags, annotations) do not require it. Read multiline CSV records with a proper CSV reader, not by splitting on newlines.
 
 ### Columns
 

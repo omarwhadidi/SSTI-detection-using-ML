@@ -29,16 +29,7 @@ Construction steps, grouping and checks are in [`Dataset/README.md`](Dataset/REA
 
 ## Features
 
-Version 1 has 17 features (lexical, structural, semantic); version 2 has 18. Files ending `_v2.csv` use version 2. Columns starting with `v2_` are new or redefined; all other columns are computed exactly as in version 1.
-
-| Change in v2 | Why |
-|---|---|
-| removed `count_percent_brace` | fired on 2 of 3,906 rows |
-| `count_erb` → `v2_count_erb_open` | version 1 counted opening and closing tags, so ERB scored double |
-| `has_arithmetic_operation` → `v2_has_arithmetic_probe` | version 1 missed probes with a quoted operand |
-| added `v2_call_inside_delim`, `v2_max_attr_chain_len` | behaviour features that still separate attacks from hard negatives |
-
-Definitions and rationale: [`Dataset/scripts/ssti_feature_extraction.py`](Dataset/scripts/ssti_feature_extraction.py) and [`..._v2.py`](Dataset/scripts/ssti_feature_extraction_v2.py). Evidence for each change: [`Dataset/scripts/feature_audit.py`](Dataset/scripts/feature_audit.py).
+Each payload is turned into a short vector of interpretable counts and flags (delimiter counts, bracket depth, dangerous-name flags, method calls). Version 2 has 18 features and is the current set; version 1 has 17 and is kept so earlier results can be reproduced. Files ending `_v2.csv` use version 2. The full list of definitions, and what changed from version 1 and why, is in [`Dataset/DATASHEET.md`](Dataset/DATASHEET.md) section 7. The extractors are in [`Dataset/scripts/`](Dataset/scripts/), and `feature_audit.py` reproduces the evidence for each change.
 
 ## Results
 
@@ -86,22 +77,6 @@ The gains are 1 to 2 points while split-to-split spread is 3 to 8 points, so thi
 
 Character-level neural models (RNN, LSTM, CNN-LSTM in [`model_evaluation/deep_learning/dl_models.ipynb`](model_evaluation/deep_learning/dl_models.ipynb), 5 splits) follow the same pattern: holdout AUC 0.960 to 0.981, external AUC 0.949 to 0.981, with standard deviations of 0.005 to 0.049 that are as large as the gaps between the three architectures.
 
-## Layout
-
-```
-Dataset/
-  DATASHEET.md, README.md, LIMITATIONS.md   dataset documentation
-  train/                       positives/, benign/, combined/ (incl. *_features.csv), SOURCES.md
-  test_set/                    external test data, features/, sources.md
-  scripts/                     feature extractors (v1, v2), feature_audit.py, older utilities
-model_evaluation/
-  Model_evaluation.ipynb       7 classical models, grouped evaluation, threshold selection
-  deep_learning/dl_models.ipynb  RNN / LSTM / CNN-LSTM, 5-split rerun
-  *.csv                        local copies the notebooks read (byte-identical to Dataset/)
-```
-
-The notebooks find `Dataset/` by walking up from their own folder, and compare their local CSV copies with the originals, which is why the copies are kept.
-
 ## Usage
 
 ```bash
@@ -111,7 +86,7 @@ python ssti_feature_extraction_v2.py      # rebuilds train_features_v2.csv and t
 python feature_audit.py                    # reproduces the feature analysis
 ```
 
-Then open `model_evaluation/Model_evaluation.ipynb`. Cell 4 has a `FEATURES_FILE` line that switches between v1 and v2 features.
+Then open `model_evaluation/Model_evaluation.ipynb`. Cell 4 has a `FEATURES_FILE` line that switches between v1 and v2 features. The notebooks read local copies of the feature CSVs in `model_evaluation/` and check that they match the files in `Dataset/`; the deep-learning notebook is `model_evaluation/deep_learning/dl_models.ipynb`.
 
 ## Licence
 

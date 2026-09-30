@@ -14,7 +14,7 @@
 4. [How the test set was built](#4-how-the-test-set-was-built)
 5. [Which files to use](#5-which-files-to-use)
 6. [What the columns mean](#6-what-the-columns-mean)
-7. [What the 17 number features mean](#7-what-the-17-number-features-mean)
+7. [What the number features mean](#7-what-the-number-features-mean)
 8. [Duplicates, groups, and fair testing](#8-duplicates-groups-and-fair-testing)
 9. [What has been checked and what still needs work](#9-what-has-been-checked-and-what-still-needs-work)
 10. [Source records, sharing, and future updates](#10-source-records-sharing-and-future-updates)
@@ -172,7 +172,7 @@ The main saved positive text is [ssti_test_positives.jsonl](test_set/ssti_test_p
 | [ssti_test_positives_enriched.csv](test_set/ssti_test_positives_enriched.csv) | 47 | Detailed source, scope, and review fields. Start here to review test positives. |
 | [test_benign.csv](test_set/test_benign.csv) | 500 | Main test benign records. |
 | [ssti_test_combined.csv](test_set/ssti_test_combined.csv) | 547 | Positive and benign text, with label and source. |
-| [test_features.csv](test_set/features/test_features.csv) | 547 | Same 17 features as training, plus label, payload, and grouping key. |
+| [test_features.csv](test_set/features/test_features.csv) | 547 | Same v1 features as training, plus label, payload, and grouping key. `test_features_v2.csv` has the v2 set. |
 
 ### 5.3 Documentation, scripts, and archives
 
@@ -183,7 +183,7 @@ The main saved positive text is [ssti_test_positives.jsonl](test_set/ssti_test_p
 | [train/SOURCES.md](train/SOURCES.md), [test_set/sources.md](test_set/sources.md) | More training details and the source catalogs. |
 | [CLEANUP_LOG.json](CLEANUP_LOG.json) | Historical record of cleanup actions. Old counts describe those actions, not today's dataset. |
 | [scripts/README.md](scripts/README.md) | Which utilities are current and which are historical. |
-| `scripts/ssti_feature_extraction.py` | Current definitions of the 17 features. |
+| `scripts/ssti_feature_extraction.py`, `scripts/ssti_feature_extraction_v2.py` | Definitions of the v1 (17) and v2 (18) features. |
 | `scripts/reconcile_dataset_exports.py` | Consistency checker and separate repair modes. Only its test-only validation was used for this documentation check. |
 | `scripts/extract_to_csv.py` | Text-to-feature utility. Its line-based input is unsuitable for multiline test positives. |
 | `scripts/admit_ssti_test_candidates.py`, `scripts/dedup_merge.py`, `scripts/legacy/` | Earlier admission, collection, or grouping logic. Some paths are old and some construction logic is missing. These are not a complete current rebuild pipeline. |
@@ -262,9 +262,40 @@ The basic CSV and JSONL have six fields: `payload`, `engine`, `tier`, `context`,
 
 The test combined file contains only `payload`, `label`, and `source`. Unlike the training combined file, it has **no `base_id` column**. The test feature file does contain `base_id`.
 
-## 7. What the 17 number features mean
+## 7. What the number features mean
 
-These definitions follow the current [feature code](scripts/ssti_feature_extraction.py). They are pattern counts and flags, not proof that an attack works.
+There are two versions of the feature set. **Version 2 (18 features) is the current one**; version 1 (17 features) is kept so that every earlier result can be reproduced. Both are pattern counts and flags, not proof that an attack works. The CSVs store raw calculated numbers; any scaling happens later in the evaluation pipeline.
+
+### 7.1 Version 2 (current)
+
+Files: `train/combined/train_features_v2.csv` and `test_set/features/test_features_v2.csv`, each with 21 columns: `payload`, `base_id`, the 18 features below, and `label`. Code: [scripts/ssti_feature_extraction_v2.py](scripts/ssti_feature_extraction_v2.py). Columns starting with `v2_` are new or have a changed definition; every other column is computed exactly as in version 1.
+
+| Feature | Value | What the code measures | Versus v1 |
+|---|---|---|---|
+| `payload_length` | Integer | Number of characters. | same |
+| `special_char_ratio` | 0–1 | Characters that are neither letters/digits nor whitespace, divided by total length. | same |
+| `count_double_brace` | Count | Occurrences of `{{`. | same |
+| `count_dollar_brace` | Count | Occurrences of `${`. | same |
+| `count_hash_brace` | Count | Matches for `#{`, `#set`, `#foreach`, `#if`. | same |
+| `delimiter_family_count` | 0–5 | How many of five delimiter groups appear. Not the number of engines. | same |
+| `max_bracket_depth` | Integer | Highest nesting counter for round, square and curly brackets. | same |
+| `has_dunder_chain` | 0 or 1 | A listed Python double-underscore name, such as `__class__`. | same |
+| `has_exec_tokens` | 0 or 1 | A listed execution pattern, such as `popen` or `ProcessBuilder`. | same |
+| `has_java_reflection` | 0 or 1 | A listed Java reflection pattern, such as `getClass`. | same |
+| `has_flask_objects` | 0 or 1 | A listed name such as `request`, `config`, `cycler`, `self`. These also occur in normal templates. | same |
+| `has_string_operation` | 0 or 1 | A listed string-operation pattern, such as `~` or `.join()`. | same |
+| `count_method_calls` | Count | Matches shaped like `.name(`, anywhere in the string. | same |
+| `count_dots` | Count | Every literal `.`. | same |
+| `v2_count_erb_open` | Count | Opening markers only: `<%`, `<#`, `<@`. | replaces `count_erb`, which also counted closing markers |
+| `v2_has_arithmetic_probe` | 0 or 1 | Number, operator, number inside template delimiters, where either number may be quoted. Scans the whole string if no delimiter is found. | replaces `has_arithmetic_operation`, which missed quoted operands |
+| `v2_call_inside_delim` | Count | `.name(` calls inside template delimiters only, where they would execute. | new |
+| `v2_max_attr_chain_len` | Integer | Number of `.attr` or `[index]` steps in the longest chain, so `a.b[0].c` is 3. | new |
+
+`count_percent_brace` was removed: it fired on 2 of 3,906 rows and removing it changed nothing. Evidence for each change is reproduced by [scripts/feature_audit.py](scripts/feature_audit.py). The audit's finding that matters for interpretation is that `v2_call_inside_delim` and `v2_max_attr_chain_len` still separate attacks from template fragments in the benign set, while features such as `payload_length` mostly separate template-shaped strings from plain parameters.
+
+### 7.2 Version 1 (kept for reproducibility)
+
+Files: `train_features.csv` and `test_features.csv`, each with 20 columns: `payload`, `base_id`, the 17 features below, and `label`. Code: [scripts/ssti_feature_extraction.py](scripts/ssti_feature_extraction.py).
 
 | Feature | Value | What the code measures |
 |---|---|---|
@@ -286,9 +317,7 @@ These definitions follow the current [feature code](scripts/ssti_feature_extract
 | `count_method_calls` | Count | Matches shaped like a dot, a name, and an opening parenthesis, such as `.get(`. |
 | `count_dots` | Count | Every literal `.` character. |
 
-Both feature files have the same 20 columns: `payload`, `base_id`, these 17 features, and `label`. The CSVs store the raw calculated numbers. Scaling, when needed by a model, happens later in the evaluation pipeline.
-
-Only the 17 feature columns go into the current numeric model. `label` is the answer to predict, and `base_id` controls grouping. IDs, source URLs, engine annotations, and review decisions must not accidentally become prediction inputs.
+Only the feature columns go into a numeric model. `label` is the answer to predict, and `base_id` controls grouping. IDs, source URLs, engine annotations and review decisions must not become prediction inputs.
 
 ## 8. Duplicates, groups, and fair testing
 
@@ -330,7 +359,7 @@ Report attack recall, precision, F1, false positives, and the actual confusion-m
 |---|---|
 | Training record counts and source totals | Confirmed against the CSVs. |
 | Training positive/benign records versus combined and feature exports | Payloads, labels, order, and stored group keys agree. |
-| Feature calculation | All 17 values recomputed for all 3,906 training and 547 test records; no mismatches found within the checked numeric tolerance. |
+| Feature calculation | All 17 v1 values recomputed for all 3,906 training and 547 test records; no mismatches found within the checked numeric tolerance. |
 | Test serialization and source-capture alignment | Existing test-only validator passed against the saved historical evidence. This is not a fresh audit of every website. |
 | Evaluation feature copies | `model_evaluation/train_features.csv` and `model_evaluation/test_features.csv` are byte-identical to the current Dataset feature files. The old 4,002-row warning is obsolete. |
 | Positive training attribution fields | All 1,905 rows have the four source fields filled in. |
