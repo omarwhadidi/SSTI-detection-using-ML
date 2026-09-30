@@ -14,6 +14,5 @@
 
 `dedup_merge.py` remains here because the research builder reads its normalization/skeleton functions without executing the collection script. Its old main workflow has container-specific paths; do not run it as a current dataset builder.
 
-Historical audit/repair scripts and their reports were archived on 2026-09-19 to
-`../_archive/dataset_history_2026-09-19.zip`. They are evidence, not instructions to rerun
-old repairs. No model algorithms were changed by this cleanup.
+Historical audit/repair scripts and their reports were retired on 2026-09-19 and are not
+part of this repository. No model algorithms were changed by this cleanup.

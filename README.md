@@ -188,10 +188,6 @@ python feature_audit.py                    # reproduces the feature analysis
 
 Then open `model_evaluation/Model_evaluation.ipynb`. Cell 4 has a `FEATURES_FILE` line that switches between v1 and v2 features.
 
-## Not in this repository
-
-The `_archive/` folders, `FILE_MANIFEST.json` (out of date) and the zipped collection history are not published. Links to them in the dataset documents point to files that are not here.
-
 ## Licence
 
 Code: MIT, see [LICENSE](LICENSE).

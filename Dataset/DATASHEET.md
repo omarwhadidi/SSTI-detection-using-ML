@@ -85,8 +85,7 @@ Recorded development of the positive set:
 
 The three `positives_added_from_*.csv` files that recorded these additions have been retired
 (20 September 2026): every payload and `base_id` in each was verified already present in
-`positives.csv`, so they were pure redundancy, not separate data. They are kept at
-`train/_archive/` for provenance; `train/positives/` now holds one CSV.
+`positives.csv`, so they were pure redundancy, not separate data. `train/positives/` now holds one CSV.
 
 Every current positive is unaugmented sourced material — no generated variant is recorded
 for any row. This used to be visible as `is_augmentation=no` on every row; that constant
@@ -182,16 +181,12 @@ The main saved positive text is [ssti_test_positives.jsonl](test_set/ssti_test_p
 | [README.md](README.md) | Quick entry point and file links. |
 | [HOW_TO_BUILD_A_DATASET.md](HOW_TO_BUILD_A_DATASET.md) | General guide to building web-vulnerability datasets and comparing benchmarks. |
 | [train/README.md](train/README.md), [train/SOURCES.md](train/SOURCES.md), [test_set/sources.md](test_set/sources.md) | More training details and the source catalogs. |
-| [FILE_MANIFEST.json](FILE_MANIFEST.json) | Inventory of files, record counts, sizes, and digital fingerprints called SHA-256 hashes. |
 | [CLEANUP_LOG.json](CLEANUP_LOG.json) | Historical record of cleanup actions. Old counts describe those actions, not today's dataset. |
 | [scripts/README.md](scripts/README.md) | Which utilities are current and which are historical. |
 | `scripts/ssti_feature_extraction.py` | Current definitions of the 17 features. |
 | `scripts/reconcile_dataset_exports.py` | Consistency checker and separate repair modes. Only its test-only validation was used for this documentation check. |
 | `scripts/extract_to_csv.py` | Text-to-feature utility. Its line-based input is unsuitable for multiline test positives. |
 | `scripts/admit_ssti_test_candidates.py`, `scripts/dedup_merge.py`, `scripts/legacy/` | Earlier admission, collection, or grouping logic. Some paths are old and some construction logic is missing. These are not a complete current rebuild pipeline. |
-| `train/_archive/` | Earlier training exports and removed local seeds. Do not load these as active data. |
-| `_archive/dataset_history_2026-09-19.zip` | Earlier collection evidence, audits, scope reviews, and cleanup material. |
-| `scripts/__pycache__/` | Automatically created Python cache; not dataset records. |
 
 ## 6. What the columns mean
 
@@ -337,7 +332,7 @@ Report attack recall, precision, F1, false positives, and the actual confusion-m
 | Training positive/benign records versus combined and feature exports | Payloads, labels, order, and stored group keys agree. |
 | Feature calculation | All 17 values recomputed for all 3,906 training and 547 test records; no mismatches found within the checked numeric tolerance. |
 | Test serialization and source-capture alignment | Existing test-only validator passed against the saved historical evidence. This is not a fresh audit of every website. |
-| Evaluation feature copies | `model Evaluation/train_features.csv` and `model Evaluation/test_features.csv` are byte-identical to the current Dataset feature files. The old 4,002-row warning is obsolete. |
+| Evaluation feature copies | `model_evaluation/train_features.csv` and `model_evaluation/test_features.csv` are byte-identical to the current Dataset feature files. The old 4,002-row warning is obsolete. |
 | Positive training attribution fields | All 1,905 rows have the four source fields filled in. |
 | Payload execution or model retraining | Not performed in this documentation check. |
 
@@ -361,7 +356,7 @@ Old evaluation results remain historical until their model code, preprocessing, 
 
 ### 9.3 Claims to avoid
 
-- Do not call this the first SSTI dataset or detector. Existing project literature notes prior SSTI work; see the [literature review](../paper/literature_review/SSTI_LITERATURE_REVIEW.md).
+- Do not call this the first SSTI dataset or detector. Earlier work on SSTI exists and should be cited.
 - Do not call the whole test set CVE/HackerOne data or independently observed incidents. Most records are tagged as writeup-derived.
 - Do not equate no exact duplicates with no related attack families.
 - Do not describe all labels as human-reviewed or all payloads as successfully executed.

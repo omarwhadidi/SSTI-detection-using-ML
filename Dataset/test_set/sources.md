@@ -4,8 +4,8 @@
 
 ## Scope and review
 
-The scope review and admission decisions were archived on 2026-09-19 to
-`../_archive/dataset_history_2026-09-19.zip` (`review/TEST_SCOPE_REVIEW_2026-09-18.md`). Source-documented template inputs include probes and information disclosure, not only RCE. Earlier XSS stages are context, not active positive rows. Six related-injection inputs are preserved outside the active set in the review ledger.
+The scope review and admission decisions were recorded on 2026-09-19 in a review ledger
+that is not part of this repository. Source-documented template inputs include probes and information disclosure, not only RCE. Earlier XSS stages are context, not active positive rows. Six related-injection inputs are preserved outside the active set in the review ledger.
 
 ## Retained positive sources
 

@@ -14,8 +14,7 @@ into the live dataset. No active payload, label, feature, or evaluation algorith
 | Full dataset explanation, sources, column meanings, and review status | [DATASHEET.md](DATASHEET.md) — checked 20 September 2026; section 9 lists verified checks and remaining limitations |
 | How to gather training and test data for a new project | [HOW_TO_BUILD_A_DATASET.md](HOW_TO_BUILD_A_DATASET.md) |
 | Dataset utilities | [scripts/](scripts/) |
-| Historical audit, review, and collection material | `_archive/dataset_history_2026-09-19.zip` |
-| Earlier cleanup record | [CLEANUP_LOG.json](CLEANUP_LOG.json) and [FILE_MANIFEST.json](FILE_MANIFEST.json) |
+| Earlier cleanup record | [CLEANUP_LOG.json](CLEANUP_LOG.json) |
 
 ## Current data
 

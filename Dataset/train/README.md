@@ -15,7 +15,6 @@ semantic-family independence from the test set.
 | `benign/benign.txt` | 2,001 | the same benign strings, one per line |
 | `combined/train_combined.csv` | 3,906 | canonical positives + benign with unified columns |
 | `combined/train_features.csv` | 3,906 | the same records plus the 17 deterministic features |
-| `_archive/` | — | superseded exports; never use these as input |
 
 ## Columns
 
@@ -51,8 +50,7 @@ ROC-AUC and attack-class recall, not accuracy.
 **Features are derived, never edited.** `combined/train_features.csv` is generated from
 `combined/train_combined.csv` with `../scripts/ssti_feature_extraction.py`. Regenerate it
 after any payload, label, or grouping change. Metadata-only edits — review flags,
-annotations — do not require regeneration. Do not use the archived feature CSVs under
-`_archive/`.
+annotations — do not require regeneration.
 
 **Benign composition.** 787 hard negatives (real template expressions from four
 open-source projects) and 1,214 benchmark-derived HTTP parameters. Train and test draw on
@@ -66,4 +64,4 @@ reversed. Retain record IDs when annotating.
 
 **Removed material.** 366 local seed payloads with no traceable upstream source were
 removed so that every training positive points at a public file at a pinned commit. They
-are preserved in `_archive/positives_removed_localseed.csv`.
+are not part of any active export.

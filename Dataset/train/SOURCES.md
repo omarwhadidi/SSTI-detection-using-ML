@@ -3,8 +3,7 @@
 This file is the attribution ledger for the SSTI training corpus. It records where every
 training payload came from, at which pinned revision, and what that provenance does and
 does not prove. It replaces the former `Dataset/sources/` and `Dataset/review/` folders,
-whose remaining historical material was archived on 19 September 2026 (see
-`Dataset/_archive/dataset_history_2026-09-19.zip`).
+whose remaining historical material was retired on 19 September 2026.
 
 Counts below are parsed data records, excluding headers, as of 19 September 2026.
 
@@ -139,17 +138,15 @@ the HackTricks README, which are not organised by engine.
 
 An earlier version of this corpus held 2,001 positives. 366 of those were **local seed
 payloads** with no traceable upstream source. They were removed so that every training
-positive can be pointed at a public file at a pinned commit. The removed rows are kept at
-`_archive/positives_removed_localseed.csv`; they are not part of any active export.
+positive can be pointed at a public file at a pinned commit. The removed rows are not part of any active export.
 
-Successive states are preserved under `_archive/` for rollback: `*_pre_seclists.*`
-(1,635 positives), `*_pre_hacktricks.*` (1,664), `*_pre_tinja.*` (1,840). Each addition batch
+The positive set grew in three steps: 1,635 positives, 1,664 after the SecLists additions,
+1,840 after HackTricks and fuzzing-templates, and 1,905 after the Hackmanit table. Each addition batch
 was also exported separately for transparency at the time
 (`positives_added_from_seclists.csv`, `_hacktricks_fuzzingtemplates.csv`, `_tinja.csv`).
 Those three exports were retired on 20 September 2026: every payload and `base_id` in each
 was already present in `positives.csv`, so they held no data that the single file didn't
-already have. They are kept at `_archive/` (unchanged) for provenance; `positives/` now
-holds exactly one file, `positives.csv`.
+already have. `positives/` now holds exactly one file, `positives.csv`.
 
 ## Collection and deduplication rules
 
