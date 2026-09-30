@@ -14,6 +14,7 @@ and [train/SOURCES.md](train/SOURCES.md).
 | Where the test payloads came from | [test_set/sources.md](test_set/sources.md) |
 | Full dataset explanation, sources, column meanings, and review status | [DATASHEET.md](DATASHEET.md) — checked 20 September 2026; section 9 lists verified checks and remaining limitations |
 | How to gather training and test data for a new project | [HOW_TO_BUILD_A_DATASET.md](HOW_TO_BUILD_A_DATASET.md) |
+| What the data and results cannot support | [LIMITATIONS.md](LIMITATIONS.md) |
 | Dataset utilities | [scripts/](scripts/) |
 | Earlier cleanup record | [CLEANUP_LOG.json](CLEANUP_LOG.json) |
 
@@ -92,15 +93,9 @@ These are saved annotations, not independently verified incidents: a write-up de
 
 Record counts and source totals were confirmed against the files; the training positives and benign rows match the combined and feature files in payload, label, order and `base_id`; all feature values were recomputed for every training and test row with no mismatches; and every positive has its source fields filled in.
 
-### Known issues in the data
+### Limitations
 
-- No payload was executed. Labels state the source's claim, not a confirmed exploit.
-- `engine`, `language` and `mechanism` are assigned automatically and are not human-reviewed. 630 of the 1,905 mechanism labels are `uncertain`.
-- 884 training rows are flagged for review of their extraction or type, and 4 are flagged as possibly benign.
-- One string (`{% endif %}`) appears with both labels.
-- 13 of the 47 test positives have a recorded relationship to a training payload family, and training and test benign rows share repositories, so the test set is not independent of the training data. Only 47 test positives also means recall estimates are coarse: one payload is 2.13 points.
-- The test set has been inspected during development, so it should not be treated as untouched.
-- Collection scripts in `Dataset/scripts/` are partly historical; there is no single command that rebuilds the release.
+Known issues with the labels, the benign set, the test set and the results are listed once, in [LIMITATIONS.md](LIMITATIONS.md).
 
 ## Non-negotiables when using this data
 

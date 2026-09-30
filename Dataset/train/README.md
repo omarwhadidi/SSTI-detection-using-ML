@@ -42,26 +42,12 @@ overlap.
 model inputs and need not become numeric features. Every `mechanism` value is automatic and
 unreviewed.
 
-## Important caveats
+## Notes
 
-**Class balance.** 1,905 positive against 2,001 benign — roughly 49/51, not 1:1. Report
-ROC-AUC and attack-class recall, not accuracy.
+**Class balance.** 1,905 positive against 2,001 benign, roughly 49/51. Report ROC-AUC and attack-class recall, not accuracy.
 
-**Features are derived, never edited.** `combined/train_features.csv` is generated from
-`combined/train_combined.csv` with `../scripts/ssti_feature_extraction.py`. Regenerate it
-after any payload, label, or grouping change. Metadata-only edits — review flags,
-annotations — do not require regeneration.
+**Features are derived, never edited.** `combined/train_features.csv` is generated from `combined/train_combined.csv` with `../scripts/ssti_feature_extraction.py` (`train_features_v2.csv` uses `../scripts/ssti_feature_extraction_v2.py`). Regenerate after any payload, label, or grouping change. Metadata-only edits (review flags, annotations) do not require regeneration.
 
-**Benign composition.** 787 hard negatives (real template expressions from four
-open-source projects) and 1,214 benchmark-derived HTTP parameters. Train and test draw on
-the same benign repositories, so no benign repository holdout exists. See
-[SOURCES.md](SOURCES.md#benign-sources).
+**Benign composition.** 787 hard negatives (real template expressions from four open-source projects) and 1,214 benchmark-derived HTTP parameters. See [SOURCES.md](SOURCES.md#benign-sources).
 
-**Nothing here is human-verified.** All 1,905 mechanism annotations are `auto_unreviewed`.
-Review candidates in their source context and do not use an automatic flag as a deletion or
-relabeling rule — an earlier automatic pass wrongly removed genuine probes and had to be
-reversed. Retain record IDs when annotating.
-
-**Removed material.** 366 local seed payloads with no traceable upstream source were
-removed so that every training positive points at a public file at a pinned commit. They
-are not part of any active export.
+Limitations of this data, including unreviewed annotations and the shared repositories between train and test, are listed in [../LIMITATIONS.md](../LIMITATIONS.md).

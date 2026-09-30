@@ -25,7 +25,7 @@ The data was built in two separate pipelines, one for training and one for the e
 | External test positives | 47 | Published write-ups, CVE proofs of concept, scanner templates, one HackerOne report and one CTF challenge, listed in [`Dataset/test_set/sources.md`](Dataset/test_set/sources.md) |
 | External test benign | 500 | 143 template fragments and 357 normal parameters, from the same five sources as the training benign rows |
 
-Construction steps, grouping, checks and known issues are in [`Dataset/README.md`](Dataset/README.md). Per-file counts, pinned commits and licences are in [`Dataset/train/SOURCES.md`](Dataset/train/SOURCES.md).
+Construction steps, grouping and checks are in [`Dataset/README.md`](Dataset/README.md), and the limitations of the data and results are in [`Dataset/LIMITATIONS.md`](Dataset/LIMITATIONS.md). Per-file counts, pinned commits and licences are in [`Dataset/train/SOURCES.md`](Dataset/train/SOURCES.md).
 
 ## Features
 
@@ -86,21 +86,11 @@ The gains are 1 to 2 points while split-to-split spread is 3 to 8 points, so thi
 
 Character-level neural models (RNN, LSTM, CNN-LSTM in [`model_evaluation/deep_learning/dl_models.ipynb`](model_evaluation/deep_learning/dl_models.ipynb), 5 splits) follow the same pattern: holdout AUC 0.960 to 0.981, external AUC 0.949 to 0.981, with standard deviations of 0.005 to 0.049 that are as large as the gaps between the three architectures.
 
-## Limitations
-
-- **The external test set is not fully independent.** Its benign rows come partly from the same four open-source projects as the training hard negatives, and 13 of its 47 positives have a recorded relationship to a training payload family (see [Known issues in the data](Dataset/README.md#known-issues-in-the-data)).
-- **Only 47 external positives.** A recall near 0.95 has a 95% interval of about ±6 points, so differences smaller than that cannot be resolved.
-- **Hard negatives come from four projects**, one per template engine, which is the most likely reason for the remaining false alarms.
-- **Labels and annotations are automatic.** `engine`, `language` and `mechanism` are not human-reviewed; nothing was executed to confirm a payload works.
-- **Two feature columns are shape proxies.** `payload_length` and `special_char_ratio` alone reach external AUC 0.953; they separate template-shaped strings from plain parameters more than attacks from hard negatives.
-- **The first cells of `Model_evaluation.ipynb` use a random, ungrouped split** (kept as the original baseline). The grouped readings are in the cells after it and in the last two sections.
-- No adversarial evaluation against an attacker who knows the features.
-
 ## Layout
 
 ```
 Dataset/
-  DATASHEET.md, README.md      dataset documentation
+  DATASHEET.md, README.md, LIMITATIONS.md   dataset documentation
   train/                       positives/, benign/, combined/ (incl. *_features.csv), SOURCES.md
   test_set/                    external test data, features/, sources.md
   scripts/                     feature extractors (v1, v2), feature_audit.py, older utilities
