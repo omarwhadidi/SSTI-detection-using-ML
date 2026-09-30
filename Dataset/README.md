@@ -18,15 +18,30 @@ and [train/SOURCES.md](train/SOURCES.md).
 | Dataset utilities | [scripts/](scripts/) |
 | Earlier cleanup record | [CLEANUP_LOG.json](CLEANUP_LOG.json) |
 
-## Main files
+## Files
 
 [train/](train/) has 3,906 rows and [test_set/](test_set/) has 547.
 
-- Training — `train/combined/train_combined.csv` and `train/combined/train_features.csv`
-- Test — `test_set/ssti_test_positives.jsonl`, `test_set/ssti_test_combined.csv`, and
-  `test_set/features/test_features.csv`
+| file | rows | what |
+|---|---:|---|
+| `train/positives/positives.csv` | 1,905 | positive payloads with engine, language, grouping key, provenance URL and review flags |
+| `train/positives/positives.txt` | 1,905 | the same payload strings, one per line |
+| `train/benign/benign.csv` | 2,001 | benign payloads: `payload`, `label` (0), `kind`, `source`, `engine`, `base_id` |
+| `train/benign/benign.txt` | 2,001 | the same benign strings, one per line |
+| `train/combined/train_combined.csv` | 3,906 | positives and benign with unified columns |
+| `train/combined/train_features.csv`, `train_features_v2.csv` | 3,906 | the same rows plus 17 (v1) or 18 (v2) deterministic features |
+| `test_set/ssti_test_positives.jsonl`, `test_set/ssti_test_combined.csv` | 47 / 547 | external test positives, and positives plus benign |
+| `test_set/features/test_features.csv`, `test_features_v2.csv` | 547 | test rows plus features |
 
-Read multiline CSV records with a proper CSV reader, not by splitting on newlines.
+Feature files are generated from the combined files with `scripts/ssti_feature_extraction.py` (v1) or `scripts/ssti_feature_extraction_v2.py` (v2). Regenerate them after any payload, label or grouping change; metadata-only edits (review flags, annotations) do not require it. Read multiline CSV records with a proper CSV reader, not by splitting on newlines.
+
+### Columns
+
+`label` is 1 for an SSTI payload and 0 for benign. `engine` and `language` are automatic annotations, with a separate `engine_confidence`; `language` is `unknown` where the heuristic could not decide. `source_url` is one pinned GitHub blob URL per row, filled for all 1,905 positives, from which the repository, commit and file path can be read. The positives file has 10 columns in this order: `payload`, `base_id`, `language`, `engine`, `label`, `engine_confidence`, `mechanism`, `suspected_benign`, `review_notes`, `source_url`.
+
+`base_id` is the structural skeleton of a payload, with digits and quoted strings masked and whitespace removed, and it is the grouping key. There are 1,283 distinct positive skeletons and 1,432 distinct benign ones. Group on it in the outer split and in inner CV. It stops shared skeletons from straddling a split; it does not catch every semantic-family overlap.
+
+`mechanism`, `suspected_benign` and `review_notes` are review metadata, not model inputs. Every `mechanism` value is automatic and unreviewed.
 
 ## How the data was built
 

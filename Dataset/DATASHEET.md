@@ -180,7 +180,7 @@ The main saved positive text is [ssti_test_positives.jsonl](test_set/ssti_test_p
 |---|---|
 | [README.md](README.md) | Quick entry point and file links. |
 | [HOW_TO_BUILD_A_DATASET.md](HOW_TO_BUILD_A_DATASET.md) | General guide to building web-vulnerability datasets and comparing benchmarks. |
-| [train/README.md](train/README.md), [train/SOURCES.md](train/SOURCES.md), [test_set/sources.md](test_set/sources.md) | More training details and the source catalogs. |
+| [train/SOURCES.md](train/SOURCES.md), [test_set/sources.md](test_set/sources.md) | More training details and the source catalogs. |
 | [CLEANUP_LOG.json](CLEANUP_LOG.json) | Historical record of cleanup actions. Old counts describe those actions, not today's dataset. |
 | [scripts/README.md](scripts/README.md) | Which utilities are current and which are historical. |
 | `scripts/ssti_feature_extraction.py` | Current definitions of the 17 features. |

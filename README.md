@@ -12,7 +12,7 @@
 
 Server-Side Template Injection lets an attacker inject template syntax that the server's template engine then evaluates, often escalating to remote code execution. This project asks whether a classifier trained on interpretable features of a payload string can separate SSTI payloads from benign input, including benign template code that looks like an attack.
 
-This is the second version of the project. The first version used 977 hand-assembled payloads and a single random split, which let variants of the same payload land on both sides of the split. It is preserved in [`legacy_977_row_version/`](legacy_977_row_version/) for history and **its results should not be cited**. This version replaces it.
+This is the second version of the project. The first version used 977 hand-assembled payloads and a single random split, which let variants of the same payload land on both sides of the split. Its results should not be cited; this version replaces it.
 
 ## Dataset
 
@@ -98,7 +98,6 @@ model_evaluation/
   Model_evaluation.ipynb       7 classical models, grouped evaluation, threshold selection
   deep_learning/dl_models.ipynb  RNN / LSTM / CNN-LSTM, 5-split rerun
   *.csv                        local copies the notebooks read (byte-identical to Dataset/)
-legacy_977_row_version/        first version, superseded
 ```
 
 The notebooks find `Dataset/` by walking up from their own folder, and compare their local CSV copies with the originals, which is why the copies are kept.
