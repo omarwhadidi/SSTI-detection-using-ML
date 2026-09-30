@@ -1,0 +1,5 @@
+model,cutoff,precision,recall,f1,false_alarms,missed_attacks
+XGBoost,0.5,0.662,0.957,0.783,23,2
+XGBoost,0.811,0.837,0.872,0.854,8,6
+RandomForest,0.5,0.629,0.936,0.752,26,3
+RandomForest,0.793,0.776,0.809,0.792,11,9

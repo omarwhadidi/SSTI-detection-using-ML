@@ -1,0 +1,3 @@
+model,holdout_auc,external_auc,external_pr_auc
+17 engineered features + XGBoost,0.966,0.99,0.903
+character 2-4-gram TF-IDF + logistic regression,0.997,0.983,0.874

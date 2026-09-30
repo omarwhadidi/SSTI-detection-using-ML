@@ -75,7 +75,17 @@ The gains are 1 to 2 points while split-to-split spread is 3 to 8 points, so thi
 | 17 engineered features + XGBoost | 0.966 | 0.990 | 0.903 |
 | character 2-4-gram TF-IDF + logistic regression | 0.997 | 0.983 | 0.874 |
 
-Character-level neural models (RNN, LSTM, CNN-LSTM in [`model_evaluation/deep_learning/dl_models.ipynb`](model_evaluation/deep_learning/dl_models.ipynb), 5 splits) follow the same pattern: holdout AUC 0.960 to 0.981, external AUC 0.949 to 0.981, with standard deviations of 0.005 to 0.049 that are as large as the gaps between the three architectures.
+**6. Character-level neural networks are competitive but not better.** RNN, LSTM and CNN-LSTM read the raw payload characters ([`dl_models.ipynb`](model_evaluation/deep_learning/dl_models.ipynb)). Mean ± standard deviation over 5 seeds, each seed using a different grouped split. The cutoff was chosen on validation rows only, at a 5% false-positive budget:
+
+| model | holdout AUC | external AUC | external PR-AUC | external recall | external precision |
+|---|---:|---:|---:|---:|---:|
+| RNN | 0.960 ± 0.038 | 0.949 ± 0.049 | 0.796 ± 0.161 | 0.808 | 0.583 |
+| LSTM | 0.957 ± 0.035 | 0.948 ± 0.015 | 0.844 ± 0.046 | 0.864 | 0.556 |
+| CNN-LSTM | 0.979 ± 0.018 | 0.978 ± 0.011 | 0.880 ± 0.009 | 0.940 | 0.527 |
+
+CNN-LSTM is ahead of the other two on external AUC (0.978 against 0.948 and 0.949), by more than the seed-to-seed spread. On the holdout the three are within one standard deviation of each other. On the external set the neural models' precision is 0.53 to 0.58, because the validation-chosen cutoff lets through 6 to 8% of benign rows instead of 5%. The comparison with the XGBoost results above is not exact, since the splits and the way the cutoff is chosen differ. A second run of the same code gave the same RNN numbers but LSTM external AUC 0.961, so a difference of about 0.01 is within run-to-run noise.
+
+Raw numbers and the protocol for every block above are in [`results/`](results/).
 
 ## Usage
 

@@ -1,0 +1,9 @@
+model,ver,reading,n_splits,f1,f1_sd,precision,precision_sd,recall,roc_auc,pr_auc
+RandomForest,v1,external,5,0.7055,0.0511,0.5626,0.0655,0.9532,0.9808,0.8295
+RandomForest,v1,holdout,5,0.8642,0.0416,0.8364,0.08,0.8985,0.9543,0.943
+RandomForest,v2,external,5,0.721,0.0587,0.5833,0.0783,0.9532,0.9809,0.8126
+RandomForest,v2,holdout,5,0.8633,0.0479,0.831,0.0837,0.9023,0.9553,0.9443
+XGBoost,v1,external,5,0.7258,0.0555,0.5794,0.0697,0.9787,0.9884,0.8989
+XGBoost,v1,holdout,5,0.8631,0.0336,0.8367,0.0698,0.8949,0.9587,0.9508
+XGBoost,v2,external,5,0.7342,0.0662,0.5927,0.0831,0.9745,0.9886,0.8977
+XGBoost,v2,holdout,5,0.8666,0.0416,0.8404,0.0778,0.8986,0.9596,0.952
