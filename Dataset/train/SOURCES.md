@@ -302,26 +302,27 @@ redistribution; the `source_repo` / `source_file` / `source_commit` / `source_ur
 on the positives and the `source` column on the benign records are the attribution ledger
 for that purpose.
 
-| source | role | licence |
-|---|---|---|
-| `swisskyrepo/PayloadsAllTheThings` | train positives | MIT |
-| `payload-box/ssti-advanced-payload-list` | train positives | MIT |
-| `danielmiessler/SecLists` | train positives | MIT *(not yet re-verified from LICENSE)* |
-| `HackTricks-wiki/hacktricks` | train positives | *(wiki — verify licence before release)* |
-| `projectdiscovery/fuzzing-templates` | train positives | MIT *(not yet re-verified)* |
-| `Hackmanit/template-injection-table` | train positives | Apache-2.0 (keep NOTICE) |
-| `miguelgrinberg/microblog` | benign hard negatives | MIT |
-| `symfony/demo` | benign hard negatives | MIT |
-| `spring-projects/spring-petclinic` | benign hard negatives | Apache-2.0 (keep NOTICE) |
-| `sidekiq/sidekiq` | benign hard negatives | **LGPL-3.0 — see caution** |
-| `Morzeux/HttpParamsDataset` | benign parameters | MIT |
+| source | role | licence | checked 30 Sept 2026 against |
+|---|---|---|---|
+| `swisskyrepo/PayloadsAllTheThings` | train positives | MIT (Swissky, 2019) | `LICENSE` file |
+| `payload-box/ssti-advanced-payload-list` | train positives | MIT | GitHub license API |
+| `danielmiessler/SecLists` | train positives | MIT (Daniel Miessler) | `LICENSE` file |
+| `projectdiscovery/fuzzing-templates` | train positives | MIT | GitHub license API |
+| `Hackmanit/template-injection-table` | train positives | Apache-2.0 | README statement and badge; keep NOTICE if the repo has one |
+| `HackTricks-wiki/hacktricks` | train positives | **No standard license.** Custom terms: credit the source page, link to it, and ask before commercial use | `src/welcome/hacktricks-values-and-faq.md`; summary only, read the page yourself |
+| `miguelgrinberg/microblog` | benign hard negatives | MIT | GitHub license API |
+| `symfony/demo` | benign hard negatives | MIT (Fabien Potencier) | `LICENSE` file |
+| `spring-projects/spring-petclinic` | benign hard negatives | Apache-2.0 | `LICENSE.txt` |
+| `sidekiq/sidekiq` | benign hard negatives | **LGPL-3.0** (Contributed Systems LLC) | `LICENSE.txt` |
+| `Morzeux/HttpParamsDataset` | benign parameters | MIT | repository page |
 
-**Caution — Sidekiq (LGPL-3.0).** The extracted items are short, functional template
-expressions, likely below the threshold of copyrightability, but LGPL is copyleft. Before
-public release either document that short-snippet rationale and keep attribution, or
-re-harvest the ERB hard negatives from a permissively licensed Rails/ERB project and drop
-the 295 Sidekiq-derived rows. The second option keeps the dataset uniformly permissive and
-is the safer choice for release.
+Seven sources are MIT, two are Apache-2.0, one is LGPL-3.0 and one (HackTricks) has custom terms. The checks were made by reading each repository's license file or page; they are not a legal review. MIT and Apache-2.0 both require keeping the copyright notice and attribution, which the `source_url` column and this table provide.
+
+**Test positives.** The 47 test positives come from 22 published pages (blog posts, GitHub security advisories, a HackerOne report, and one Nuclei template). Their licenses have not been checked. Each row stores a short payload string, the page URL and a short label, not the article text. Whether short payload strings are protected by the page's copyright has not been settled.
+
+**HackTricks.** Its terms are not an open license, and the 159 rows taken from it are the weakest part of the licensing picture. The options are to keep them and credit each page, to ask the maintainers, or to drop those rows and rerun the results.
+
+**Sidekiq (LGPL-3.0).** The 295 extracted items are short, functional template expressions, likely below the threshold of copyrightability, but LGPL is a copyleft license. Before public release either document that short-snippet rationale and keep attribution, or re-harvest the ERB hard negatives from a permissively licensed Rails/ERB project and drop the Sidekiq rows. The second option keeps the dataset uniformly permissive and is the safer choice.
 
 CC BY 4.0 was proposed for a future release, but is not a confirmed license covering all
 underlying records. The license names and Sidekiq discussion above are historical source

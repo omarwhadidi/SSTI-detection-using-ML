@@ -95,7 +95,7 @@ Then open `model_evaluation/Model_evaluation.ipynb`. Cell 4 has a `FEATURES_FILE
 | Code (scripts, notebooks) | [MIT](LICENSE) |
 | Dataset | Not covered by the MIT license; not yet cleared for redistribution |
 
-> **Note on the data.** Payloads come from public repositories with different licenses: MIT, Apache-2.0, LGPL-3.0, and one wiki whose license is unverified. Before sharing or reusing any data file, read the licensing section of [`Dataset/train/SOURCES.md`](Dataset/train/SOURCES.md).
+> **Note on the data.** Payloads come from 11 public repositories: seven MIT, two Apache-2.0, one LGPL-3.0 (Sidekiq), and one (HackTricks) with custom terms that ask for attribution and permission for commercial use. The 47 test positives come from published web pages whose licenses have not been checked. Before sharing or reusing any data file, read the licensing section of [`Dataset/train/SOURCES.md`](Dataset/train/SOURCES.md).
 
 ## Contact
 
