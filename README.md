@@ -197,5 +197,3 @@ Code: MIT, see [LICENSE](LICENSE).
 ## Contact
 
 Omar Walid Elhadidi, [omarwhadidi9@gmail.com](mailto:omarwhadidi9@gmail.com)
-
-Built as part of a Master of Science in Cyber Security creative component, Iowa State University.
