@@ -15,6 +15,8 @@ Every number here is provisional. Each block comes from a single machine, most u
 | `baseline_comparison.csv` | 17 features against a character n-gram baseline | 5 |
 | `dl_multiseed_raw.csv`, `dl_multiseed_summary.csv` | RNN, LSTM and CNN-LSTM over 5 seeds | 6 |
 | `notebook_random_split.csv`, `notebook_threshold.csv`, `notebook_grouped.csv`, `notebook_grouped_candidates.csv` | Every reading from `Model_evaluation.ipynb`, run once with v1 and once with v2 features | 2, and the notebook |
+| `notebook_grouped_comparison.csv` | Each model on the random split, the grouped holdout and the external set (notebook STEP 6) | notebook |
+| `mechanism_recall.csv`, `mechanism_scores_raw.csv` | Recall per attack mechanism over 5 grouped folds (notebook STEP 7) | notebook |
 
 ## Protocol for each block
 
@@ -37,10 +39,22 @@ The main reason one algorithm shows several numbers is this table. Blocks 1, 3 a
 |---|---|---|
 | `notebook_random_split.csv` | 1 to 8 | All 7 models on the random, ungrouped 80/20 split (seed 15), 782 test rows. Leaky by design; kept as the original baseline |
 | `notebook_threshold.csv` | 10 | XGBoost and Random Forest at cutoff 0.5 and at a cutoff chosen from grouped out-of-fold training scores (5% false-alarm target), on the 782 test rows and the external set |
-| `notebook_grouped.csv` | 11 to 20 | All 7 models on one grouped split (outer fold 2 of `StratifiedGroupKFold`, 744 holdout rows) and on the external set |
-| `notebook_grouped_candidates.csv` | 13 to 19 | Inner grouped CV macro-F1 for each model under both preprocessing options, and which one was selected |
+| `notebook_grouped.csv` | old 11 to 20 | All 7 models on one grouped split (outer fold 2 of `StratifiedGroupKFold`, 744 holdout rows) and on the external set |
+| `notebook_grouped_candidates.csv` | old 13 to 19 | Inner grouped CV macro-F1 for each model under both preprocessing options, and which one was selected |
 
 Each reading is a single run. Running the same notebook on a different machine (Windows, Python 3.13, the same library versions) gave identical numbers for most models but small differences for XGBoost and KNN: up to 2 false alarms, a different chosen cutoff (0.839 against 0.821), and in the grouped section a different preprocessing choice where the two options tied to the third decimal. Differences of that size are not meaningful.
+
+## Grouped evaluation and mechanism recall (6 October 2026)
+
+The grouped section of `Model_evaluation.ipynb` was rewritten into two plain steps; cells 1 to 10 did not change. The files `notebook_grouped.csv` and `notebook_grouped_candidates.csv` above come from the earlier version of that section (one `StratifiedGroupKFold` fold, two scaling options per model), which no longer exists in the notebook.
+
+| File | Notebook step | What it holds |
+|---|---|---|
+| `notebook_grouped_comparison.csv` | STEP 6 | All 7 models on the random split from cell 8, on one grouped split (`GroupShuffleSplit`, 20% of groups, seed 42; 3,191 training and 715 holdout rows, the same split as `learning_curve.csv` and `baseline_comparison.csv`), and on the external set. Cutoff 0.5. v2 features |
+| `mechanism_recall.csv` | STEP 7 | XGBoost and Random Forest, 5 grouped folds (`StratifiedGroupKFold`, seed 42), so every training attack is scored once by a model that never saw its skeleton. Recall at cutoff 0.5 per automatic `mechanism` label, with a 95% Wilson interval. v2 features |
+| `mechanism_scores_raw.csv` | STEP 7 | One row per attack per model: fold, mechanism and predicted score |
+
+The mechanism labels are automatic and unreviewed. 94% of the `uncertain` rows and 72% of the `probe` rows are flagged `manual_review_pending` in `Dataset/train/positives/positives.csv`, so misses in those groups may be extraction errors as much as model errors. Hyperparameters inside each training function are tuned with ungrouped folds; the holdout readings themselves are grouped.
 
 ## Notes on specific files
 

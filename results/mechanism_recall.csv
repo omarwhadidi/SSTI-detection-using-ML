@@ -1,0 +1,13 @@
+model,mechanism,attacks,caught,median_score,recall,recall_low,recall_high,feature_version
+Random Forest,direct-execution,670,650,0.9948,0.9701,0.9543,0.9806,v2
+Random Forest,enumeration,107,96,0.8539,0.8972,0.8252,0.9416,v2
+Random Forest,feature-abuse,130,129,0.9722,0.9923,0.9577,0.9986,v2
+Random Forest,introspection,265,263,0.9975,0.9925,0.9729,0.9979,v2
+Random Forest,probe,103,103,0.9534,1.0,0.964,1.0,v2
+Random Forest,uncertain,630,511,0.8978,0.8111,0.7787,0.8398,v2
+XGBoost,direct-execution,670,646,0.9982,0.9642,0.9473,0.9758,v2
+XGBoost,enumeration,107,89,0.8913,0.8318,0.7497,0.8909,v2
+XGBoost,feature-abuse,130,126,0.9754,0.9692,0.9236,0.988,v2
+XGBoost,introspection,265,263,0.9996,0.9925,0.9729,0.9979,v2
+XGBoost,probe,103,101,0.9789,0.9806,0.9319,0.9947,v2
+XGBoost,uncertain,630,500,0.9246,0.7937,0.7603,0.8234,v2
