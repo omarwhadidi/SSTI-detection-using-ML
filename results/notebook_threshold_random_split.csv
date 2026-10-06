@@ -1,0 +1,43 @@
+feature_version,model,set,cutoff,threshold,precision,recall,f1,false_alarms,missed_attacks
+v2,Naive Bayes,test (cell 5),default 0.5,0.5,0.973,0.634,0.767,7,144
+v2,Naive Bayes,external,default 0.5,0.5,0.8,0.681,0.736,8,15
+v2,Naive Bayes,test (cell 5),best F1,0.0,0.736,0.992,0.845,140,3
+v2,Naive Bayes,external,best F1,0.0,0.239,1.0,0.385,150,0
+v2,Naive Bayes,test (cell 5),5% false alarms,0.0,0.959,0.712,0.818,12,113
+v2,Naive Bayes,external,5% false alarms,0.0,0.65,0.83,0.729,21,8
+v2,Logistic Regression,test (cell 5),default 0.5,0.5,0.907,0.84,0.872,34,63
+v2,Logistic Regression,external,default 0.5,0.5,0.495,0.957,0.652,46,2
+v2,Logistic Regression,test (cell 5),best F1,0.41,0.88,0.896,0.888,48,41
+v2,Logistic Regression,external,best F1,0.41,0.426,0.979,0.594,62,1
+v2,Logistic Regression,test (cell 5),5% false alarms,0.66,0.962,0.763,0.851,12,93
+v2,Logistic Regression,external,5% false alarms,0.66,0.536,0.787,0.638,32,10
+v2,KNN,test (cell 5),default 0.5,0.5,0.933,0.919,0.926,26,32
+v2,KNN,external,default 0.5,0.5,0.621,0.872,0.726,25,6
+v2,KNN,test (cell 5),best F1,0.348,0.915,0.936,0.926,34,25
+v2,KNN,external,best F1,0.348,0.6,0.894,0.718,28,5
+v2,KNN,test (cell 5),5% false alarms,0.688,0.951,0.88,0.914,18,47
+v2,KNN,external,5% false alarms,0.688,0.678,0.851,0.755,19,7
+v2,SVM,test (cell 5),default 0.5,0.5,0.925,0.916,0.921,29,33
+v2,SVM,external,default 0.5,0.5,0.618,0.894,0.73,26,5
+v2,SVM,test (cell 5),best F1,0.609,0.954,0.901,0.927,17,39
+v2,SVM,external,best F1,0.609,0.667,0.894,0.764,21,5
+v2,SVM,test (cell 5),5% false alarms,0.673,0.961,0.875,0.916,14,49
+v2,SVM,external,5% false alarms,0.673,0.683,0.872,0.766,19,6
+v2,Decision Tree,test (cell 5),default 0.5,0.5,0.909,0.911,0.91,36,35
+v2,Decision Tree,external,default 0.5,0.5,0.568,0.894,0.694,32,5
+v2,Decision Tree,test (cell 5),best F1,0.587,0.919,0.891,0.904,31,43
+v2,Decision Tree,external,best F1,0.587,0.592,0.894,0.712,29,5
+v2,Decision Tree,test (cell 5),5% false alarms,1.0,0.926,0.888,0.906,28,44
+v2,Decision Tree,external,5% false alarms,1.0,0.609,0.894,0.724,27,5
+v2,Random Forest,test (cell 5),default 0.5,0.5,0.92,0.931,0.925,32,27
+v2,Random Forest,external,default 0.5,0.5,0.629,0.936,0.752,26,3
+v2,Random Forest,test (cell 5),best F1,0.401,0.902,0.934,0.918,40,26
+v2,Random Forest,external,best F1,0.401,0.582,0.979,0.73,33,1
+v2,Random Forest,test (cell 5),5% false alarms,0.644,0.948,0.883,0.914,19,46
+v2,Random Forest,external,5% false alarms,0.644,0.683,0.915,0.782,20,4
+v2,XGBoost,test (cell 5),default 0.5,0.5,0.927,0.931,0.929,29,27
+v2,XGBoost,external,default 0.5,0.5,0.662,0.957,0.783,23,2
+v2,XGBoost,test (cell 5),best F1,0.526,0.928,0.924,0.926,28,30
+v2,XGBoost,external,best F1,0.526,0.662,0.957,0.783,23,2
+v2,XGBoost,test (cell 5),5% false alarms,0.636,0.948,0.885,0.916,19,45
+v2,XGBoost,external,5% false alarms,0.636,0.738,0.957,0.833,16,2
