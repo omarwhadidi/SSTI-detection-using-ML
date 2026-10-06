@@ -1,0 +1,8 @@
+model,threshold_random_folds,threshold_grouped_folds
+XGBoost,0.645,0.827
+Random Forest,0.644,0.803
+SVM,0.673,0.791
+KNN,0.684,1.0
+Logistic Regression,0.66,0.694
+Decision Tree,1.0,1.0
+Naive Bayes,0.0,0.0

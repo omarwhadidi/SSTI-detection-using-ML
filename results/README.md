@@ -1,78 +1,87 @@
 # Results
 
-This folder keeps the raw numbers behind every result reported in the main README, so they can be compared with future runs. The main README gives the interpretation; this folder gives the data and the exact protocol.
+Raw numbers behind the results in the main README, organised in the same order as `model_evaluation/Model_evaluation.ipynb`. Each numbered folder matches one part of the notebook.
 
-Every number here is provisional. Each block comes from a single machine, most use 5 splits or seeds, and the external test set has only 47 positives. Do not compare numbers across blocks without reading the protocol column, because the blocks differ in split, hyperparameters, threshold and number of runs.
+## How to read these numbers
 
-## Index
+- **Test set:** rows held out from the training data before training (20%). In Part 1 the split is random, so about a third of the test rows have a near-copy in training (same `base_id`). In Part 3 the split keeps each `base_id` on one side.
+- **External set:** a separate test set collected from write-ups, CVE proofs of concept and a HackerOne report: 47 attacks and 500 benign rows (about 9% attacks). It is the closest thing to real traffic here, but with only 47 attacks one missed attack moves recall by about 2 points.
+- **ROC-AUC:** how often the model scores a random attack above a random benign input (1.0 = always, 0.5 = coin flip). It does not depend on the cutoff.
+- **Precision / recall / F1:** depend on the cutoff. Precision = of the inputs flagged, how many were attacks. Recall = of the attacks, how many were flagged.
+- **False alarms:** benign inputs flagged as attacks. **Missed attacks:** attacks not flagged.
 
-| File | What it holds | Main README block |
+Every reading is a single run. Differences of one or two rows between models are noise.
+
+## Current run (6 October 2026)
+
+Notebook run end to end on Windows, Python 3.13, scikit-learn 1.6.1, XGBoost 3.2.0, version 2 features (18 features). Training data: 3,906 rows (1,905 attacks). Part 1 test set: 782 rows. Part 3 grouped test set: 715 rows.
+
+| Folder | Notebook part | Files |
 |---|---|---|
-| `learning_curve.csv` | AUC as the training set grows, 5 seeds per point | 1 |
-| `threshold_selection.csv` | Precision, recall and F1 at cutoff 0.5 and at a cutoff chosen from training data | 2 |
-| `v1_vs_v2_raw.csv`, `v1_vs_v2_summary.csv` | Version 1 against version 2 features, per split and averaged | 3 |
-| `hard_negative_errors.csv` | Which benign rows the model falsely flags | 4 |
-| `baseline_comparison.csv` | 17 features against a character n-gram baseline | 5 |
-| `dl_multiseed_raw.csv`, `dl_multiseed_summary.csv` | RNN, LSTM and CNN-LSTM over 5 seeds | 6 |
-| `notebook_random_split.csv`, `notebook_threshold.csv`, `notebook_grouped.csv`, `notebook_grouped_candidates.csv` | Every reading from `Model_evaluation.ipynb`, run once with v1 and once with v2 features | 2, and the notebook |
-| `notebook_threshold_random_split.csv` | All 7 models at cutoff 0.5, the best-F1 cutoff and the 5%-false-alarm cutoff, chosen on the random split (notebook STEP 5) | notebook |
-| `notebook_grouped_comparison.csv` | Each model on the random split, the grouped holdout and the external set (notebook STEP 7) | notebook |
-| `mechanism_recall.csv`, `mechanism_scores_raw.csv` | Recall per attack mechanism over 5 grouped folds (notebook STEP 8) | notebook |
+| [`1_basic_evaluation/`](1_basic_evaluation/) | Part 1: random split, cutoff 0.5 | `test_set_threshold_0.5.csv`, `external_set_threshold_0.5.csv` |
+| [`2_threshold_selection/`](2_threshold_selection/) | Part 2: cutoff chosen from the training data at a 5% false-alarm rate | `thresholds.csv`, `test_set_random_folds_threshold.csv`, `external_set_random_vs_grouped_threshold.csv` |
+| [`3_grouped_evaluation/`](3_grouped_evaluation/) | Part 3: split by `base_id`, cutoff 0.5 | `random_vs_grouped_vs_external.csv` |
+| [`4_attack_mechanisms/`](4_attack_mechanisms/) | Part 4: recall per attack mechanism, XGBoost and Random Forest, 5 folds | `recall_random_folds.csv`, `recall_grouped_folds.csv`, `random_vs_grouped.csv`, `missed_examples_xgboost.csv` |
 
-## Protocol for each block
+### Part 1: random split, cutoff 0.5
 
-| Block | Model and hyperparameters | Training data | Split | Runs | Cutoff |
-|---|---|---|---|---|---|
-| 1 | XGBoost, 500 trees, depth 6, learning rate 0.03, subsample 0.8 | v1 features, grouped subsamples of an 80% pool | one fixed grouped 80/20 split (seed 42) | 5 subsample seeds per point | 0.5 for recall and precision columns |
-| 2 | XGBoost and Random Forest from the notebook's own training functions (random hyperparameter search) | v2 features, the random 80% split from the first cells of `Model_evaluation.ipynb` | external set | 1 | 0.5, and a cutoff from 5-fold grouped out-of-fold scores on training data at a 5% false-alarm target |
-| 3 | XGBoost (as block 1) and Random Forest (400 trees, depth 20) | v1 and v2 features | grouped 80/20, seeds 0 to 4 | 5 | 0.5 |
-| 4 | XGBoost, v1 features | full training data | as stated in the main README | see README | 0.5 |
-| 5 | XGBoost (as block 1) and TF-IDF over character 2 to 4-grams with logistic regression | v1 features or raw text | one grouped 80/20 split (seed 42); vectorizer fitted on training rows only | 1 | AUC only |
-| 6 | Character-level RNN, LSTM and CNN-LSTM from `deep_learning/dl_models.ipynb`, sequence length 96 | raw payload text | grouped, 10% of training rows held out for validation, 5 seeds (0 to 4) | 5 | chosen on validation rows at a 5% false-positive rate |
+| Model | Test AUC | Test precision | Test recall | External AUC | External precision | External recall |
+|---|---:|---:|---:|---:|---:|---:|
+| XGBoost | 0.980 | 0.931 | 0.926 | 0.992 | 0.65 | 0.96 |
+| Random Forest | 0.978 | 0.920 | 0.931 | 0.988 | 0.63 | 0.94 |
+| SVM | 0.975 | 0.937 | 0.903 | 0.979 | 0.65 | 0.89 |
+| KNN | 0.951 | 0.935 | 0.908 | 0.957 | 0.62 | 0.87 |
+| Logistic Regression | 0.958 | 0.907 | 0.840 | 0.978 | 0.49 | 0.96 |
+| Decision Tree | 0.918 | 0.909 | 0.911 | 0.918 | 0.57 | 0.89 |
+| Naive Bayes | 0.932 | 0.973 | 0.634 | 0.967 | 0.80 | 0.68 |
 
-The main reason one algorithm shows several numbers is this table. Blocks 1, 3 and 5 use a fixed XGBoost configuration, block 2 uses a tuned one, and the cutoff and the number of runs also differ.
+External precision and recall in Part 1 come from the printed classification reports, so they have two decimals.
 
-## Notebook readings, v1 against v2 (6 October 2026)
+### Part 2: chosen cutoff, external set
 
-`model_evaluation/Model_evaluation.ipynb` was run end to end twice, once with `FEATURE_VERSION = 'v1'` and once with `'v2'` in cell 4. That switch now controls every section of the notebook. Both runs used Python 3.11, scikit-learn 1.6.1 and XGBoost 3.2.0. Every file has a `feature_version` column.
+| Model | Cutoff (random folds) | Precision | Recall | F1 | Cutoff (grouped folds) | Precision | Recall | F1 |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| XGBoost | 0.645 | 0.750 | 0.957 | 0.841 | 0.827 | **0.837** | 0.872 | **0.854** |
+| Random Forest | 0.644 | 0.683 | 0.915 | 0.782 | 0.803 | 0.771 | 0.787 | 0.779 |
+| SVM | 0.673 | 0.683 | 0.872 | 0.766 | 0.791 | 0.736 | 0.830 | 0.780 |
+| KNN | 0.684 | 0.678 | 0.851 | 0.755 | 1.000 | 0.717 | 0.809 | 0.760 |
+| Logistic Regression | 0.660 | 0.536 | 0.787 | 0.638 | 0.694 | 0.581 | 0.766 | 0.661 |
+| Decision Tree | 1.000 | 0.609 | 0.894 | 0.724 | 1.000 | 0.609 | 0.894 | 0.724 |
+| Naive Bayes | 0.000 | 0.650 | 0.830 | 0.729 | 0.000 | 0.650 | 0.830 | 0.729 |
 
-| File | Notebook cells | What it holds |
-|---|---|---|
-| `notebook_random_split.csv` | 1 to 8 | All 7 models on the random, ungrouped 80/20 split (seed 15), 782 test rows. Leaky by design; kept as the original baseline |
-| `notebook_threshold.csv` | old 10 | XGBoost and Random Forest at cutoff 0.5 and at a cutoff chosen from grouped out-of-fold training scores (5% false-alarm target), on the 782 test rows and the external set |
-| `notebook_grouped.csv` | old 11 to 20 | All 7 models on one grouped split (outer fold 2 of `StratifiedGroupKFold`, 744 holdout rows) and on the external set |
-| `notebook_grouped_candidates.csv` | old 13 to 19 | Inner grouped CV macro-F1 for each model under both preprocessing options, and which one was selected |
+Naive Bayes and Decision Tree output almost only 0 or 1, so their cutoffs land at 0 or 1 and cannot be tuned.
 
-Each reading is a single run. Running the same notebook on a different machine (Windows, Python 3.13, the same library versions) gave identical numbers for most models but small differences for XGBoost and KNN: up to 2 false alarms, a different chosen cutoff (0.839 against 0.821), and in the grouped section a different preprocessing choice where the two options tied to the third decimal. Differences of that size are not meaningful.
+### Part 3: random split against grouped split, cutoff 0.5
 
-## Threshold selection on the random split (6 October 2026)
+| Model | AUC: random → grouped → external | Precision: random → grouped → external | False alarms: random → grouped → external |
+|---|---|---|---|
+| XGBoost | 0.980 → 0.966 → 0.991 | 0.931 → 0.882 → 0.638 | 27 → 46 → 25 |
+| Random Forest | 0.978 → 0.965 → 0.987 | 0.920 → 0.891 → 0.634 | 32 → 43 → 26 |
+| SVM | 0.975 → 0.957 → 0.981 | 0.937 → 0.904 → 0.614 | 24 → 36 → 27 |
+| KNN | 0.951 → 0.917 → 0.967 | 0.935 → 0.887 → 0.583 | 25 → 44 → 30 |
+| Logistic Regression | 0.958 → 0.946 → 0.974 | 0.907 → 0.868 → 0.478 | 34 → 49 → 47 |
+| Decision Tree | 0.918 → 0.874 → 0.960 | 0.909 → 0.862 → 0.554 | 36 → 55 → 37 |
+| Naive Bayes | 0.932 → 0.909 → 0.966 | 0.973 → 0.936 → 0.686 | 7 → 18 → 16 |
 
-The threshold step of `Model_evaluation.ipynb` (STEP 5) was rewritten to use the same random, ungrouped split as cells 1 to 8. `notebook_threshold.csv` above comes from the earlier version, which chose cutoffs from grouped out-of-fold scores for XGBoost and Random Forest only.
+The random test set has 389 benign rows and the grouped test set 331, so the false-alarm rate roughly doubles (XGBoost 6.9% → 13.9%).
 
-`notebook_threshold_random_split.csv` covers all 7 models. Each model's cutoff is chosen from out-of-fold scores on the cell 5 training rows (`cross_val_predict` with the notebook's 3-fold `StratifiedKFold`, model settings from cell 8), by two rules: the best F1, and the cutoff that flags 5% of benign training rows. Each cutoff is then applied once to the cell 5 test rows and to the external set. v2 features, single run.
+### Part 4: recall per attack mechanism, grouped folds
 
-The folds are not grouped and the settings were tuned on all training rows, so the out-of-fold scores are optimistic and the chosen cutoffs come out lower than with grouped folds. For XGBoost the 5%-false-alarm cutoff is 0.636 here against 0.821 with grouped folds, giving 16 external false alarms and 2 missed attacks here against 8 and 6. Naive Bayes and Decision Tree output mostly 0 or 1, so their cutoffs land at 0 or 1 and are not meaningful.
+| Mechanism | Attacks | XGBoost recall (95% range) | Random Forest recall (95% range) |
+|---|---:|---|---|
+| introspection | 265 | 0.996 (0.979–0.999) | 0.992 (0.973–0.998) |
+| probe | 103 | 0.981 (0.932–0.995) | 1.000 (0.964–1.000) |
+| feature-abuse | 130 | 0.985 (0.946–0.996) | 0.992 (0.958–0.999) |
+| direct-execution | 670 | 0.966 (0.949–0.977) | 0.970 (0.954–0.981) |
+| enumeration | 107 | 0.832 (0.750–0.891) | 0.897 (0.825–0.942) |
+| uncertain | 630 | 0.786 (0.752–0.816) | 0.811 (0.779–0.840) |
 
-## Grouped evaluation and mechanism recall (6 October 2026)
+Mechanism labels are automatic and not reviewed by a person. 94% of `uncertain` rows are flagged for manual review in `Dataset/train/positives/positives.csv`.
 
-The grouped section of `Model_evaluation.ipynb` was rewritten into two plain steps; cells 1 to 10 did not change. The files `notebook_grouped.csv` and `notebook_grouped_candidates.csv` above come from the earlier version of that section (one `StratifiedGroupKFold` fold, two scaling options per model), which no longer exists in the notebook.
+## Other folders
 
-| File | Notebook step | What it holds |
-|---|---|---|
-| `notebook_grouped_comparison.csv` | STEP 7 | All 7 models on the random split from cell 8, on one grouped split (`GroupShuffleSplit`, 20% of groups, seed 42; 3,191 training and 715 holdout rows, the same split as `learning_curve.csv` and `baseline_comparison.csv`), and on the external set. Cutoff 0.5. v2 features |
-| `mechanism_recall.csv` | STEP 8 | XGBoost and Random Forest, 5 grouped folds (`StratifiedGroupKFold`, seed 42), so every training attack is scored once by a model that never saw its skeleton. Recall at cutoff 0.5 per automatic `mechanism` label, with a 95% Wilson interval. v2 features |
-| `mechanism_scores_raw.csv` | STEP 8 | One row per attack per model: fold, mechanism and predicted score |
-
-The mechanism labels are automatic and unreviewed. 94% of the `uncertain` rows and 72% of the `probe` rows are flagged `manual_review_pending` in `Dataset/train/positives/positives.csv`, so misses in those groups may be extraction errors as much as model errors. Hyperparameters inside each training function are tuned with ungrouped folds; the holdout readings themselves are grouped.
-
-## Notes on specific files
-
-**`dl_multiseed_*.csv`** were produced on 30 September 2026 with TensorFlow 2.21 on CPU by running the multi-seed cell of `dl_models.ipynb` unchanged. An earlier run of the same cell on 23 September gave identical RNN numbers but different LSTM and CNN-LSTM numbers: LSTM external AUC 0.961 against 0.948, and CNN-LSTM external standard deviation 0.005 against 0.011. So rerunning with the same seeds can move a result by about 0.01 AUC, and differences smaller than that should not be read as real. Both runs agree that CNN-LSTM has the highest external AUC.
-
-**`threshold_selection.csv`, `hard_negative_errors.csv` and `baseline_comparison.csv`** are copied from the tables in the main README. They are single-run results and were not saved as files when they were produced, so they hold only the numbers shown there.
-
-**`v1_vs_v2_raw.csv`** has one row per model, feature version, reading (holdout or external) and seed. `hardneg_auc` is filled only for holdout rows and scores attacks against hard negatives only.
-
-## Reproducibility
-
-The analysis scripts behind blocks 1, 3 and 5 were run ad hoc on 20 to 24 September 2026 and are not part of this repository. The notebooks reproduce blocks 2 and 6. Porting the other scripts here would make every block reproducible from the repository.
+| Folder | What it holds |
+|---|---|
+| [`deep_learning/`](deep_learning/) | RNN, LSTM and CNN-LSTM over 5 seeds (`dl_models.ipynb`, 30 September 2026) |
+| [`earlier_analyses/`](earlier_analyses/) | Analyses run with separate scripts on 20–24 September 2026 (learning curve, v1 against v2 features, n-gram baseline, hard-negative errors), plus a full notebook run with v1 and v2 features. Their protocols are in that folder's README |
+| [`superseded/`](superseded/) | Readings from earlier versions of the notebook. Kept for history; use the numbered folders instead |

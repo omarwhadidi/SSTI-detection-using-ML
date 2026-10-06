@@ -1,0 +1,15 @@
+model,folds,threshold,precision,recall,f1,false_alarms,missed_attacks
+XGBoost,random,0.645,0.75,0.957,0.841,15,2
+XGBoost,grouped,0.827,0.837,0.872,0.854,8,6
+Random Forest,random,0.644,0.683,0.915,0.782,20,4
+Random Forest,grouped,0.803,0.771,0.787,0.779,11,10
+SVM,random,0.673,0.683,0.872,0.766,19,6
+SVM,grouped,0.791,0.736,0.83,0.78,14,8
+KNN,random,0.684,0.678,0.851,0.755,19,7
+KNN,grouped,1.0,0.717,0.809,0.76,15,9
+Logistic Regression,random,0.66,0.536,0.787,0.638,32,10
+Logistic Regression,grouped,0.694,0.581,0.766,0.661,26,11
+Decision Tree,random,1.0,0.609,0.894,0.724,27,5
+Decision Tree,grouped,1.0,0.609,0.894,0.724,27,5
+Naive Bayes,random,0.0,0.65,0.83,0.729,21,8
+Naive Bayes,grouped,0.0,0.65,0.83,0.729,21,8

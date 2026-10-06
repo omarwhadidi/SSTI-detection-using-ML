@@ -1,0 +1,13 @@
+model,mechanism,recall_random_folds,recall_grouped_folds,gap
+XGBoost,uncertain,0.821,0.786,0.035
+Random Forest,uncertain,0.83,0.811,0.019
+XGBoost,direct-execution,0.967,0.966,0.001
+Random Forest,direct-execution,0.97,0.97,0.0
+Random Forest,introspection,0.992,0.992,0.0
+XGBoost,probe,0.981,0.981,0.0
+XGBoost,introspection,0.992,0.996,-0.004
+Random Forest,probe,0.99,1.0,-0.01
+XGBoost,feature-abuse,0.969,0.985,-0.015
+Random Forest,feature-abuse,0.977,0.992,-0.015
+XGBoost,enumeration,0.813,0.832,-0.019
+Random Forest,enumeration,0.832,0.897,-0.065

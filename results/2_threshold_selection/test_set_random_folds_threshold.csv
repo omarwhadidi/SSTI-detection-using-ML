@@ -1,0 +1,8 @@
+model,threshold,precision,recall,f1,false_alarms,missed_attacks
+XGBoost,0.645,0.948,0.88,0.913,19,47
+Random Forest,0.644,0.948,0.883,0.914,19,46
+SVM,0.673,0.961,0.875,0.916,14,49
+KNN,0.684,0.948,0.883,0.914,19,46
+Logistic Regression,0.66,0.962,0.763,0.851,12,93
+Decision Tree,1.0,0.926,0.888,0.906,28,44
+Naive Bayes,0.0,0.959,0.712,0.818,12,113
