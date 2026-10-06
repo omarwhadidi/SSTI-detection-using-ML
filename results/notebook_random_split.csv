@@ -1,0 +1,15 @@
+feature_version,reading,model,n,accuracy,macro_f1,ssti_recall,ssti_precision,roc_auc,false_positive_rate,tn,fp,fn,tp
+v1,Random 80/20 split (cells 1-8),Naive Bayes,782,0.7788,0.769,0.57,0.9825,0.9353,0.0103,385,4,169,224
+v1,Random 80/20 split (cells 1-8),Logistic Regression,782,0.8785,0.8784,0.8448,0.9071,0.9578,0.0874,355,34,61,332
+v1,Random 80/20 split (cells 1-8),KNN,782,0.9118,0.9117,0.888,0.9332,0.9459,0.0643,364,25,44,349
+v1,Random 80/20 split (cells 1-8),SVM,782,0.9156,0.9156,0.8982,0.9314,0.9733,0.0668,363,26,40,353
+v1,Random 80/20 split (cells 1-8),Decision Tree,782,0.8926,0.8926,0.8982,0.8892,0.9423,0.1131,345,44,40,353
+v1,Random 80/20 split (cells 1-8),Random Forest,782,0.913,0.913,0.916,0.9114,0.9766,0.09,354,35,33,360
+v1,Random 80/20 split (cells 1-8),XGBoost,782,0.9233,0.9233,0.9237,0.9237,0.9785,0.0771,359,30,30,363
+v2,Random 80/20 split (cells 1-8),Naive Bayes,782,0.8069,0.8012,0.6336,0.9727,0.9315,0.018,382,7,144,249
+v2,Random 80/20 split (cells 1-8),Logistic Regression,782,0.876,0.8758,0.8397,0.9066,0.9582,0.0874,355,34,63,330
+v2,Random 80/20 split (cells 1-8),KNN,782,0.922,0.922,0.9084,0.9346,0.9522,0.0643,364,25,36,357
+v2,Random 80/20 split (cells 1-8),SVM,782,0.9207,0.9207,0.9033,0.9367,0.9753,0.0617,365,24,38,355
+v2,Random 80/20 split (cells 1-8),Decision Tree,782,0.9092,0.9092,0.9109,0.9086,0.9179,0.0925,353,36,35,358
+v2,Random 80/20 split (cells 1-8),Random Forest,782,0.9246,0.9245,0.9313,0.9196,0.978,0.0823,357,32,27,366
+v2,Random 80/20 split (cells 1-8),XGBoost,782,0.9284,0.9284,0.9313,0.9266,0.9796,0.0746,360,29,27,366

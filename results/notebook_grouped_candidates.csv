@@ -1,0 +1,29 @@
+feature_version,model,preprocessing,inner_cv_macro_f1
+v1,Naive Bayes,length_only,0.7842
+v1,Naive Bayes,numeric,0.7737
+v1,Logistic Regression,length_only,0.8543
+v1,Logistic Regression,numeric,0.8633
+v1,Decision Tree,length_only,0.8678
+v1,Decision Tree,numeric,0.8649
+v1,Random Forest,length_only,0.8957
+v1,Random Forest,numeric,0.8932
+v1,XGBoost,length_only,0.8905
+v1,XGBoost,numeric,0.892
+v1,KNN,length_only,0.8745
+v1,KNN,numeric,0.896
+v1,SVM,length_only,0.8645
+v1,SVM,numeric,0.8641
+v2,Naive Bayes,length_only,0.8142
+v2,Naive Bayes,numeric,0.8117
+v2,Logistic Regression,length_only,0.8528
+v2,Logistic Regression,numeric,0.8612
+v2,Decision Tree,length_only,0.8665
+v2,Decision Tree,numeric,0.8657
+v2,Random Forest,length_only,0.8936
+v2,Random Forest,numeric,0.8923
+v2,XGBoost,length_only,0.8963
+v2,XGBoost,numeric,0.8986
+v2,KNN,length_only,0.879
+v2,KNN,numeric,0.8946
+v2,SVM,length_only,0.8926
+v2,SVM,numeric,0.8994

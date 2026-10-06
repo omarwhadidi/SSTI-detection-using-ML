@@ -1,0 +1,17 @@
+feature_version,model,set,cutoff,threshold,precision,recall,f1,false_alarm_rate,false_alarms,missed_attacks
+v1,XGBoost,internal (x_test),default 0.50,0.5,0.924,0.924,0.924,0.077,30,30
+v1,XGBoost,internal (x_test),chosen,0.768,0.964,0.817,0.884,0.031,12,72
+v1,XGBoost,external,default 0.50,0.5,0.63,0.979,0.767,0.054,27,1
+v1,XGBoost,external,chosen,0.768,0.804,0.872,0.837,0.02,10,6
+v1,Random Forest,internal (x_test),default 0.50,0.5,0.911,0.916,0.914,0.09,35,33
+v1,Random Forest,internal (x_test),chosen,0.773,0.967,0.817,0.886,0.028,11,72
+v1,Random Forest,external,default 0.50,0.5,0.616,0.957,0.75,0.056,28,2
+v1,Random Forest,external,chosen,0.773,0.731,0.809,0.768,0.028,14,9
+v2,XGBoost,internal (x_test),default 0.50,0.5,0.927,0.931,0.929,0.075,29,27
+v2,XGBoost,internal (x_test),chosen,0.821,0.979,0.83,0.898,0.018,7,67
+v2,XGBoost,external,default 0.50,0.5,0.662,0.957,0.783,0.046,23,2
+v2,XGBoost,external,chosen,0.821,0.837,0.872,0.854,0.016,8,6
+v2,Random Forest,internal (x_test),default 0.50,0.5,0.92,0.931,0.925,0.082,32,27
+v2,Random Forest,internal (x_test),chosen,0.779,0.97,0.824,0.891,0.026,10,69
+v2,Random Forest,external,default 0.50,0.5,0.629,0.936,0.752,0.052,26,3
+v2,Random Forest,external,chosen,0.779,0.78,0.83,0.804,0.022,11,8

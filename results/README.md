@@ -14,6 +14,7 @@ Every number here is provisional. Each block comes from a single machine, most u
 | `hard_negative_errors.csv` | Which benign rows the model falsely flags | 4 |
 | `baseline_comparison.csv` | 17 features against a character n-gram baseline | 5 |
 | `dl_multiseed_raw.csv`, `dl_multiseed_summary.csv` | RNN, LSTM and CNN-LSTM over 5 seeds | 6 |
+| `notebook_random_split.csv`, `notebook_threshold.csv`, `notebook_grouped.csv`, `notebook_grouped_candidates.csv` | Every reading from `Model_evaluation.ipynb`, run once with v1 and once with v2 features | 2, and the notebook |
 
 ## Protocol for each block
 
@@ -27,6 +28,19 @@ Every number here is provisional. Each block comes from a single machine, most u
 | 6 | Character-level RNN, LSTM and CNN-LSTM from `deep_learning/dl_models.ipynb`, sequence length 96 | raw payload text | grouped, 10% of training rows held out for validation, 5 seeds (0 to 4) | 5 | chosen on validation rows at a 5% false-positive rate |
 
 The main reason one algorithm shows several numbers is this table. Blocks 1, 3 and 5 use a fixed XGBoost configuration, block 2 uses a tuned one, and the cutoff and the number of runs also differ.
+
+## Notebook readings, v1 against v2 (6 October 2026)
+
+`model_evaluation/Model_evaluation.ipynb` was run end to end twice, once with `FEATURE_VERSION = 'v1'` and once with `'v2'` in cell 4. That switch now controls every section of the notebook. Both runs used Python 3.11, scikit-learn 1.6.1 and XGBoost 3.2.0. Every file has a `feature_version` column.
+
+| File | Notebook cells | What it holds |
+|---|---|---|
+| `notebook_random_split.csv` | 1 to 8 | All 7 models on the random, ungrouped 80/20 split (seed 15), 782 test rows. Leaky by design; kept as the original baseline |
+| `notebook_threshold.csv` | 10 | XGBoost and Random Forest at cutoff 0.5 and at a cutoff chosen from grouped out-of-fold training scores (5% false-alarm target), on the 782 test rows and the external set |
+| `notebook_grouped.csv` | 11 to 20 | All 7 models on one grouped split (outer fold 2 of `StratifiedGroupKFold`, 744 holdout rows) and on the external set |
+| `notebook_grouped_candidates.csv` | 13 to 19 | Inner grouped CV macro-F1 for each model under both preprocessing options, and which one was selected |
+
+Each reading is a single run. Running the same notebook on a different machine (Windows, Python 3.13, the same library versions) gave identical numbers for most models but small differences for XGBoost and KNN: up to 2 false alarms, a different chosen cutoff (0.839 against 0.821), and in the grouped section a different preprocessing choice where the two options tied to the third decimal. Differences of that size are not meaningful.
 
 ## Notes on specific files
 

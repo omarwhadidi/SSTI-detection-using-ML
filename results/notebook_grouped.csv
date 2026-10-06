@@ -1,0 +1,29 @@
+feature_version,reading,model,n,accuracy,macro_f1,ssti_recall,ssti_precision,roc_auc,false_positive_rate,tn,fp,fn,tp,preprocessing
+v1,Grouped holdout,Naive Bayes,744,0.7688,0.7629,0.5776,0.9742,0.9308,0.0171,345,6,166,227,length_only
+v1,Grouped external,Naive Bayes,547,0.9634,0.8682,0.6596,0.8857,0.9675,0.008,496,4,16,31,length_only
+v1,Grouped holdout,Logistic Regression,744,0.8804,0.8803,0.8601,0.9086,0.9564,0.0969,317,34,55,338,numeric
+v1,Grouped external,Logistic Regression,547,0.9122,0.7985,0.9362,0.4944,0.9765,0.09,455,45,3,44,numeric
+v1,Grouped holdout,Decision Tree,744,0.8898,0.889,0.9237,0.8747,0.8953,0.1481,299,52,30,363,length_only
+v1,Grouped external,Decision Tree,547,0.9378,0.8361,0.8723,0.5942,0.9097,0.056,472,28,6,41,length_only
+v1,Grouped holdout,Random Forest,744,0.8992,0.8985,0.9288,0.8859,0.9667,0.1339,304,47,28,365,length_only
+v1,Grouped external,Random Forest,547,0.947,0.8591,0.9149,0.6324,0.9869,0.05,475,25,4,43,length_only
+v1,Grouped holdout,XGBoost,744,0.8925,0.8918,0.9211,0.8808,0.9716,0.1396,302,49,31,362,numeric
+v1,Grouped external,XGBoost,547,0.9525,0.8746,0.9574,0.6522,0.991,0.048,476,24,2,45,numeric
+v1,Grouped holdout,KNN,744,0.8911,0.8906,0.9084,0.8881,0.9344,0.1282,306,45,36,357,numeric
+v1,Grouped external,KNN,547,0.9506,0.8646,0.8936,0.6562,0.9566,0.044,478,22,5,42,numeric
+v1,Grouped holdout,SVM,744,0.8817,0.8814,0.8804,0.8941,0.9681,0.1168,310,41,47,346,length_only
+v1,Grouped external,SVM,547,0.9305,0.8195,0.8511,0.5634,0.9753,0.062,469,31,7,40,length_only
+v2,Grouped holdout,Naive Bayes,744,0.7903,0.7876,0.6412,0.9438,0.9259,0.0427,336,15,141,252,length_only
+v2,Grouped external,Naive Bayes,547,0.9525,0.8516,0.7447,0.7143,0.9659,0.028,486,14,12,35,length_only
+v2,Grouped holdout,Logistic Regression,744,0.8844,0.8843,0.8677,0.9093,0.9578,0.0969,317,34,52,341,numeric
+v2,Grouped external,Logistic Regression,547,0.9122,0.7985,0.9362,0.4944,0.9765,0.09,455,45,3,44,numeric
+v2,Grouped holdout,Decision Tree,744,0.8965,0.8956,0.9364,0.8762,0.9008,0.1481,299,52,25,368,length_only
+v2,Grouped external,Decision Tree,547,0.9232,0.8005,0.8085,0.5352,0.8718,0.066,467,33,9,38,length_only
+v2,Grouped holdout,Random Forest,744,0.9099,0.9093,0.9415,0.8937,0.9666,0.1254,307,44,23,370,length_only
+v2,Grouped external,Random Forest,547,0.9525,0.8707,0.9149,0.6615,0.9868,0.044,478,22,4,43,length_only
+v2,Grouped holdout,XGBoost,744,0.9046,0.9039,0.9338,0.8908,0.9753,0.1282,306,45,26,367,numeric
+v2,Grouped external,XGBoost,547,0.9525,0.8727,0.9362,0.6567,0.9909,0.046,477,23,3,44,numeric
+v2,Grouped holdout,KNN,744,0.8965,0.8959,0.9211,0.8873,0.9408,0.1311,305,46,31,362,numeric
+v2,Grouped external,KNN,547,0.9452,0.8508,0.8723,0.6308,0.946,0.048,476,24,6,41,numeric
+v2,Grouped holdout,SVM,744,0.8925,0.8922,0.8957,0.9003,0.9736,0.1111,312,39,41,352,numeric
+v2,Grouped external,SVM,547,0.9488,0.8607,0.8936,0.6462,0.9788,0.046,477,23,5,42,numeric
