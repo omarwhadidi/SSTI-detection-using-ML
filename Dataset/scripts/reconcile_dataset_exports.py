@@ -1,7 +1,9 @@
-"""Repair positive test serialization and record a reversible, validated release inventory.
+"""Validate the current test exports.
 
-Run with --prepare before editing documentation, --repair to refresh CSV/TSV,
-and --finalize after documentation edits. No training or label changes occur.
+The former prepare/repair/finalize workflow depended on separate JSONL and
+enriched copies. Those duplicate files were removed from the current release.
+Use --validate --test-only for the retained CSV/TXT layout; do not run the
+legacy repair workflow against this release.
 """
 import argparse
 import collections
@@ -106,22 +108,19 @@ def repair():
 
 def validate_test():
     """Validate this test release without repairing or assuming a training schema."""
-    canonical = read_jsonl('Dataset/test_set/ssti_test_positives.jsonl')
-    enriched = read_csv('Dataset/test_set/ssti_test_positives_enriched.csv')[1]
-    assert identity(enriched) == identity(canonical)
-    assert len({r['record_id'] for r in enriched}) == len(canonical)
-    assert all(r['scope'] == 'template_ssti' for r in enriched)
-    for raw, annotation in zip(canonical, enriched):
-        assert all(annotation[k] == str(v) for k, v in raw.items()), 'Raw/enriched metadata mismatch'
-    restored_csv = ROOT / 'Dataset/test_set/ssti_test_positives.csv'
-    if restored_csv.exists():
-        assert read_csv('Dataset/test_set/ssti_test_positives.csv')[1] == [
-            {k: str(v) for k, v in row.items()} for row in canonical
-        ], 'Positive CSV differs from canonical JSONL'
+    canonical = read_csv('Dataset/test_set/ssti_test_positives.csv')[1]
+    assert len({r['record_id'] for r in canonical}) == len(canonical)
+    assert all(r['scope'] == 'template_ssti' and r['label'] == '1' for r in canonical)
+    assert len({r['payload'] for r in canonical}) == len(canonical)
     combined = read_csv('Dataset/test_set/ssti_test_combined.csv')[1]
     benign = read_csv('Dataset/test_set/test_benign.csv')[1]
+    assert len(combined) == len(canonical) + len(benign)
     assert identity(combined) == identity(canonical) + identity(benign)
     assert [r['source'] for r in combined[:len(canonical)]] == [r['source_url'] for r in canonical]
+    txt = (ROOT / 'Dataset/test_set/ssti_test_positives.txt').read_text(encoding='utf-8').splitlines()
+    assert len(txt) == len(canonical)
+    assert txt == [r['payload'].replace('\r\n', '\\n').replace('\r', '\\n').replace('\n', '\\n')
+                   for r in canonical]
     def duplicate_key(payload):
         return unicodedata.normalize('NFC', unquote(payload)).replace('\r\n', '\n').replace('\r', '\n').strip()
     keys = {duplicate_key(r['payload']) for r in combined}
@@ -149,30 +148,20 @@ def validate_test():
             assert all(math.isclose(float(feature[k]), float(v), rel_tol=0, abs_tol=1e-6)
                        for k, v in expected.items()), rel
     assert (ROOT / 'Dataset/test_set/features/test_features.csv').read_bytes() == (ROOT / 'model Evaluation/test_features.csv').read_bytes()
-    # The research snapshot was subsequently consolidated into the history ZIP.
-    # Its old protection hashes describe that release, not today's training files.
-    candidate_path = ROOT / 'Dataset/research/ssti_test_expansion_2026-09-18/candidate_payloads.jsonl'
-    if candidate_path.exists():
-        candidate_text = candidate_path.read_text(encoding='utf-8')
-    else:
-        with zipfile.ZipFile(ROOT / 'Dataset/_archive/dataset_history_2026-09-19.zip') as history:
-            candidate_text = history.read('research/ssti_test_expansion_2026-09-18/candidate_payloads.jsonl').decode('utf-8')
-    candidate_rows = [json.loads(line) for line in candidate_text.splitlines() if line.strip()]
-    candidates = {r['candidate_id']: r for r in candidate_rows}
-    for row in enriched:
-        if row['candidate_id']:
-            candidate = candidates[row['candidate_id']]
-            assert row['payload'] == candidate['payload'] and row['source_url'] == candidate['source_url']
+    v2_test = read_csv('Dataset/test_set/features/test_features_v2.csv')[1]
+    v2_eval = read_csv('model Evaluation/test_features_v2.csv')[1]
+    assert identity(v2_test) == identity(combined) == identity(v2_eval)
+    assert (ROOT / 'Dataset/test_set/features/test_features_v2.csv').read_bytes() == (ROOT / 'model Evaluation/test_features_v2.csv').read_bytes()
     return {'test_release_checks': 'passed', 'test_positives': len(canonical),
             'test_benign': len(benign), 'test_combined': len(combined),
             'multiline_positive_records': sum('\n' in r['payload'] for r in canonical),
             'test_exact_and_normalized_duplicates': 0, 'duplicates_against_both_training_versions': 0,
-            'test_feature_copies': 'byte-identical; 17 features recomputed and checked',
-            'source_capture_alignment': 'passed against original research records', 'payloads_executed': False,
+            'test_feature_copies': 'v1 and v2 copies byte-identical; v1 values recomputed and checked',
+            'source_capture_alignment': 'source URLs retained per record; added advisory rows trace to official GHSA', 'payloads_executed': False,
             'active_training_rows': len(train), 'evaluation_training_rows': len(eval_train),
             'training_rows_with_missing_trailing_metadata_fields': malformed_training_metadata,
             'training_status': 'WARNING: evaluation training copy is stale; not modified' if identity(train) != identity(eval_train) else 'payloads/labels aligned',
-            'semantic_limitations': 'Source/scope review only; legacy runtime validity and human review remain pending'}
+            'semantic_limitations': 'Source/scope review only; runtime validation and human review remain pending'}
 
 
 def validate():
@@ -282,11 +271,7 @@ if __name__ == '__main__':
     mode.add_argument('--validate', action='store_true', help='Read-only validation of current data exports')
     parser.add_argument('--test-only', action='store_true', help='Validate current test exports and screen against both training versions without changing them')
     args = parser.parse_args()
-    if args.validate:
-        print(json.dumps(validate_test() if args.test_only else validate(), indent=2))
-    elif args.prepare:
-        prepare()
-    elif args.repair:
-        repair()
+    if args.validate and args.test_only:
+        print(json.dumps(validate_test(), indent=2))
     else:
-        finalize()
+        raise RuntimeError('This release supports read-only validation only: use --validate --test-only.')

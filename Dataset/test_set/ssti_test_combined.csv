@@ -80,6 +80,10 @@ bdawg-{{7 * 7}},1,https://github.com/jupyter-server/enterprise_gateway/security/
   system(""id>/tmp/pwned"");
 @endphp",1,https://www.sonarsource.com/blog/it-s-a-snmp-trap-gaining-code-execution-on-librenms/
 "<#assign ex=""freemarker.template.utility.Execute""?new()> ${ ex(url.getArgs())}",1,https://portswigger.net/research/server-side-template-injection
+{{ constant('PHP_VERSION') }},1,https://github.com/solspace/craft-freeform/security/advisories/GHSA-gxrg-x694-283w
+{{ constant('PHP_OS') }},1,https://github.com/solspace/craft-freeform/security/advisories/GHSA-gxrg-x694-283w
+{{ constant('CRAFT_BASE_PATH') }},1,https://github.com/solspace/craft-freeform/security/advisories/GHSA-gxrg-x694-283w
+{{ constant('CRAFT_VENDOR_PATH') }},1,https://github.com/solspace/craft-freeform/security/advisories/GHSA-gxrg-x694-283w
 "c/ luis braille 2, 10d",0,github:Morzeux/HttpParamsDataset
 ashida@gaudio.my,0,github:Morzeux/HttpParamsDataset
 18440,0,github:Morzeux/HttpParamsDataset

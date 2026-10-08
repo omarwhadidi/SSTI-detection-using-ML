@@ -4,7 +4,9 @@
 
 ## Current feature and consistency utilities
 
-- `ssti_feature_extraction.py`: the feature definitions used to validate the current exports.
+- `ssti_feature_extraction_v3.py`: the current feature set (22 features). Run it to rebuild `model_evaluation/full_DS_v3.csv`, which the evaluation notebook reads.
+- `ssti_feature_extraction_v2.py`: version 2 (18 features), imported by version 3.
+- `ssti_feature_extraction.py`: version 1 (17 features), imported by version 2 and used to validate the dataset exports.
 - `extract_to_csv.py`: text-to-feature export utility. A one-payload-per-line text file is not appropriate for multiline payloads.
 - `reconcile_dataset_exports.py --validate --test-only`: checks current test exports and both test-feature copies, screening against both training versions without modifying them. Full historical validation assumes the old training schema. Its repair modes are separate and should only be used for a deliberate new repair session.
 

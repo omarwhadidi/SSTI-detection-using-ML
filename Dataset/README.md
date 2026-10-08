@@ -1,10 +1,9 @@
-# SSTI dataset
+# SSTI dataset — start here
 
-Training data, external test data, and provenance for the SSTI detection work. The data was
-built in two separate pipelines, one for training and one for the external test set, so that
-the test material does not come from the same collection process as the training material.
-Column definitions, pinned commits and per-file counts are in [DATASHEET.md](DATASHEET.md)
-and [train/SOURCES.md](train/SOURCES.md).
+Active dataset, collection guidance, and provenance for the SSTI detection work. Folder
+consolidation on **19 September 2026** removed the `research/`, `review/`, and `sources/`
+folders; their contents were archived verbatim and the information worth keeping was moved
+into the live dataset. No active payload, label, feature, or evaluation algorithm changed.
 
 ## What to open
 
@@ -14,103 +13,24 @@ and [train/SOURCES.md](train/SOURCES.md).
 | Where the test payloads came from | [test_set/sources.md](test_set/sources.md) |
 | Full dataset explanation, sources, column meanings, and review status | [DATASHEET.md](DATASHEET.md) — checked 20 September 2026; section 9 lists verified checks and remaining limitations |
 | How to gather training and test data for a new project | [HOW_TO_BUILD_A_DATASET.md](HOW_TO_BUILD_A_DATASET.md) |
-| What the data and results cannot support | [LIMITATIONS.md](LIMITATIONS.md) |
 | Dataset utilities | [scripts/](scripts/) |
-| Earlier cleanup record | [CLEANUP_LOG.json](CLEANUP_LOG.json) |
+| Historical audit, review, and collection material | `_archive/dataset_history_2026-09-19.zip` |
+| Earlier cleanup record | [CLEANUP_LOG.json](CLEANUP_LOG.json) and [FILE_MANIFEST.json](FILE_MANIFEST.json) |
 
-## Files
+## Current data
 
-[train/](train/) has 3,906 rows and [test_set/](test_set/) has 547.
+| split | positives | benign | total |
+|---|---:|---:|---:|
+| [train/](train/) | 1,905 | 2,001 | **3,906** |
+| [test_set/](test_set/) | 51 | 500 | **551** |
 
-| file | rows | what |
-|---|---:|---|
-| `train/positives/positives.csv` | 1,905 | positive payloads with engine, language, grouping key, provenance URL and review flags |
-| `train/positives/positives.txt` | 1,905 | the same payload strings, one per line |
-| `train/benign/benign.csv` | 2,001 | benign payloads: `payload`, `label` (0), `kind`, `source`, `engine`, `base_id` |
-| `train/benign/benign.txt` | 2,001 | the same benign strings, one per line |
-| `train/combined/train_combined.csv` | 3,906 | positives and benign with unified columns |
-| `train/combined/train_features.csv`, `train_features_v2.csv` | 3,906 | the same rows plus 17 (v1) or 18 (v2) deterministic features |
-| `test_set/ssti_test_positives.jsonl`, `test_set/ssti_test_combined.csv` | 47 / 547 | external test positives, and positives plus benign |
-| `test_set/features/test_features.csv`, `test_features_v2.csv` | 547 | test rows plus features |
+Main files:
 
-Feature definitions are in [DATASHEET.md](DATASHEET.md) section 7. Feature files are generated from the combined files with `scripts/ssti_feature_extraction.py` (v1) or `scripts/ssti_feature_extraction_v2.py` (v2). Regenerate them after any payload, label or grouping change; metadata-only edits (review flags, annotations) do not require it. Read multiline CSV records with a proper CSV reader, not by splitting on newlines.
+- Training — `train/combined/train_combined.csv` and `train/combined/train_features.csv`
+- Test — `test_set/ssti_test_positives.csv`, `test_set/ssti_test_positives.txt`,
+  `test_set/ssti_test_combined.csv`, and `test_set/features/test_features.csv`
 
-### Columns
-
-`label` is 1 for an SSTI payload and 0 for benign. `engine` and `language` are automatic annotations, with a separate `engine_confidence`; `language` is `unknown` where the heuristic could not decide. `source_url` is one pinned GitHub blob URL per row, filled for all 1,905 positives, from which the repository, commit and file path can be read. The positives file has 10 columns in this order: `payload`, `base_id`, `language`, `engine`, `label`, `engine_confidence`, `mechanism`, `suspected_benign`, `review_notes`, `source_url`.
-
-`base_id` is the structural skeleton of a payload, with digits and quoted strings masked and whitespace removed, and it is the grouping key. There are 1,283 distinct positive skeletons and 1,432 distinct benign ones. Group on it in the outer split and in inner CV. It stops shared skeletons from straddling a split; it does not catch every semantic-family overlap.
-
-`mechanism`, `suspected_benign` and `review_notes` are review metadata, not model inputs. Every `mechanism` value is automatic and unreviewed.
-
-## How the data was built
-
-### Design principles
-
-- **Traceable positives.** Every training positive carries a `source_url` pointing at a public file at a pinned commit. An earlier version of the corpus held 366 locally written seed payloads with no upstream source; they were removed so that every positive can be traced.
-- **Hard negatives.** A benign set of plain web parameters would make the task trivial, because anything containing template braces would be an attack. The benign class therefore includes real template fragments that share delimiters with attacks.
-- **Group-aware evaluation.** Near-identical payloads are given the same `base_id`, and all splits keep each group on one side.
-- **A separate, frozen test set.** Training additions were checked against it before merging (see below).
-
-### At a glance
-
-| | rows | notes |
-|---|---:|---|
-| Training positives | 1,905 | six public sources; 1,283 distinct structural skeletons (`base_id`) |
-| Training benign | 2,001 | 787 hard negatives from four projects, 1,214 normal parameters |
-| External test positives | 47 | 22 distinct source documents |
-| External test benign | 500 | 143 template fragments, 357 normal parameters |
-
-### Training positives
-
-| source | rows | material |
-|---|---:|---|
-| payload-box `ssti-advanced-payload-list` | 1,441 | engine-specific lists (EJS, Smarty, ERB, Pug, Twig, Thymeleaf, Jinja2, FreeMarker, Velocity) |
-| PayloadsAllTheThings | 194 | SSTI pages and `Intruder/ssti.fuzz` |
-| HackTricks | 159 | code examples from SSTI, Jinja2 and expression-language pages |
-| Hackmanit `template-injection-table` | 65 | engine-identification probes from `engines.js` |
-| SecLists | 29 | template-engine identification and expression lists |
-| ProjectDiscovery `fuzzing-templates` | 17 | scanner templates (flagged for scope review) |
-
-Strings were extracted from payload lists, Markdown code blocks, scanner templates and the engine table, whitespace was normalised, and exact duplicates were removed before each merge. Because of the normalisation, rows are not byte-for-byte copies of their sources. Each batch of additions was deduplicated against the existing training corpus and against the frozen test set, by exact string and by `base_id`, and any candidate matching a test payload was dropped. This reduces leakage; it does not establish that the test set is independent of the training families.
-
-### Training benign
-
-| source | type | engine | rows |
-|---|---|---|---:|
-| Sidekiq | template fragments | ERB | 295 |
-| Symfony demo | template fragments | Twig | 240 |
-| Microblog | template fragments | Jinja2 | 134 |
-| Spring PetClinic | template fragments | Thymeleaf | 118 |
-| HttpParamsDataset (benign class) | normal web parameters | none | 1,214 |
-
-Template fragments were extracted from the projects' template files by matching expressions inside delimiters (`{{...}}`, `{%...%}`, `<%...%>`, `${...}`), collapsing whitespace, keeping strings of 3 to 200 characters that contain at least one letter, and removing repeats. Normal parameters come from the `norm` records of an existing public benchmark, not from newly captured traffic.
-
-### External test set
-
-The 47 test positives were collected separately from reports, advisories, security articles, scanner material and one challenge write-up.
-
-| recorded evidence type | rows |
-|---|---:|
-| security write-up | 34 |
-| CVE proof of concept | 9 |
-| scanner template | 2 |
-| HackerOne report | 1 |
-| CTF challenge | 1 |
-
-These are saved annotations, not independently verified incidents: a write-up describes a technique, not necessarily an observed attack. A scope review removed six related cases (expression or compiler-option injection) and added nine template-injection candidates. The 500 test benign rows come from the same five sources as the training benign rows, with no overlap at the string level.
-
-### Grouping
-
-`base_id` is a payload's structural skeleton: digits and quoted strings are masked, text is lowercased and whitespace removed. Two arithmetic probes that differ only in their numbers therefore share a group. It is a rough grouping tool, not a proven attack-family label, and it cannot relate two attacks written in different ways.
-
-### Checks performed
-
-Record counts and source totals were confirmed against the files; the training positives and benign rows match the combined and feature files in payload, label, order and `base_id`; all feature values were recomputed for every training and test row with no mismatches; and every positive has its source fields filled in.
-
-### Limitations
-
-Known issues with the labels, the benign set, the test set and the results are listed once, in [LIMITATIONS.md](LIMITATIONS.md).
+Read multiline CSV records with a proper CSV reader, not by splitting on newlines.
 
 ## Non-negotiables when using this data
 
@@ -122,13 +42,14 @@ Known issues with the labels, the benign set, the test set and the results are l
 - **Keep the hard negatives in the benign set.** Dropping them makes the numbers meaningless.
 - **ROC-AUC as headline, attack-class recall as the security-critical metric.** Never
   accuracy alone; the corpus is not balanced.
-- **The test set is frozen.** No augmentation, no rebalancing, no re-selection.
+- **Freeze the test set for each evaluation.** Any data change creates a new version and requires rerunning evaluation.
 
-## Review status
+## What still needs review
 
-Automatic annotations are not final labels: all 1,905 positive mechanism annotations are
+Automatic annotations are not final labels — all 1,905 positive mechanism annotations are
 `auto_unreviewed`. A populated `source_url` is an attribution, not independent
 verification. Row-level review flags live in `train/positives/positives.csv`
 (`suspected_benign`, `review_notes`); treat them as review candidates, never as a deletion
-rule. File consistency does not validate model results. Details are in
-[DATASHEET.md](DATASHEET.md) section 9.
+rule. Both evaluation feature copies now match the active dataset. Historical model
+scores still need a separate pipeline and run review; file consistency alone does not
+validate model results. Details are in [DATASHEET.md](DATASHEET.md) section 9.

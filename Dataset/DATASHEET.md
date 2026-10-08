@@ -1,10 +1,10 @@
 # SSTI Dataset — What It Contains and How It Was Built
 
-**Checked against the local files: 20 September 2026**  
+**Checked against the local files: 7 October 2026**  
 **Owner:** Omar · Iowa State University master's creative component  
 **Status:** The files agree with each other. Some labels and source details still need review.
 
-> **Start here:** This document explains the current training and test data, where the examples came from, how they were collected, and what every column means. Counts below are parsed records, not lines in a text editor. This check did not change any payload, label, or feature value.
+> **Start here:** This document explains the current training and test data, where the examples came from, how they were collected, and what every column means. Counts below are parsed records, not lines in a text editor. This update adds four source-verified SSTI probes and refreshes the affected test exports.
 
 ## Contents
 
@@ -14,7 +14,7 @@
 4. [How the test set was built](#4-how-the-test-set-was-built)
 5. [Which files to use](#5-which-files-to-use)
 6. [What the columns mean](#6-what-the-columns-mean)
-7. [What the number features mean](#7-what-the-number-features-mean)
+7. [What the 17 number features mean](#7-what-the-17-number-features-mean)
 8. [Duplicates, groups, and fair testing](#8-duplicates-groups-and-fair-testing)
 9. [What has been checked and what still needs work](#9-what-has-been-checked-and-what-still-needs-work)
 10. [Source records, sharing, and future updates](#10-source-records-sharing-and-future-updates)
@@ -44,8 +44,8 @@ The project studies whether a machine-learning model can identify SSTI-like inpu
 | Set | Positive candidates | Benign examples | Total |
 |---|---:|---:|---:|
 | Training | 1,905 | 2,001 | **3,906** |
-| Test | 47 | 500 | **547** |
-| **Both sets** | **1,952** | **2,501** | **4,453** |
+| Test | 51 | 500 | **551** |
+| **Both sets** | **1,956** | **2,501** | **4,457** |
 
 The training data is about 49% positive and 51% benign. The test data has many more benign examples than positives. A model predicting every test record as benign would already score about **91.4% accuracy**, so accuracy alone is not enough.
 
@@ -85,7 +85,8 @@ Recorded development of the positive set:
 
 The three `positives_added_from_*.csv` files that recorded these additions have been retired
 (20 September 2026): every payload and `base_id` in each was verified already present in
-`positives.csv`, so they were pure redundancy, not separate data. `train/positives/` now holds one CSV.
+`positives.csv`, so they were pure redundancy, not separate data. They are kept at
+`train/_archive/` for provenance; `train/positives/` now holds one CSV.
 
 Every current positive is unaugmented sourced material — no generated variant is recorded
 for any row. This used to be visible as `is_augmentation=no` on every row; that constant
@@ -121,32 +122,32 @@ The positive and benign records were combined, with positives first. The groupin
 
 ### 4.1 Gather source-documented examples separately
 
-The test positives were collected from reports, advisories, examples in security articles, scanner material, and a challenge writeup. The retained file has **47 positives from 22 distinct source URLs**. A URL can supply several payloads, and several sources can explain the same technique.
+The test positives were collected from reports, advisories, examples in security articles, scanner material, and a challenge writeup. The retained file has **51 positives from 23 distinct source URLs**. A URL can supply several payloads, and several sources can explain the same technique.
 
 | Recorded evidence type | Records | What it means |
 |---|---:|---|
 | `security_writeup` | 34 | A security article or researcher explanation. This does not necessarily describe an observed attack. |
-| `CVE_PoC` | 9 | An example linked to a CVE or advisory proof of concept. |
+| `CVE_PoC` | 13 | Examples linked to a CVE or advisory proof of concept. |
 | `HackerOne` | 1 | An example attributed to a HackerOne report. |
 | `scanner_template` | 2 | An example attributed to scanner material. |
 | `CTF` | 1 | An example from a deliberately vulnerable challenge. |
-| **Total** | **47** | Categories are saved annotations, not counts of independently verified incidents. |
+| **Total** | **51** | Categories are saved annotations, not counts of independently verified incidents. |
 
 The full, clickable page-by-page list and counts are in [Test sources](test_set/sources.md#retained-positive-sources). It includes HackerOne, OnSecurity, Intigriti, YesWeHack, PortSwigger, GitHub advisories, and other cited articles.
 
 ### 4.2 Keep the template input and its source context
 
-The current release contains 38 records marked `verbatim` and nine marked `source_value_extracted`. The latter were taken from code blocks or values inside JSON/YAML examples; their notes describe any wrapper removal or decoding.
+The current release contains 42 records marked `verbatim` and nine marked `source_value_extracted`. Four new verbatim Twig probes come from the official Solspace Freeform advisory for CVE-2026-73858. The advisory confirms server-side evaluation and limited information disclosure, not remote code execution.
 
 The September scope review removed six related expression/compiler-option injection cases from active use and added nine source-documented candidates. Removed cases and decisions remain in the history ZIP. Stable test IDs were retained, so gaps in IDs are expected; the highest ID is not the record count.
 
-All 47 are currently tagged `scope=template_ssti`. This is a review decision about their intended category. It is not runtime proof. Every test positive currently says `execution_status=not_executed` and `human_review_status=pending`.
+All 51 are currently tagged `scope=template_ssti`. This is a review decision about their intended category. It is not runtime proof. Every test positive currently says `execution_status=not_executed` and `human_review_status=pending`.
 
 ### 4.3 Add the 500 benign inputs and export
 
-The test benign examples contain 143 template fragments and 357 normal parameters from the sources in section 3.3. Positives and benign inputs are combined into 547 records, then the same 17 features used for training are calculated.
+The test benign examples contain 143 template fragments and 357 normal parameters from the sources in section 3.3. Positives and benign inputs are combined into 551 records, then the same 17 features used for training are calculated.
 
-The main saved positive text is [ssti_test_positives.jsonl](test_set/ssti_test_positives.jsonl). JSONL stores one JSON object per record. It preserves characters and line breaks inside strings. The basic CSV contains the same six fields; the enriched CSV adds source and review information.
+The single positive CSV, [ssti_test_positives.csv](test_set/ssti_test_positives.csv), keeps payloads, source URLs, scope, and review details together. [ssti_test_positives.txt](test_set/ssti_test_positives.txt) is a simple text copy with one payload per line. In that copy, an embedded line break is written as the characters `\n`; use the CSV as the complete source of payload and provenance information.
 
 **Eight positive payloads contain actual line breaks.** Always use a CSV reader. Counting lines or splitting the file at every newline will give wrong counts and can break the payloads.
 
@@ -167,12 +168,11 @@ The main saved positive text is [ssti_test_positives.jsonl](test_set/ssti_test_p
 
 | File | Records | Purpose |
 |---|---:|---|
-| [ssti_test_positives.jsonl](test_set/ssti_test_positives.jsonl) | 47 | Main positive text and basic source information; preserves multiline payloads. |
-| [ssti_test_positives.csv](test_set/ssti_test_positives.csv) | 47 | Basic CSV copy of the same positives. |
-| [ssti_test_positives_enriched.csv](test_set/ssti_test_positives_enriched.csv) | 47 | Detailed source, scope, and review fields. Start here to review test positives. |
+| [ssti_test_positives.csv](test_set/ssti_test_positives.csv) | 51 | Main positive records with source, scope, and review fields. |
+| [ssti_test_positives.txt](test_set/ssti_test_positives.txt) | 51 | One payload per line; embedded line breaks are shown as `\n`. |
 | [test_benign.csv](test_set/test_benign.csv) | 500 | Main test benign records. |
-| [ssti_test_combined.csv](test_set/ssti_test_combined.csv) | 547 | Positive and benign text, with label and source. |
-| [test_features.csv](test_set/features/test_features.csv) | 547 | Same v1 features as training, plus label, payload, and grouping key. `test_features_v2.csv` has the v2 set. |
+| [ssti_test_combined.csv](test_set/ssti_test_combined.csv) | 551 | Positive and benign text, with label and source. |
+| [test_features.csv](test_set/features/test_features.csv) | 551 | Same 17 features as training, plus label, payload, and grouping key. |
 
 ### 5.3 Documentation, scripts, and archives
 
@@ -180,13 +180,17 @@ The main saved positive text is [ssti_test_positives.jsonl](test_set/ssti_test_p
 |---|---|
 | [README.md](README.md) | Quick entry point and file links. |
 | [HOW_TO_BUILD_A_DATASET.md](HOW_TO_BUILD_A_DATASET.md) | General guide to building web-vulnerability datasets and comparing benchmarks. |
-| [train/SOURCES.md](train/SOURCES.md), [test_set/sources.md](test_set/sources.md) | More training details and the source catalogs. |
+| [train/README.md](train/README.md), [train/SOURCES.md](train/SOURCES.md), [test_set/sources.md](test_set/sources.md) | More training details and the source catalogs. |
+| [FILE_MANIFEST.json](FILE_MANIFEST.json) | Inventory of files, record counts, sizes, and digital fingerprints called SHA-256 hashes. |
 | [CLEANUP_LOG.json](CLEANUP_LOG.json) | Historical record of cleanup actions. Old counts describe those actions, not today's dataset. |
 | [scripts/README.md](scripts/README.md) | Which utilities are current and which are historical. |
-| `scripts/ssti_feature_extraction.py`, `scripts/ssti_feature_extraction_v2.py` | Definitions of the v1 (17) and v2 (18) features. |
+| `scripts/ssti_feature_extraction.py` | Version 1: the 17 features described in section 7. |
+| `scripts/ssti_feature_extraction_v2.py` | Version 2: 18 features (section 7, versions table). |
+| `scripts/ssti_feature_extraction_v3.py` | Version 3, the current set: 22 features. Rebuilds `model_evaluation/full_DS_v3.csv`. |
 | `scripts/reconcile_dataset_exports.py` | Consistency checker and separate repair modes. Only its test-only validation was used for this documentation check. |
 | `scripts/extract_to_csv.py` | Text-to-feature utility. Its line-based input is unsuitable for multiline test positives. |
 | `scripts/admit_ssti_test_candidates.py`, `scripts/dedup_merge.py`, `scripts/legacy/` | Earlier admission, collection, or grouping logic. Some paths are old and some construction logic is missing. These are not a complete current rebuild pipeline. |
+| `scripts/__pycache__/` | Automatically created Python cache; not dataset records. |
 
 ## 6. What the columns mean
 
@@ -262,40 +266,9 @@ The basic CSV and JSONL have six fields: `payload`, `engine`, `tier`, `context`,
 
 The test combined file contains only `payload`, `label`, and `source`. Unlike the training combined file, it has **no `base_id` column**. The test feature file does contain `base_id`.
 
-## 7. What the number features mean
+## 7. What the 17 number features mean
 
-There are two versions of the feature set. **Version 2 (18 features) is the current one**; version 1 (17 features) is kept so that every earlier result can be reproduced. Both are pattern counts and flags, not proof that an attack works. The CSVs store raw calculated numbers; any scaling happens later in the evaluation pipeline.
-
-### 7.1 Version 2 (current)
-
-Files: `train/combined/train_features_v2.csv` and `test_set/features/test_features_v2.csv`, each with 21 columns: `payload`, `base_id`, the 18 features below, and `label`. Code: [scripts/ssti_feature_extraction_v2.py](scripts/ssti_feature_extraction_v2.py). Columns starting with `v2_` are new or have a changed definition; every other column is computed exactly as in version 1.
-
-| Feature | Value | What the code measures | Versus v1 |
-|---|---|---|---|
-| `payload_length` | Integer | Number of characters. | same |
-| `special_char_ratio` | 0–1 | Characters that are neither letters/digits nor whitespace, divided by total length. | same |
-| `count_double_brace` | Count | Occurrences of `{{`. | same |
-| `count_dollar_brace` | Count | Occurrences of `${`. | same |
-| `count_hash_brace` | Count | Matches for `#{`, `#set`, `#foreach`, `#if`. | same |
-| `delimiter_family_count` | 0–5 | How many of five delimiter groups appear. Not the number of engines. | same |
-| `max_bracket_depth` | Integer | Highest nesting counter for round, square and curly brackets. | same |
-| `has_dunder_chain` | 0 or 1 | A listed Python double-underscore name, such as `__class__`. | same |
-| `has_exec_tokens` | 0 or 1 | A listed execution pattern, such as `popen` or `ProcessBuilder`. | same |
-| `has_java_reflection` | 0 or 1 | A listed Java reflection pattern, such as `getClass`. | same |
-| `has_flask_objects` | 0 or 1 | A listed name such as `request`, `config`, `cycler`, `self`. These also occur in normal templates. | same |
-| `has_string_operation` | 0 or 1 | A listed string-operation pattern, such as `~` or `.join()`. | same |
-| `count_method_calls` | Count | Matches shaped like `.name(`, anywhere in the string. | same |
-| `count_dots` | Count | Every literal `.`. | same |
-| `v2_count_erb_open` | Count | Opening markers only: `<%`, `<#`, `<@`. | replaces `count_erb`, which also counted closing markers |
-| `v2_has_arithmetic_probe` | 0 or 1 | Number, operator, number inside template delimiters, where either number may be quoted. Scans the whole string if no delimiter is found. | replaces `has_arithmetic_operation`, which missed quoted operands |
-| `v2_call_inside_delim` | Count | `.name(` calls inside template delimiters only, where they would execute. | new |
-| `v2_max_attr_chain_len` | Integer | Number of `.attr` or `[index]` steps in the longest chain, so `a.b[0].c` is 3. | new |
-
-`count_percent_brace` was removed: it fired on 2 of 3,906 rows and removing it changed nothing. Evidence for each change is reproduced by [scripts/feature_audit.py](scripts/feature_audit.py). The audit's finding that matters for interpretation is that `v2_call_inside_delim` and `v2_max_attr_chain_len` still separate attacks from template fragments in the benign set, while features such as `payload_length` mostly separate template-shaped strings from plain parameters.
-
-### 7.2 Version 1 (kept for reproducibility)
-
-Files: `train_features.csv` and `test_features.csv`, each with 20 columns: `payload`, `base_id`, the 17 features below, and `label`. Code: [scripts/ssti_feature_extraction.py](scripts/ssti_feature_extraction.py).
+These definitions follow the current [feature code](scripts/ssti_feature_extraction.py). They are pattern counts and flags, not proof that an attack works.
 
 | Feature | Value | What the code measures |
 |---|---|---|
@@ -317,7 +290,27 @@ Files: `train_features.csv` and `test_features.csv`, each with 20 columns: `payl
 | `count_method_calls` | Count | Matches shaped like a dot, a name, and an opening parenthesis, such as `.get(`. |
 | `count_dots` | Count | Every literal `.` character. |
 
-Only the feature columns go into a numeric model. `label` is the answer to predict, and `base_id` controls grouping. IDs, source URLs, engine annotations and review decisions must not become prediction inputs.
+Both feature files have the same 20 columns: `payload`, `base_id`, these 17 features, and `label`. The CSVs store the raw calculated numbers. Scaling, when needed by a model, happens later in the evaluation pipeline.
+
+Only the 17 feature columns go into a version 1 model. `label` is the answer to predict, and `base_id` controls grouping. IDs, source URLs, engine annotations, and review decisions must not accidentally become prediction inputs.
+
+### Versions 2 and 3
+
+The feature set has changed twice. Each version imports the previous one and leaves it unchanged, so older results can still be reproduced. A column that starts with `v2_` or `v3_` is new or has a changed definition; a column without a prefix is computed as in version 1. The reasons and the evidence for each change are in the header of each script.
+
+| Version | Features | Change | Column |
+|---|---:|---|---|
+| 2 | 18 | Removed | `count_percent_brace` (fired on 2 of 3,906 rows) |
+| 2 | | Replaced | `count_erb` by `v2_count_erb_open` (opening tags only) |
+| 2 | | Replaced | `has_arithmetic_operation` by `v2_has_arithmetic_probe` (also accepts a quoted number) |
+| 2 | | Added | `v2_call_inside_delim`: method calls inside a template delimiter |
+| 2 | | Added | `v2_max_attr_chain_len`: longest `.attr` / `[index]` walk |
+| 3 | 22 | Added | `v3_is_i18n_call`: 1 if every expression is a translation call such as `t('Save')` |
+| 3 | | Added | `v3_simple_read_ratio`: share of expressions that only read a value, such as `user.name` |
+| 3 | | Added | `v3_control_ratio`: share of tags that are control statements (`if`, `for`, `set`, `end` ...) |
+| 3 | | Added | `v3_chained_calls`: calls made on the result of another call or index, such as `a(x).b()` |
+
+Version 3 is the current set. Its features are fixed patterns about template syntax; none of them learns names or words from the data, so each one means the same thing on a project the model has never seen. `model_evaluation/full_DS_v3.csv` holds the training and test rows together, with a `split` column (`train` or `test`) and the 22 features.
 
 ## 8. Duplicates, groups, and fair testing
 
@@ -339,17 +332,17 @@ For example, two arithmetic probes that differ only in numbers should generally 
 - No repeated exact payloads were found within each separate positive or benign file.
 - **One training string occurs in both classes:** `{% endif %}`, positive ID `POS-1805`, also appears in the benign file. Its conflicting labels remain unresolved.
 - The current test validator found no exact or conservatively normalized test duplicates and no such matches against the active or evaluation training files.
-- **13 of the 47 test positives have recorded training-family relationships.** This is the union of `related_train_family=yes` and `near_train_family` equal to `yes` or `exact`; do not add the fields' separate counts because they overlap.
-- The other 34 test positives are unflagged, not certified as independent families.
+- **13 of the 51 test positives have recorded training-family relationships.** This is the union of `related_train_family=yes` and `near_train_family` equal to `yes` or `exact`; do not add the fields' separate counts because they overlap.
+- The other 38 test positives are unflagged, not certified as independent families.
 - Benign train and test share repositories. There is no demonstrated benign repository holdout.
 
 ### 8.3 How to use the sets fairly
 
 Use grouped splits within training when selecting settings. Keep matching `base_id` values together, including during cross-validation. Fit any scaler or learned text representation using only the training portion of each split, then reuse it on that split's validation data.
 
-Use the fixed test set after choosing model settings. Report results for all 47 positives and, where useful, the 34 currently unflagged positives as a clearly labelled subset. Explain that this smaller subset is not proof of unseen attack families.
+Use the fixed test set after choosing model settings. Report results for all 51 positives and, where useful, the 38 currently unflagged positives as a clearly labelled subset. Explain that this smaller subset is not proof of unseen attack families.
 
-Report attack recall, precision, F1, false positives, and the actual confusion-matrix counts. One missed test positive changes recall by about **2.13 percentage points**, so this small set cannot support very precise estimates. Earlier test inspection and repeated dataset changes must also be disclosed; the set has already been used during development review.
+Report attack recall, precision, F1, false positives, and the actual confusion-matrix counts. One missed test positive changes recall by about **1.96 percentage points**, so this small set cannot support very precise estimates. Earlier test inspection and repeated dataset changes must also be disclosed; the set has already been used during development review.
 
 ## 9. What has been checked and what still needs work
 
@@ -359,9 +352,9 @@ Report attack recall, precision, F1, false positives, and the actual confusion-m
 |---|---|
 | Training record counts and source totals | Confirmed against the CSVs. |
 | Training positive/benign records versus combined and feature exports | Payloads, labels, order, and stored group keys agree. |
-| Feature calculation | All 17 v1 values recomputed for all 3,906 training and 547 test records; no mismatches found within the checked numeric tolerance. |
+| Feature calculation | All 17 values recomputed for all 3,906 training and 551 test records; no mismatches found within the checked numeric tolerance. |
 | Test serialization and source-capture alignment | Existing test-only validator passed against the saved historical evidence. This is not a fresh audit of every website. |
-| Evaluation feature copies | `model_evaluation/train_features.csv` and `model_evaluation/test_features.csv` are byte-identical to the current Dataset feature files. The old 4,002-row warning is obsolete. |
+| Evaluation feature copies | `model Evaluation/train_features.csv` and `model Evaluation/test_features.csv` are byte-identical to the current Dataset feature files. The old 4,002-row warning is obsolete. |
 | Positive training attribution fields | All 1,905 rows have the four source fields filled in. |
 | Payload execution or model retraining | Not performed in this documentation check. |
 
@@ -375,7 +368,7 @@ Report attack recall, precision, F1, false positives, and the actual confusion-m
 | All 1,905 mechanism annotations are `auto_unreviewed` | Descriptive labels were assigned automatically. | Review before presenting mechanism-level results as verified. |
 | 630 mechanisms are `uncertain`; 205 automatic payload types are blank | The current metadata is incomplete. | Fill values only when supported by evidence. |
 | ProjectDiscovery batch includes scanner expressions/placeholders and one CSTI-source row | Scanner construction code and client-side examples may not be actual SSTI inputs. | Check each row against its file and the project's scope. |
-| All 47 test positives are not executed and await human review | Source documentation does not prove behavior in a particular engine/version. | Review sources and, for runtime claims, validate in controlled matching environments. |
+| All 51 test positives are not executed and await human review | Source documentation does not prove behavior in a particular engine/version. | Review sources and, for runtime claims, validate in controlled matching environments. |
 | Benign records lack per-example source-file paths | Recorded file separation cannot be audited. | Recover paths and locations where possible. |
 | Original collectors are incomplete or assume older layouts | A new researcher cannot rebuild the release with one reliable command. | Preserve the current data and complete a separate reproducible build process. |
 
@@ -385,11 +378,11 @@ Old evaluation results remain historical until their model code, preprocessing, 
 
 ### 9.3 Claims to avoid
 
-- Do not call this the first SSTI dataset or detector. Earlier work on SSTI exists and should be cited.
+- Do not call this the first SSTI dataset or detector. Existing project literature notes prior SSTI work; see the [literature review](../paper/literature_review/SSTI_LITERATURE_REVIEW.md).
 - Do not call the whole test set CVE/HackerOne data or independently observed incidents. Most records are tagged as writeup-derived.
 - Do not equate no exact duplicates with no related attack families.
 - Do not describe all labels as human-reviewed or all payloads as successfully executed.
-- Do not treat a high score on 47 positives as proof of production performance.
+- Do not treat a high score on 51 positives as proof of production performance.
 
 ## 10. Source records, sharing, and future updates
 

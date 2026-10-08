@@ -24,18 +24,18 @@ Training and test data were collected separately, so the test set does not come 
 |---|---:|---|
 | Training positives | 1,905 | [payload-box/ssti-advanced-payload-list](https://github.com/payload-box/ssti-advanced-payload-list) (1,441), [PayloadsAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings) (194), [HackTricks](https://github.com/HackTricks-wiki/hacktricks) (159), [Hackmanit template-injection-table](https://github.com/Hackmanit/template-injection-table) (65), [SecLists](https://github.com/danielmiessler/SecLists) (29), [ProjectDiscovery fuzzing-templates](https://github.com/projectdiscovery/fuzzing-templates) (17) |
 | Training benign | 2,001 | 787 template fragments (hard negatives) from [Sidekiq](https://github.com/sidekiq/sidekiq), [Symfony demo](https://github.com/symfony/demo), [Microblog](https://github.com/miguelgrinberg/microblog) and [Spring PetClinic](https://github.com/spring-projects/spring-petclinic); 1,214 normal web parameters from [HttpParamsDataset](https://github.com/Morzeux/HttpParamsDataset) |
-| External test positives | 47 | Published write-ups, CVE proofs of concept, scanner templates, one HackerOne report and one CTF challenge, listed in [`Dataset/test_set/sources.md`](Dataset/test_set/sources.md) |
+| External test positives | 51 | Published write-ups, CVE proofs of concept, scanner templates, one HackerOne report, one CTF challenge, and four Twig probes from one official security advisory, listed in [`Dataset/test_set/sources.md`](Dataset/test_set/sources.md) |
 | External test benign | 500 | 143 template fragments and 357 normal parameters, from the same five sources as the training benign rows |
 
 How the data was built and checked is described in [`Dataset/README.md`](Dataset/README.md). Known weaknesses are listed in [`Dataset/LIMITATIONS.md`](Dataset/LIMITATIONS.md), and per-file counts, pinned commits and licences are in [`Dataset/train/SOURCES.md`](Dataset/train/SOURCES.md).
 
 ## Features
 
-Each payload is reduced to a short vector of counts and flags, such as delimiter counts, bracket depth, dangerous-name flags and method calls. Version 2 has 18 features and is the current set. Version 1 has 17 and is kept so earlier results can be reproduced. Files ending in `_v2.csv` use version 2. Definitions, and the reasons for each change from version 1, are in [`Dataset/DATASHEET.md`](Dataset/DATASHEET.md) section 7. The extractors are in [`Dataset/scripts/`](Dataset/scripts/), and `feature_audit.py` reproduces the evidence behind the changes.
+Each payload is reduced to a short vector of counts and flags, such as delimiter counts, bracket depth, dangerous-name flags and method calls. Version 3 has 22 features and is the current set: the 18 version 2 features plus four that describe ordinary template code (translation calls, simple value reads, control statements and chained calls). Versions 1 (17 features) and 2 (18) are kept so earlier results can be reproduced. Files ending in `_v2.csv` use version 2, and `model_evaluation/full_DS_v3.csv` holds the training and test rows with version 3 features and a `split` column. Definitions, and the reasons for each change, are in [`Dataset/DATASHEET.md`](Dataset/DATASHEET.md) section 7. The extractors are in [`Dataset/scripts/`](Dataset/scripts/), and `feature_audit.py` reproduces the evidence behind the changes.
 
 ## Results
 
-All results use the grouped splits and the 47-positive external test set described above. Most come from five runs on one machine, so differences of a point or two between models are within run-to-run variation. The same model appears with different numbers in different tables because the tables use different splits, cutoffs and hyperparameters. The exact protocol for each table is in [`results/README.md`](results/README.md), and the raw numbers are in [`results/`](results/).
+The saved results below use an earlier 47-positive test release and have not been recomputed for the current 51-positive test set. Treat them as historical until the evaluation is rerun. Most come from five runs on one machine, so differences of a point or two between models are within run-to-run variation. The same model appears with different numbers in different tables because the tables use different splits, cutoffs and hyperparameters. The exact protocol for each table is in [`results/README.md`](results/README.md), and the raw numbers are in [`results/`](results/).
 
 ### 1. More training data no longer helps
 
@@ -106,11 +106,12 @@ CNN-LSTM has the highest external AUC, ahead of the other two by more than the s
 ```bash
 pip install -r requirements.txt
 cd Dataset/scripts
+python ssti_feature_extraction_v3.py   # rebuilds model_evaluation/full_DS_v3.csv (current features)
 python ssti_feature_extraction_v2.py   # rebuilds train_features_v2.csv and test_features_v2.csv
 python feature_audit.py                # reproduces the feature analysis
 ```
 
-Then open `model_evaluation/Model_evaluation.ipynb`. The `FEATURES_FILE` line in cell 4 switches between version 1 and version 2 features. The notebooks read local copies of the feature CSVs in `model_evaluation/` and check that they match the files in `Dataset/`. The neural network notebook is `model_evaluation/deep_learning/dl_models.ipynb`.
+Then open `model_evaluation/Model_evaluation.ipynb`. Cell 4 sets `FEATURES_FILE = 'full_DS_v3.csv'` and uses its `train` rows; the `test` rows are the external test set. The saved outputs in the notebook are a version 3 run on the 51-positive test set; the numbers in the Results section above are older. The neural network notebook is `model_evaluation/deep_learning/dl_models.ipynb`.
 
 ## License
 
@@ -119,7 +120,7 @@ Then open `model_evaluation/Model_evaluation.ipynb`. The `FEATURES_FILE` line in
 | Code (scripts, notebooks) | [MIT](LICENSE) |
 | Dataset | Not covered by the MIT license; not yet cleared for redistribution |
 
-> **Note on the data.** Payloads come from 11 public repositories: seven MIT, two Apache-2.0, one LGPL-3.0 (Sidekiq), and one (HackTricks) with custom terms that ask for attribution and permission for commercial use. The 47 test positives come from published web pages whose licenses have not been checked. Before sharing or reusing any data file, read the licensing section of [`Dataset/train/SOURCES.md`](Dataset/train/SOURCES.md).
+> **Note on the data.** Payloads come from 11 public repositories: seven MIT, two Apache-2.0, one LGPL-3.0 (Sidekiq), and one (HackTricks) with custom terms that ask for attribution and permission for commercial use. The test positives come from published web pages and an official security advisory whose licenses have not all been checked. Before sharing or reusing any data file, read the licensing section of [`Dataset/train/SOURCES.md`](Dataset/train/SOURCES.md).
 
 ## Contact
 

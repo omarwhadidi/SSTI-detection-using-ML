@@ -2,10 +2,12 @@
 
 Raw numbers behind the results in the main README, organised in the same order as `model_evaluation/Model_evaluation.ipynb`. Each numbered folder matches one part of the notebook.
 
+**External-set figures in this results folder use the earlier 47-positive release.** The active test set now has 51 positives and 500 benign rows; these saved results have not been recomputed for it.
+
 ## How to read these numbers
 
 - **Test set:** rows held out from the training data before training (20%). In Part 1 the split is random, so about a third of the test rows have a near-copy in training (same `base_id`). In Part 3 the split keeps each `base_id` on one side.
-- **External set:** a separate test set collected from write-ups, CVE proofs of concept and a HackerOne report: 47 attacks and 500 benign rows (about 9% attacks). It is the closest thing to real traffic here, but with only 47 attacks one missed attack moves recall by about 2 points.
+- **External set (historical results below):** a separate test set collected from write-ups, CVE proofs of concept and a HackerOne report: 47 attacks and 500 benign rows (about 9% attacks). It is the closest thing to real traffic here, but with only 47 attacks one missed attack moves recall by about 2 points.
 - **ROC-AUC:** how often the model scores a random attack above a random benign input (1.0 = always, 0.5 = coin flip). It does not depend on the cutoff.
 - **Precision / recall / F1:** depend on the cutoff. Precision = of the inputs flagged, how many were attacks. Recall = of the attacks, how many were flagged.
 - **False alarms:** benign inputs flagged as attacks. **Missed attacks:** attacks not flagged.

@@ -172,7 +172,7 @@ For your desired real-world evaluation, start with original disclosures that doc
 
 #### Where the current SSTI test set came from
 
-The active set contains **47 positive examples and 500 benign examples**, for **547 total records**. The following table counts retained positive rows across 22 source pages. It includes the nine approved additions; six related-injection inputs are preserved separately.
+The active set contains **51 positive examples and 500 benign examples**, for **551 total records**. The following table counts retained positive rows across 23 source pages. It includes four source-verified Twig probes from the Solspace Freeform advisory added on 7 October 2026, alongside the earlier approved examples. Six related-injection inputs remain outside the SSTI set. See the scope review (archived in `_archive/dataset_history_2026-09-19.zip`, path `review/TEST_SCOPE_REVIEW_2026-09-18.md`).
 
 | Retained source page | Positive rows |
 |---|---:|
@@ -213,9 +213,9 @@ That is **143 template fragments plus 357 benchmark-derived parameters**. All fi
 
 Thirteen positives have known training-family relationships (seven earlier flags plus six new comparisons). Zero exact or conservative normalized duplicates remain, but the other 34 positives are not certified unseen families.
 
-Local evidence: [retained positive records](test_set/ssti_test_positives_enriched.csv), [benign records](test_set/test_benign.csv), and [source notes](test_set/sources.md).
+Local evidence: [retained positive records](test_set/ssti_test_positives.csv), [benign records](test_set/test_benign.csv), and [source notes](test_set/sources.md).
 
-**New collection work:** Nine of the 14 captured candidates have now been admitted after source/scope and duplicate review; five remain outside the active set. Original research files preserve their collection-time status.
+**New collection work:** see the SSTI expansion research report (archived in `_archive/dataset_history_2026-09-19.zip`, path `research/ssti_test_expansion_2026-09-18/SSTI_TEST_EXPANSION_RESEARCH.md`). Nine of the 14 captured candidates have now been admitted after source/scope and duplicate review; five remain outside the active set. The admission ledger (archived in `_archive/dataset_history_2026-09-19.zip`, path `review/test_scope_review_2026-09-18.json`) records the decisions. Original research files preserve their collection-time status.
 
 **What you should have when finished with this step:** a development-source list, a reserved test-source plan, and a place to record candidate evidence. Continue with Step 5 below.
 

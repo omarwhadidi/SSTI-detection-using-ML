@@ -1,11 +1,11 @@
 # Sources — current SSTI test subset
 
-**47 positives across 22 source pages; 500 benign inputs; 547 total records.** Updated 18 September 2026.
+**51 positives across 23 source pages; 500 benign inputs; 551 total records.** Updated 7 October 2026.
 
 ## Scope and review
 
-The scope review and admission decisions were recorded on 2026-09-19 in a review ledger
-that is not part of this repository. Source-documented template inputs include probes and information disclosure, not only RCE. Earlier XSS stages are context, not active positive rows. Six related-injection inputs are preserved outside the active set in the review ledger.
+The scope review and admission decisions were archived on 2026-09-19 to
+`../_archive/dataset_history_2026-09-19.zip` (`review/TEST_SCOPE_REVIEW_2026-09-18.md`). Source-documented template inputs include probes and information disclosure, not only RCE. Earlier XSS stages are context, not active positive rows. Six related-injection inputs are preserved outside the active set in the review ledger.
 
 ## Retained positive sources
 
@@ -33,10 +33,11 @@ that is not part of this repository. Source-documented template inputs include p
 | [sec.stealthcopter.com/wpml-rce-via-twig-ssti/](https://sec.stealthcopter.com/wpml-rce-via-twig-ssti/) | 1 |
 | [www.sonarsource.com/blog/it-s-a-snmp-trap-gaining-code-execution-on-librenms/](https://www.sonarsource.com/blog/it-s-a-snmp-trap-gaining-code-execution-on-librenms/) | 1 |
 | [portswigger.net/research/server-side-template-injection](https://portswigger.net/research/server-side-template-injection) | 1 |
+| [github.com/solspace/craft-freeform/security/advisories/GHSA-gxrg-x694-283w](https://github.com/solspace/craft-freeform/security/advisories/GHSA-gxrg-x694-283w) | 4 |
 
 ## Evidence and independence
 
-Evidence annotations: HackerOne=1, CVE_PoC=9, security_writeup=34, scanner_template=2, CTF=1. Tier annotations: A=10, C=35, B=2. These count rows, not independent incidents; older categories still need source-type review.
+Evidence annotations: HackerOne=1, CVE_PoC=13, security_writeup=34, scanner_template=2, CTF=1. Tier annotations: A=14, C=35, B=2. These count rows, not independent incidents; older categories still need source-type review.
 
 13 positives have known training-family relationships. Zero exact/transport-normalized string duplicates does not establish family independence. Six newly flagged comparisons include training IDs in the enriched records; original seven flags retain their earlier annotations.
 
@@ -48,17 +49,16 @@ The 500 unchanged benign rows contain 143 template fragments (89 Sidekiq, 25 mic
 
 | File | Purpose |
 |---|---|
-| [ssti_test_positives.jsonl](ssti_test_positives.jsonl) | Canonical 47 positive inputs, with engine, context and source URL. Preserves multiline strings. |
-| [ssti_test_positives.csv](ssti_test_positives.csv) | Restored basic CSV export of the same 47 positives: payload, engine, tier, context, source URL and label. |
-| [ssti_test_positives_enriched.csv](ssti_test_positives_enriched.csv) | The same positives with stable IDs, source details, review notes and family flags. Best for manual review. |
+| [ssti_test_positives.csv](ssti_test_positives.csv) | Canonical 51 positive inputs with source, scope, and review fields. |
+| [ssti_test_positives.txt](ssti_test_positives.txt) | One payload per line; embedded line breaks are written as `\n`. |
 | [test_benign.csv](test_benign.csv) | The 500 benign inputs with their source metadata. |
-| [ssti_test_combined.csv](ssti_test_combined.csv) | All 547 examples, ready for loading: positives followed by benign inputs. |
+| [ssti_test_combined.csv](ssti_test_combined.csv) | All 551 examples, ready for loading: positives followed by benign inputs. |
 | [features/test_features.csv](features/test_features.csv) | The 17 computed features used by evaluation, plus `base_id` for group-aware analysis. |
 | [sources.md](sources.md) | This source catalog and file guide. |
 
 ## Cleanup and validation
 
-Four redundant exports were previously removed after checking all fields. The basic positive CSV has now been restored at the user's request; the TSV, enriched positive JSONL and benign TXT remain removed. No examples, labels, provenance or feature values were changed. Their hashes and replacement files are recorded in [the cleanup log](../CLEANUP_LOG.json).
+Four verified SSTI probes from one official advisory were added. The canonical positive CSV now keeps the stable IDs, source details, review notes, and family flags; the separate enriched CSV and JSONL copies are removed. The 17-feature and v2-feature test exports were refreshed. This change creates a new test-data version and requires a fresh evaluation.
 
 Read CSV with a CSV parser because some fields contain actual newlines. Run
 `../scripts/reconcile_dataset_exports.py --validate --test-only` for current checks.
