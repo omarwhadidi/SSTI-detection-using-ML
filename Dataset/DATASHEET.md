@@ -43,9 +43,11 @@ The project studies whether a machine-learning model can identify SSTI-like inpu
 
 | Set | Positive candidates | Benign examples | Total |
 |---|---:|---:|---:|
-| Training | 1,905 | 2,001 | **3,906** |
+| Training | 1,972 | 2,001 | **3,973** |
 | Test | 51 | 500 | **551** |
-| **Both sets** | **1,956** | **2,501** | **4,457** |
+| **Both sets** | **2,023** | **2,501** | **4,524** |
+
+> **Update (October 2026).** 67 multi-engine payloads (Mako 54, Jinja2 10, Tornado 2, Cheetah 1) were collected from PayloadsAllTheThings and SSTImap, and 26 malformed SSTImap placeholder/parametric rows removed, bringing training positives to **1,972** (combined **3,973**). These 67 carry `engine_confidence=collected` and are **sourced and syntax-checked but not yet lab-validated**. The tables in this section reflect the new totals; some historical prose further down still cites the earlier 1,905 / 3,906 figures.
 
 The training data is about 49% positive and 51% benign. The test data has many more benign examples than positives. A model predicting every test record as benign would already score about **91.4% accuracy**, so accuracy alone is not enough.
 
@@ -65,9 +67,10 @@ The current positive file records six repositories. These counts were checked di
 | [HackTricks](https://github.com/HackTricks-wiki/hacktricks) | 159 | Code examples from SSTI, Jinja2, and expression-language pages. |
 | [ProjectDiscovery fuzzing templates](https://github.com/projectdiscovery/fuzzing-templates) | 17 | 16 records attributed to `ssti/reflection-ssti.yaml`, and one to a client-side Angular template-injection file. **This batch needs review for scope and extraction errors.** |
 | [Hackmanit template-injection table](https://github.com/Hackmanit/template-injection-table) | 65 | Engine-identification probes extracted from `engines.js`; related to the TInjA project. |
-| **Total** | **1,905** | |
+| [Multi-engine collection (Oct 2026)](python_ssti_sources.md) | 67 | Mako (54), Jinja2 (10), Tornado (2), Cheetah (1) from PayloadsAllTheThings + SSTImap. Sourced and syntax-checked, **not yet lab-validated**. |
+| **Total** | **1,972** | |
 
-All 1,905 records have repository, file, commit, and URL fields filled in. A **commit** identifies a saved version of a repository. The exact commits and per-file counts are in [Training sources](train/SOURCES.md#positive-sources). Filled fields establish attribution; each payload still needs to be checked against its cited file where this has not been done.
+All 1,972 records have repository, file, commit, and URL fields filled in. A **commit** identifies a saved version of a repository. The exact commits and per-file counts are in [Training sources](train/SOURCES.md#positive-sources). Filled fields establish attribution; each payload still needs to be checked against its cited file where this has not been done.
 
 ### 3.2 Extract, clean, and keep records of additions
 
@@ -81,7 +84,8 @@ Recorded development of the positive set:
 | Remove untraceable local seeds from active data | Preserve the 366 removed records in the archive | 1,635 |
 | Add SecLists | 29 retained additions | 1,664 |
 | Add HackTricks and ProjectDiscovery | 159 + 17 retained additions | 1,840 |
-| Add the Hackmanit engine table | 65 retained additions | **1,905** |
+| Add the Hackmanit engine table | 65 retained additions | 1,905 |
+| Add multi-engine collected payloads (Oct 2026) | 67 retained; 26 malformed SSTImap rows removed | **1,972** |
 
 The three `positives_added_from_*.csv` files that recorded these additions have been retired
 (20 September 2026): every payload and `base_id` in each was verified already present in
@@ -157,12 +161,12 @@ The single positive CSV, [ssti_test_positives.csv](test_set/ssti_test_positives.
 
 | File | Records | Purpose |
 |---|---:|---|
-| [positives.csv](train/positives/positives.csv) | 1,905 | Main positive records, with source details and review flags. Start here to review positives. |
-| [positives.txt](train/positives/positives.txt) | 1,905 | Text-only convenience copy. It loses labels and source information. |
+| [positives.csv](train/positives/positives.csv) | 1,972 | Main positive records, with source details and review flags. Start here to review positives. |
+| [positives.txt](train/positives/positives.txt) | 1,972 | Text-only convenience copy. It loses labels and source information. |
 | [benign.csv](train/benign/benign.csv) | 2,001 | Main benign records and their source categories. |
 | [benign.txt](train/benign/benign.txt) | 2,001 | Text-only convenience copy. |
-| [train_combined.csv](train/combined/train_combined.csv) | 3,906 | Positive and benign text with selected metadata. |
-| [train_features.csv](train/combined/train_features.csv) | 3,906 | Model-ready numeric features, label, payload, and grouping key. |
+| [train_combined.csv](train/combined/train_combined.csv) | 3,973 | Positive and benign text with selected metadata. |
+| [train_features.csv](train/combined/train_features.csv) | 3,973 | Model-ready numeric features, label, payload, and grouping key. |
 
 ### 5.2 Test files
 
@@ -323,7 +327,7 @@ Version 3 is the current set. Its features are fixed patterns about template syn
 | Same skeleton | Strings have the same stored structural pattern after masking variable text. |
 | Related attack family | Different-looking strings use the same underlying technique. This may require a person's judgment. |
 
-Historical skeleton logic repeatedly URL-decodes, lowercases, masks quoted strings and digits, and removes whitespace. Stored keys are a rough grouping tool; they are not proven engine-aware families. There are **1,283 stored positive skeletons** and **1,432 stored benign keys** in training. Do not add these counts and call the result independent attack families.
+Historical skeleton logic repeatedly URL-decodes, lowercases, masks quoted strings and digits, and removes whitespace. Stored keys are a rough grouping tool; they are not proven engine-aware families. There are **1,345 stored positive skeletons** and **1,432 stored benign keys** in training. Do not add these counts and call the result independent attack families.
 
 For example, two arithmetic probes that differ only in numbers should generally stay in the same development group. Grouping limits memorization of small variants. It cannot catch every relationship between attacks written in different ways.
 

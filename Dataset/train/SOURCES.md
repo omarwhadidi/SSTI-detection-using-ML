@@ -11,17 +11,17 @@ Counts below are parsed data records, excluding headers, as of 19 September 2026
 
 | part | records | file |
 |---|---:|---|
-| positives (label = 1) | 1,905 | `positives/positives.csv` |
+| positives (label = 1) | 1,972 | `positives/positives.csv` |
 | benign (label = 0) | 2,001 | `benign/benign.csv` |
-| combined | 3,906 | `combined/train_combined.csv` |
-| combined + 17 features | 3,906 | `combined/train_features.csv` |
+| combined | 3,973 | `combined/train_combined.csv` |
+| combined + 17 features | 3,973 | `combined/train_features.csv` |
 
 The corpus is no longer 1:1 balanced. It is roughly 49% positive / 51% benign, which is
 why ROC-AUC and attack-class recall are the headline metrics rather than accuracy.
 
 ## Positive sources
 
-Every positive record carries a single pinned `source_url`, populated for all 1,905 rows.
+Every positive record carries a single pinned `source_url`, populated for all 1,972 rows.
 The URL has the form `https://github.com/<repo>/blob/<commit>/<file>`, so the repository,
 the exact commit and the file path are all recoverable from it — which is why the separate
 `source_repo`, `source_file` and `source_commit` columns were removed on 20 September 2026
@@ -35,6 +35,11 @@ as redundant. The tables below are derived from those URLs.
 | `HackTricks-wiki/hacktricks` | 159 | `14f4a7d1b6d3534336d2a8740e3e893ffa38ea74` |
 | `projectdiscovery/fuzzing-templates` | 17 | `5585787b43e6f7242fcbb706688f9528be63e29f` |
 | `Hackmanit/template-injection-table` | 65 | `4be3ec7f8a7de162dd3bb340b54560938bfdfab2` |
+| `swisskyrepo/PayloadsAllTheThings` + `vladko312/SSTImap` (Oct 2026 multi-engine batch) | 67 | per-row `source_url` + commit in `positives.csv`; see [`../python_ssti_sources.md`](../python_ssti_sources.md) |
+
+### Multi-engine collection (October 2026)
+
+67 additional positives for Python engines under-represented in the original set were collected from `swisskyrepo/PayloadsAllTheThings` and `vladko312/SSTImap` at pinned commits (Mako 54, Jinja2 10, Tornado 2, Cheetah 1). 26 malformed SSTImap parametric/placeholder rows (literal `{rand.*}`, `{code}`, doubled braces) were discarded. Each kept row has its own `source_url` and commit in `positives.csv` and carries `engine_confidence=collected`. **These rows are not yet validated against a live engine** — treat them as sourced candidates until confirmed.
 
 ### Per-file breakdown
 
